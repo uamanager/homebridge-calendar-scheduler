@@ -8,6 +8,29 @@ export interface ICalendarEvent {
   endDate: Date;
 }
 
+export interface ICalendarEventRaw {
+  events: ICalendarEventRawEvent[];
+  occurrences: ICalendarEventRawOccurrence[];
+}
+
+export interface ICalendarEventRawEvent {
+  summary: string;
+  startDate: ICalendarEventRawDate;
+  endDate: ICalendarEventRawDate;
+}
+
+export interface ICalendarEventRawOccurrence {
+  item: {
+    summary: string;
+  };
+  startDate: ICalendarEventRawDate;
+  endDate: ICalendarEventRawDate;
+}
+
+export interface ICalendarEventRawDate {
+  toJSDate: () => Date;
+}
+
 export class Calendar {
   protected _logger: Logger;
 
@@ -31,7 +54,7 @@ export class Calendar {
         this._logger.error('Error while updating calendar:', this._name);
       }
     }
-    catch (error: any) {
+    catch (error) {
       this._logger.error('Error while updating calendar:', this._name, error);
     }
   }
@@ -39,22 +62,26 @@ export class Calendar {
   getEvents (): ICalendarEvent[] {
     const _rawEvents = this._buildEvents();
 
-    const _events = this._getEvents(_rawEvents.events);
-    const _occurrences = this._getOccurrences(_rawEvents.occurrences);
+    if (_rawEvents) {
+      const _events = this._getEvents(_rawEvents.events);
+      const _occurrences = this._getOccurrences(_rawEvents.occurrences);
 
-    return [..._events, ..._occurrences];
+      return [..._events, ..._occurrences];
+    }
+
+    return [];
   }
 
-  private _buildEvents () {
+  private _buildEvents (): ICalendarEventRaw | undefined {
     if (!this._calendar) {
       return;
     }
 
     const now = new Date();
-    return this._calendar.between(now, now);
+    return this._calendar.between(now, now) as ICalendarEventRaw;
   }
 
-  private _getEvents (rawEvents: any[] = []): ICalendarEvent[] {
+  private _getEvents (rawEvents: ICalendarEventRawEvent[] = []): ICalendarEvent[] {
     return rawEvents.map(({ summary, startDate, endDate }) => {
       return {
         summary: summary,
@@ -64,7 +91,7 @@ export class Calendar {
     });
   }
 
-  private _getOccurrences (rawOccurrences: any[] = []): ICalendarEvent[] {
+  private _getOccurrences (rawOccurrences: ICalendarEventRawOccurrence[] = []): ICalendarEvent[] {
     return rawOccurrences.map(({ item: { summary }, startDate, endDate }) => {
       return {
         summary: summary,
