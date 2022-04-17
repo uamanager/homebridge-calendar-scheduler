@@ -1,16 +1,21 @@
 {
-  "private": true,
-  "displayName": "Plugin Name",
-  "name": "homebridge-plugin-name",
+  "private": false,
+  "displayName": "Homebridge Calendar Scheduler",
+  "name": "homebridge-calendar-scheduler",
   "version": "1.0.0",
-  "description": "A short description about what your plugin does.",
+  "description": "Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/USERNAME/GITHUB_PROJECT_NAME.git"
+    "url": "git://github.com/uamanager/homebridge-calendar-scheduler.git"
+  },
+  "author": {
+    "name": "uamanager",
+    "email": "faradey.ivan@gmail.com",
+    "url": "https://github.com/uamanager"
   },
   "bugs": {
-    "url": "https://github.com/USERNAME/GITHUB_PROJECT_NAME/issues"
+    "url": "https://github.com/uamanager/homebridge-calendar-scheduler/issues"
   },
   "engines": {
     "node": ">=14.18.1",
@@ -26,7 +31,10 @@
   "keywords": [
     "homebridge-plugin"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "ical-expander": "^3.1.0",
+    "toad-scheduler": "^1.6.0"
+  },
   "devDependencies": {
     "@types/node": "^16.10.9",
     "@typescript-eslint/eslint-plugin": "^5.0.0",

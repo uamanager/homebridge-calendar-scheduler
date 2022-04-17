@@ -1,16 +1,90 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "CalendarScheduler",
   "pluginType": "platform",
   "singular": true,
+  "headerDisplay": "Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with repeats using any iCal calendar.",
+  "footerDisplay": "Visit the Project [Readme](https://github.com/uamanager/homebridge-calendar-scheduler#readme) for more details.",
   "schema": {
     "type": "object",
     "properties": {
-      "name": {
-        "title": "Name",
-        "type": "string",
-        "required": true,
-        "default": "Example Dynamic Platform"
+      "calendars": {
+        "title": "Calendars",
+        "type": "array",
+        "description": "Add one or more calendars below.",
+        "items": {
+          "title": "Calendars",
+          "type": "object",
+          "properties": {
+            "calendarName": {
+              "title": "Calendar Name",
+              "description": "A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.",
+              "type": "string",
+              "required": true
+            },
+            "calendarUrl": {
+              "title": "Calendar Url",
+              "description": "The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.",
+              "type": "string",
+              "required": true
+            },
+            "calendarUpdateInterval": {
+              "title": "Calendar Update Interval",
+              "description": "The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 15 minutes.",
+              "type": "integer",
+              "required": false,
+              "default": 10
+            },
+            "calendarEvents": {
+              "title": "Events",
+              "type": "array",
+              "description": "Add one or more calendar events below.",
+              "items": {
+                "title": "Events",
+                "type": "object",
+                "properties": {
+                  "eventName": {
+                    "title": "Event Name",
+                    "description": "A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.",
+                    "placeholder": "sensor1",
+                    "type": "string",
+                    "default": "event-name1",
+                    "required": true
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
-  }
+  },
+  "layout": [
+    {
+      "key": "calendars",
+      "type": "array",
+      "orderable": false,
+      "buttonText": "Add Calendar",
+      "items": [
+        "calendars[].calendarName",
+        "calendars[].calendarUrl",
+        "calendars[].calendarUpdateInterval",
+        {
+          "type": "section",
+          "expandable": true,
+          "expanded": true,
+          "items": [
+            {
+              "key": "events",
+              "type": "array",
+              "orderable": false,
+              "buttonText": "Add Calendar Event",
+              "items": [
+                "calendars[].calendarEvents[].eventName"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
