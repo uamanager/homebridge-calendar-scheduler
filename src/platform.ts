@@ -16,13 +16,15 @@ import { PLATFORM_NAME } from './settings';
 import { IAccessoryContext } from './types/accessory.context';
 import { CalendarConfig } from './types/calendar.config';
 
+export type TPlatformAccessories = EventAccessory | CalendarAccessory;
+
 export class Platform implements DynamicPlatformPlugin {
   readonly Service: typeof Service = this.api.hap.Service;
   readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
   readonly Scheduler: ToadScheduler = new ToadScheduler();
 
   CalendarHandlers: CalendarHandler[] = [];
-  readonly AccessoriesManager: AccessoriesManager<EventAccessory | CalendarAccessory> = new AccessoriesManager(
+  readonly AccessoriesManager: AccessoriesManager<TPlatformAccessories> = new AccessoriesManager(
     this,
   );
 

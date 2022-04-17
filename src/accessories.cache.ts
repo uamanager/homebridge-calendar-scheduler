@@ -22,7 +22,7 @@ export class AccessoriesCache {
     value: PlatformAccessory<IAccessoryContext>,
     key: string,
     map: Map<string, PlatformAccessory<IAccessoryContext>>,
-  ) => void, thisArg?: any) {
+  ) => void, thisArg?) {
     this._cache.forEach(callbackFn, thisArg);
   }
 

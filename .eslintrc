@@ -36,9 +36,7 @@
       "warn",
       "all"
     ],
-    "brace-style": [
-      "warn"
-    ],
+    "brace-style": "off",
     "prefer-arrow-callback": [
       "warn"
     ],
