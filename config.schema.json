@@ -69,19 +69,12 @@
         "calendars[].calendarUrl",
         "calendars[].calendarUpdateInterval",
         {
-          "type": "section",
-          "expandable": true,
-          "expanded": true,
+          "key": "events",
+          "type": "array",
+          "orderable": false,
+          "buttonText": "Add Calendar Event",
           "items": [
-            {
-              "key": "events",
-              "type": "array",
-              "orderable": false,
-              "buttonText": "Add Calendar Event",
-              "items": [
-                "calendars[].calendarEvents[].eventName"
-              ]
-            }
+            "calendars[].calendarEvents[].eventName"
           ]
         }
       ]
