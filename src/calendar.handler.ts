@@ -106,7 +106,9 @@ export class CalendarHandler {
     );
 
     if (_watchedActiveEvents.length) {
-      _calendarAccessory?.setContactSensorState(true);
+      if (this.calendar.calendarTriggerOnUpdates) {
+        _calendarAccessory?.setContactSensorState(true);
+      }
       _calendarAccessory?.setContactSensorState(false);
     } else {
       _calendarAccessory?.setContactSensorState(true);
@@ -126,7 +128,9 @@ export class CalendarHandler {
 
         const _progress = (_now - _startTime) / (_endTime - _startTime) * 100;
 
-        _eventAccessory?.setContactSensorState(true);
+        if (eventConfig.eventTriggerOnUpdates) {
+          _eventAccessory?.setContactSensorState(true);
+        }
         _eventAccessory?.setCurrentAmbientLightState(_progress);
         _eventAccessory?.setContactSensorState(false);
       } else {

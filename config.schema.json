@@ -18,6 +18,7 @@
             "calendarName": {
               "title": "Calendar Name",
               "description": "A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.",
+              "placeholder": "calendar-name1",
               "type": "string",
               "required": true
             },
@@ -32,22 +33,36 @@
               "description": "The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 15 minutes.",
               "type": "integer",
               "required": false,
-              "default": 10
+              "default": 60
+            },
+            "calendarTriggerOnUpdates": {
+              "title": "Trigger on progress update",
+              "description": "If set to true, then every minute calendar sensor trigger update if any active event.",
+              "type": "boolean",
+              "default": true,
+              "required": true
             },
             "calendarEvents": {
               "title": "Events",
               "type": "array",
               "description": "Add one or more calendar events below.",
               "items": {
-                "title": "Events",
+                "title": "Event",
                 "type": "object",
                 "properties": {
                   "eventName": {
                     "title": "Event Name",
                     "description": "A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.",
-                    "placeholder": "sensor1",
+                    "placeholder": "event-name1",
                     "type": "string",
                     "default": "event-name1",
+                    "required": true
+                  },
+                  "eventTriggerOnUpdates": {
+                    "title": "Trigger on progress update",
+                    "description": "If set to true, then every minute sensor trigger update for active event.",
+                    "type": "boolean",
+                    "default": true,
                     "required": true
                   }
                 }
@@ -57,27 +72,5 @@
         }
       }
     }
-  },
-  "layout": [
-    {
-      "key": "calendars",
-      "type": "array",
-      "orderable": false,
-      "buttonText": "Add Calendar",
-      "items": [
-        "calendars[].calendarName",
-        "calendars[].calendarUrl",
-        "calendars[].calendarUpdateInterval",
-        {
-          "key": "events",
-          "type": "array",
-          "orderable": false,
-          "buttonText": "Add Calendar Event",
-          "items": [
-            "calendars[].calendarEvents[].eventName"
-          ]
-        }
-      ]
-    }
-  ]
+  }
 }
