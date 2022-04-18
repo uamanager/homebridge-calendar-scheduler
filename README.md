@@ -6,4 +6,86 @@
 
 # Homebridge Calendar Scheduler
 
-Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.
+**Creating and maintaining Homebridge plugins consume a lot of time and effort, if you
+would like to share your appreciation, feel free to "Star" or donate.**
+
+[Click here](https://github.com/uamanager) to review more of my plugins.
+
+## Info
+
+Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with repeats using any iCal calendar.
+
+## Installation
+
+After [Homebridge](https://github.com/nfarina/homebridge) has been installed:
+
+```
+sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
+```
+
+## Example Config
+
+```
+{
+   ...
+    "platforms": [
+        {
+            "platform": "CalendarScheduler",
+            "calendars": [
+                {
+                    "calendarName": "calendar-1",
+                    "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
+                    "calendarUpdateInterval": 3,
+                    "calendarTriggerOnUpdates": true,
+                    "calendarEvents": [
+                        {
+                            "eventName": "event-name1"
+                        },
+                        {
+                            "eventName": "event-name-with-retrigger",
+                            "eventTriggerOnUpdate": true
+                        }
+                    ]
+                },
+                {
+                    "calendarName": "calendar-2",
+                    "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
+                    "calendarUpdateInterval": 30,
+                    "calendarTriggerOnUpdates": false,
+                    "calendarEvents": [
+                        {
+                            "eventName": "event-name-without-retrigger",
+                            "eventTriggerOnUpdate": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+```
+
+| Fields                   | Description                                                                                                                                       | Default               | Required |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
+| **platform**             | Must always be `CalendarScheduler`.                                                                                                               | `"CalendarScheduler"` | Yes      |
+| **calendars**            | Array of watched calendars.                                                                                                                       |                       | No       |
+| calendarName             | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                    | `""`                  | Yes      |
+| calendarUrl              | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                              | `""`                  | Yes      |
+| calendarUpdateInterval   | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes. | `60`                  | No       |
+| calendarTriggerOnUpdates | If set to true, then every minute calendar sensor trigger update if any active event.                                                             | `true`                | Yes      |
+| **calendarEvents**       | Array of watched calendar events.                                                                                                                 |                       | No       |
+| eventName                | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | No       |
+| eventTriggerOnUpdates    | If set to true, then every minute sensor trigger update for active event.                                                                         | `true`                | No       |
+
+# Contributing
+
+You can contribute to this homebridge plugin in following ways:
+
+- Report issues and help verify fixes as they are checked in.
+- Review the source code changes.
+- Contribute bug fixes.
+- Contribute changes to extend the capabilities
+- Pull requests are accepted.
+
+See [CONTRIBUTING](https://github.com/uamanager/homebridge-calendar-scheduler/blob/master/CONTRIBUTING.md)

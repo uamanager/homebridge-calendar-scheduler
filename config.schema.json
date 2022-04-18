@@ -30,7 +30,7 @@
             },
             "calendarUpdateInterval": {
               "title": "Calendar Update Interval",
-              "description": "The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 15 minutes.",
+              "description": "The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes.",
               "type": "integer",
               "required": false,
               "default": 60
