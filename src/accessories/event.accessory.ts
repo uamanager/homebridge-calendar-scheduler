@@ -27,7 +27,7 @@ export class EventAccessory extends CalendarAccessory {
 
 
   async getCurrentAmbientLightLevel (): Promise<CharacteristicValue> {
-    const state = Math.round(this.CurrentAmbientLightLevel);
+    const state = Math.max(0.0001, Math.min(100, Math.round(this.CurrentAmbientLightLevel)));
 
     this.platform.log.debug(
       `[${this.accessory.context.name} Progress] Get Characteristic On ->`,
