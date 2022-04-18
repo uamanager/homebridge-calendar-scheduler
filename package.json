@@ -33,7 +33,15 @@
     "prepublishOnly": "npm run lint && npm run build"
   },
   "keywords": [
-    "homebridge-plugin"
+    "homebridge",
+    "homebridge-plugin",
+    "calendar",
+    "ical",
+    "homekit",
+    "home-automation",
+    "scheduler",
+    "scenarios",
+    "automation"
   ],
   "dependencies": {
     "ical-expander": "^3.1.0",
