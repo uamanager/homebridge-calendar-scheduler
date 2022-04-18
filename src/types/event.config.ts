@@ -2,12 +2,12 @@ import { ICalendarConfig } from './calendar.config';
 
 export interface ICalendarEventConfig {
   eventName: string;
-  eventTriggerOnUpdates: boolean;
+  eventTriggerOnUpdates?: boolean;
 }
 
 export class CalendarEventConfig implements ICalendarEventConfig {
   readonly eventName: string;
-  readonly eventTriggerOnUpdates: boolean;
+  readonly eventTriggerOnUpdates?: boolean;
 
   get id (): string {
     return `${this._calendar.calendarName}-${this.eventName}`;

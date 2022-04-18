@@ -70,12 +70,12 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
 | **platform**             | Must always be `CalendarScheduler`.                                                                                                               | `"CalendarScheduler"` | Yes      |
 | **calendars**            | Array of watched calendars.                                                                                                                       |                       | No       |
-| calendarName             | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                    | `""`                  | Yes      |
+| calendarName             | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                    | `"calendar-name1"`    | Yes      |
 | calendarUrl              | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                              | `""`                  | Yes      |
 | calendarUpdateInterval   | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes. | `60`                  | No       |
-| calendarTriggerOnUpdates | If set to true, then every minute calendar sensor trigger update if any active event.                                                             | `true`                | Yes      |
+| calendarTriggerOnUpdates | If set to true, then every minute calendar sensor trigger update if any active event.                                                             | `true`                | No       |
 | **calendarEvents**       | Array of watched calendar events.                                                                                                                 |                       | No       |
-| eventName                | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | No       |
+| eventName                | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | Yes      |
 | eventTriggerOnUpdates    | If set to true, then every minute sensor trigger update for active event.                                                                         | `true`                | No       |
 
 # Contributing

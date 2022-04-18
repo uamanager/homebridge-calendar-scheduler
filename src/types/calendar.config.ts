@@ -4,7 +4,7 @@ export interface ICalendarConfig {
   calendarName: string;
   calendarUrl: string;
   calendarUpdateInterval?: number;
-  calendarTriggerOnUpdates: boolean;
+  calendarTriggerOnUpdates?: boolean;
   calendarEvents?: ICalendarEventConfig[];
 }
 
@@ -12,7 +12,7 @@ export class CalendarConfig implements ICalendarConfig {
   readonly calendarName: string;
   readonly calendarUrl: string;
   readonly calendarUpdateInterval?: number;
-  readonly calendarTriggerOnUpdates: boolean;
+  readonly calendarTriggerOnUpdates?: boolean;
   readonly calendarEvents: CalendarEventConfig[];
 
   get id (): string {
