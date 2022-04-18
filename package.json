@@ -23,6 +23,7 @@
   },
   "main": "dist/index.js",
   "files": [
+    "config.schema.json",
     "dist/*"
   ],
   "scripts": {
