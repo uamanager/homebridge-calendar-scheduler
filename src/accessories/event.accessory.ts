@@ -30,7 +30,7 @@ export class EventAccessory extends CalendarAccessory {
     const state = Math.max(0.0001, Math.min(100, Math.round(this.CurrentAmbientLightLevel)));
 
     this.platform.log.debug(
-      `[${this.accessory.context.name} Progress] Get Characteristic On ->`,
+      `[${this.accessory.context.name} Progress] Get CurrentAmbientLightLevel On ->`,
       state,
     );
 
@@ -43,7 +43,7 @@ export class EventAccessory extends CalendarAccessory {
     this.CurrentAmbientLightLevel = state;
 
     this.platform.log.debug(
-      `[${this.accessory.context.name}] Set Characteristic On ->`,
+      `[${this.accessory.context.name}] Set CurrentAmbientLightLevel On ->`,
       _state,
     );
 

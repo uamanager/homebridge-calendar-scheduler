@@ -21,9 +21,9 @@ export class AccessoriesManager<AT extends Accessory> {
 
   clean () {
     this._cacheManager.forEach((value, key) => {
-      const _accessory = this._cacheManager.remove(key);
-      if (_accessory) {
-        this.unregister(key, _accessory);
+      this._cacheManager.remove(key);
+      if (value) {
+        this.unregister(key, value);
       }
     });
     this.platform.log.debug('Finished cleaning accessories cache');

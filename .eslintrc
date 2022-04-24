@@ -78,6 +78,7 @@
     ],
     "@typescript-eslint/member-delimiter-style": [
       "warn"
-    ]
+    ],
+    "@typescript-eslint/no-var-requires": "off"
   }
 }

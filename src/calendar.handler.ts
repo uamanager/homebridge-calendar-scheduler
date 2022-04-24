@@ -49,14 +49,6 @@ export class CalendarHandler {
     this._initAccessories();
 
     this._calendarFetchJob.start();
-
-    //create job with task and start it
-    //setup event checking task for every minute
-  }
-
-  complete () {
-    this._calendarFetchJob.stop();
-    this._calendarUpdatesJob.stop();
   }
 
   private _initAccessories () {
@@ -84,7 +76,6 @@ export class CalendarHandler {
 
   private async _handleCalendarFetchJob () {
     this.platform.log.debug('Executed calendarFetch job', this.calendar.calendarName);
-    //update calendar reference
 
     await this._calendar.update();
 
@@ -108,8 +99,12 @@ export class CalendarHandler {
     if (_watchedActiveEvents.length) {
       if (this.calendar.calendarTriggerOnUpdates) {
         _calendarAccessory?.setContactSensorState(true);
+        setTimeout(() => {
+          _calendarAccessory?.setContactSensorState(false);
+        }, 1000);
+      } else {
+        _calendarAccessory?.setContactSensorState(false);
       }
-      _calendarAccessory?.setContactSensorState(false);
     } else {
       _calendarAccessory?.setContactSensorState(true);
     }
@@ -130,9 +125,15 @@ export class CalendarHandler {
 
         if (eventConfig.eventTriggerOnUpdates) {
           _eventAccessory?.setContactSensorState(true);
+          _eventAccessory?.setCurrentAmbientLightState(_progress);
+
+          setTimeout(() => {
+            _eventAccessory?.setContactSensorState(false);
+          }, 1000);
+        } else {
+          _eventAccessory?.setCurrentAmbientLightState(_progress);
+          _eventAccessory?.setContactSensorState(false);
         }
-        _eventAccessory?.setCurrentAmbientLightState(_progress);
-        _eventAccessory?.setContactSensorState(false);
       } else {
         _eventAccessory?.setContactSensorState(true);
         _eventAccessory?.setCurrentAmbientLightState(0);
