@@ -49,8 +49,8 @@
   },
   "devDependencies": {
     "@types/node": "16.11.27",
-    "@typescript-eslint/eslint-plugin": "5.20.0",
-    "@typescript-eslint/parser": "5.20.0",
+    "@typescript-eslint/eslint-plugin": "5.21.0",
+    "@typescript-eslint/parser": "5.21.0",
     "eslint": "8.14.0",
     "homebridge": "1.4.0",
     "nodemon": "2.0.15",
