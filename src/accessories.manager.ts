@@ -12,7 +12,7 @@ export class AccessoriesManager<AT extends Accessory> {
 
   constructor (private readonly platform: Platform) {
     this._cacheManager = new AccessoriesCache(platform);
-    this.platform.log.debug('Finished initializing accessories manager');
+    this.platform.log.info('Finished initializing accessories manager');
   }
 
   cache (uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
@@ -26,7 +26,7 @@ export class AccessoriesManager<AT extends Accessory> {
         this.unregister(key, value);
       }
     });
-    this.platform.log.debug('Finished cleaning accessories cache');
+    this.platform.log.info('Finished cleaning accessories cache');
   }
 
   get<T extends AT = AT> (uuid: string): T | undefined {

@@ -32,7 +32,7 @@ export class EventAccessory extends CalendarAccessory {
       Math.min(100, Math.round(this.CurrentAmbientLightLevel)),
     );
 
-    this.platform.log.debug(
+    this.platform.log.info(
       `[${this.accessory.context.name} Progress] Get CurrentAmbientLightLevel On ->`,
       state,
     );
@@ -46,7 +46,7 @@ export class EventAccessory extends CalendarAccessory {
     if (_state !== this.CurrentAmbientLightLevel) {
       this.CurrentAmbientLightLevel = _state;
 
-      this.platform.log.debug(
+      this.platform.log.info(
         `[${this.accessory.context.name}] Set CurrentAmbientLightLevel On ->`,
         _state,
       );

@@ -33,7 +33,7 @@ export class Platform implements DynamicPlatformPlugin {
     public readonly config: PlatformConfig,
     public readonly api: API,
   ) {
-    this.log.debug('Finished initializing platform:', PLATFORM_NAME);
+    this.log.info('Finished initializing platform:', PLATFORM_NAME);
 
     this.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
@@ -44,7 +44,6 @@ export class Platform implements DynamicPlatformPlugin {
   }
 
   didFinishLaunching () {
-    this.log.info('Executed didFinishLaunching callback');
     this.CalendarHandlers = this.config.calendars
       .map((calendar) => new CalendarConfig(calendar))
       .map((calendar) => {

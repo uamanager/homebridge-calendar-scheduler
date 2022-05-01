@@ -17,7 +17,7 @@ export class CalendarHandler {
     private readonly platform: Platform,
     private readonly calendar: CalendarConfig,
   ) {
-    this.platform.log.debug(
+    this.platform.log.info(
       'Finished initializing calendar handler:',
       this.calendar.calendarName,
     );
@@ -75,7 +75,7 @@ export class CalendarHandler {
 
 
   private async _handleCalendarFetchJob () {
-    this.platform.log.debug('Executed calendarFetch job', this.calendar.calendarName);
+    this.platform.log.info('Executed calendarFetch job', this.calendar.calendarName);
 
     await this._calendar.update();
 
@@ -83,7 +83,7 @@ export class CalendarHandler {
   }
 
   private _handleCalendarUpdatesJob () {
-    this.platform.log.debug('Executed calendarUpdates job', this.calendar.calendarName);
+    this.platform.log.info('Executed calendarUpdates job', this.calendar.calendarName);
 
     const _now = new Date().getTime();
 
