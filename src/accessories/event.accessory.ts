@@ -8,7 +8,7 @@ import { CalendarAccessory } from './calendar.accessory';
 export class EventAccessory extends CalendarAccessory {
   protected LightSensor: Service;
 
-  protected CurrentAmbientLightLevel = 0.0001;
+  protected _progressState = 0.0001;
 
   constructor (
     protected readonly platform: Platform,
@@ -22,32 +22,32 @@ export class EventAccessory extends CalendarAccessory {
     );
 
     this.LightSensor.getCharacteristic(this.platform.Characteristic.CurrentAmbientLightLevel)
-      .onGet(this.getCurrentAmbientLightLevel.bind(this));
+      .onGet(this.getProgressLevel.bind(this));
   }
 
 
-  async getCurrentAmbientLightLevel (): Promise<CharacteristicValue> {
+  async getProgressLevel (): Promise<CharacteristicValue> {
     const state = Math.max(
       0.0001,
-      Math.min(100, Math.round(this.CurrentAmbientLightLevel)),
+      Math.min(100, Math.round(this._progressState)),
     );
 
     this.platform.log.info(
-      `[${this.accessory.context.name} Progress] Get CurrentAmbientLightLevel On ->`,
+      `[${this.accessory.context.name} Progress] Get ProgressState On ->`,
       state,
     );
 
     return state;
   }
 
-  async setCurrentAmbientLightState (state: number) {
+  async setProgressState (state: number) {
     const _state = Math.max(0.0001, Math.min(100, Math.round(state)));
 
-    if (_state !== this.CurrentAmbientLightLevel) {
-      this.CurrentAmbientLightLevel = _state;
+    if (_state !== this._progressState) {
+      this._progressState = _state;
 
       this.platform.log.info(
-        `[${this.accessory.context.name}] Set CurrentAmbientLightLevel On ->`,
+        `[${this.accessory.context.name}] Set ProgressState On ->`,
         _state,
       );
 

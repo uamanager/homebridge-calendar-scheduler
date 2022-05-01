@@ -7,7 +7,7 @@ import { IAccessoryContext } from '../types/accessory.context';
 
 export class CalendarAccessory extends Accessory {
   protected ContactSensor: Service;
-  protected contactSensorState = true;
+  protected _activeState = true;
 
   constructor (
     protected readonly platform: Platform,
@@ -27,33 +27,33 @@ export class CalendarAccessory extends Accessory {
     );
 
     this.ContactSensor.getCharacteristic(this.platform.Characteristic.ContactSensorState)
-      .onGet(this.getContactSensorState.bind(this));
+      .onGet(this.getActiveState.bind(this));
   }
 
-  async getContactSensorState (): Promise<CharacteristicValue> {
-    const state = this.contactSensorState
+  async getActiveState (): Promise<CharacteristicValue> {
+    const state = this._activeState
                   ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
                   : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
     this.platform.log.info(
-      `[${this.accessory.context.name}] Get ContactSensorState On ->`,
-      state,
+      `[${this.accessory.context.name}] Get ActiveState On ->`,
+      this._activeState,
     );
 
     return state;
   }
 
-  async setContactSensorState (state: boolean) {
+  async setActiveState (state: boolean) {
     const _state = state
                    ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
                    : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
-    if (state !== this.contactSensorState) {
-      this.contactSensorState = state;
+    if (state !== this._activeState) {
+      this._activeState = state;
 
       this.platform.log.info(
-        `[${this.accessory.context.name}] Set ContactSensorState On ->`,
-        _state,
+        `[${this.accessory.context.name}] Set ActiveState On ->`,
+        state,
       );
 
       this.ContactSensor.updateCharacteristic(

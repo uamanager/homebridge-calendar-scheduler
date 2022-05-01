@@ -98,15 +98,15 @@ export class CalendarHandler {
 
     if (_watchedActiveEvents.length) {
       if (this.calendar.calendarTriggerOnUpdates) {
-        _calendarAccessory?.setContactSensorState(true);
+        _calendarAccessory?.setActiveState(true);
         setTimeout(() => {
-          _calendarAccessory?.setContactSensorState(false);
+          _calendarAccessory?.setActiveState(false);
         }, 1000);
       } else {
-        _calendarAccessory?.setContactSensorState(false);
+        _calendarAccessory?.setActiveState(false);
       }
     } else {
-      _calendarAccessory?.setContactSensorState(true);
+      _calendarAccessory?.setActiveState(true);
     }
 
     this.calendar.calendarEvents.forEach((eventConfig) => {
@@ -124,19 +124,19 @@ export class CalendarHandler {
         const _progress = (_now - _startTime) / (_endTime - _startTime) * 100;
 
         if (eventConfig.eventTriggerOnUpdates) {
-          _eventAccessory?.setContactSensorState(true);
-          _eventAccessory?.setCurrentAmbientLightState(_progress);
+          _eventAccessory?.setActiveState(true);
+          _eventAccessory?.setProgressState(_progress);
 
           setTimeout(() => {
-            _eventAccessory?.setContactSensorState(false);
+            _eventAccessory?.setActiveState(false);
           }, 1000);
         } else {
-          _eventAccessory?.setCurrentAmbientLightState(_progress);
-          _eventAccessory?.setContactSensorState(false);
+          _eventAccessory?.setProgressState(_progress);
+          _eventAccessory?.setActiveState(false);
         }
       } else {
-        _eventAccessory?.setContactSensorState(true);
-        _eventAccessory?.setCurrentAmbientLightState(0);
+        _eventAccessory?.setActiveState(true);
+        _eventAccessory?.setProgressState(0);
       }
     });
   }
