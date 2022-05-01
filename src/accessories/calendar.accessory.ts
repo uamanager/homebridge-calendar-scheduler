@@ -48,16 +48,18 @@ export class CalendarAccessory extends Accessory {
                    ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
                    : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
-    this.contactSensorState = state;
+    if (state !== this.contactSensorState) {
+      this.contactSensorState = state;
 
-    this.platform.log.debug(
-      `[${this.accessory.context.name}] Set ContactSensorState On ->`,
-      _state,
-    );
+      this.platform.log.debug(
+        `[${this.accessory.context.name}] Set ContactSensorState On ->`,
+        _state,
+      );
 
-    this.ContactSensor.updateCharacteristic(
-      this.platform.Characteristic.ContactSensorState,
-      _state,
-    );
+      this.ContactSensor.updateCharacteristic(
+        this.platform.Characteristic.ContactSensorState,
+        _state,
+      );
+    }
   }
 }
