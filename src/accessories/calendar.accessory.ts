@@ -35,7 +35,7 @@ export class CalendarAccessory extends Accessory {
                   ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
                   : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
-    this.platform.log.info(
+    this.platform.debug(
       `[${this.accessory.context.name}] Get ActiveState On ->`,
       this._activeState,
     );
@@ -51,7 +51,7 @@ export class CalendarAccessory extends Accessory {
     if (state !== this._activeState) {
       this._activeState = state;
 
-      this.platform.log.info(
+      this.platform.info(
         `[${this.accessory.context.name}] Set ActiveState On ->`,
         state,
       );

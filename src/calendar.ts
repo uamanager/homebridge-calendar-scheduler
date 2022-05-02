@@ -1,6 +1,7 @@
 import { Logger } from 'homebridge';
 import IcalExpander from 'ical-expander';
 import { requestHelper } from './helpers/request.helper';
+import { Platform } from './platform';
 
 export interface ICalendarEvent {
   summary: string;
@@ -32,30 +33,30 @@ export interface ICalendarEventRawDate {
 }
 
 export class Calendar {
-  protected _logger: Logger;
+  protected _platform: Platform;
 
   protected _name: string;
   protected _url: string;
   protected _calendar: IcalExpander;
 
-  constructor (name: string, url: string, logger: Logger) {
+  constructor (name: string, url: string, platform: Platform) {
     this._name = name;
     this._url = url.replace('webcal://', 'https://');
-    this._logger = logger;
+    this._platform = platform;
   }
 
   async update () {
-    this._logger.info('Updating calendar:', this._name);
+    this._platform.info('Updating calendar:', this._name);
     try {
       const _data = await requestHelper(this._url);
       if (_data) {
         this._calendar = new IcalExpander({ ics: _data });
       } else {
-        this._logger.error('Error while updating calendar:', this._name);
+        this._platform.error('Error while updating calendar:', this._name);
       }
     }
     catch (error) {
-      this._logger.error('Error while updating calendar:', this._name, error);
+      this._platform.error('Error while updating calendar:', this._name, error);
     }
   }
 

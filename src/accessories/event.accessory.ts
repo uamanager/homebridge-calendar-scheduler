@@ -32,7 +32,7 @@ export class EventAccessory extends CalendarAccessory {
       Math.min(100, Math.round(this._progressState)),
     );
 
-    this.platform.log.info(
+    this.platform.debug(
       `[${this.accessory.context.name} Progress] Get ProgressState On ->`,
       state,
     );
@@ -46,7 +46,7 @@ export class EventAccessory extends CalendarAccessory {
     if (_state !== this._progressState) {
       this._progressState = _state;
 
-      this.platform.log.info(
+      this.platform.info(
         `[${this.accessory.context.name}] Set ProgressState On ->`,
         _state,
       );

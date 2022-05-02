@@ -12,7 +12,7 @@ export class AccessoriesManager<AT extends Accessory> {
 
   constructor (private readonly platform: Platform) {
     this._cacheManager = new AccessoriesCache(platform);
-    this.platform.log.info('Finished initializing accessories manager');
+    this.platform.debug('Finished initializing accessories manager');
   }
 
   cache (uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
@@ -26,7 +26,7 @@ export class AccessoriesManager<AT extends Accessory> {
         this.unregister(key, value);
       }
     });
-    this.platform.log.info('Finished cleaning accessories cache');
+    this.platform.debug('Finished cleaning accessories cache');
   }
 
   get<T extends AT = AT> (uuid: string): T | undefined {
@@ -45,7 +45,7 @@ export class AccessoriesManager<AT extends Accessory> {
 
       this._accessories.set(uuid, new ctor(this.platform, _cachedAccessory));
 
-      this.platform.log.info('Updating accessory:', uuid, _cachedAccessory.displayName);
+      this.platform.info('Updating accessory:', uuid, _cachedAccessory.displayName);
 
       return this.platform.api.updatePlatformAccessories([_cachedAccessory]);
     } else {
@@ -55,7 +55,7 @@ export class AccessoriesManager<AT extends Accessory> {
 
       this._accessories.set(uuid, new ctor(this.platform, _accessory));
 
-      this.platform.log.info('Registering accessory:', uuid, _accessory.displayName);
+      this.platform.info('Registering accessory:', uuid, _accessory.displayName);
 
       this.platform.api.registerPlatformAccessories(
         PLUGIN_NAME,
@@ -76,6 +76,6 @@ export class AccessoriesManager<AT extends Accessory> {
       this._accessories.delete(uuid);
     }
 
-    this.platform.log.info('Unregistering accessory:', uuid, accessory.displayName);
+    this.platform.info('Unregistering accessory:', uuid, accessory.displayName);
   }
 }

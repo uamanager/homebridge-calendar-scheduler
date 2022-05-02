@@ -7,6 +7,12 @@
   "schema": {
     "type": "object",
     "properties": {
+      "debug": {
+        "title": "Debug",
+        "type": "boolean",
+        "description": "Enable for displaying debug messages.",
+        "default": false
+      },
       "calendars": {
         "title": "Calendars",
         "type": "array",

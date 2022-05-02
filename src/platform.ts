@@ -33,13 +33,13 @@ export class Platform implements DynamicPlatformPlugin {
     public readonly config: PlatformConfig,
     public readonly api: API,
   ) {
-    this.log.info('Finished initializing platform:', PLATFORM_NAME);
+    this.info('Finished initializing platform:', PLATFORM_NAME);
 
     this.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
 
   configureAccessory (accessory: PlatformAccessory<IAccessoryContext>) {
-    this.log.info('Loading accessory from cache:', accessory.displayName);
+    this.debug('Loading accessory from cache:', accessory.displayName);
     this.AccessoriesManager.cache(accessory.UUID, accessory);
   }
 
@@ -52,5 +52,23 @@ export class Platform implements DynamicPlatformPlugin {
 
 
     this.AccessoriesManager.clean();
+  }
+
+  info (message: string, ...parameters: any[]) {
+    this.log.info(message, ...parameters);
+  }
+
+  warn (message: string, ...parameters: any[]) {
+    this.log.warn(message, ...parameters);
+  }
+
+  error (message: string, ...parameters: any[]) {
+    this.log.error(message, ...parameters);
+  }
+
+  debug (message: string, ...parameters: any[]) {
+    if (this.config.debug) {
+      this.log.debug(message, ...parameters);
+    }
   }
 }
