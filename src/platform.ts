@@ -54,19 +54,19 @@ export class Platform implements DynamicPlatformPlugin {
     this.AccessoriesManager.clean();
   }
 
-  info (message: string, ...parameters: any[]) {
+  info (message: string, ...parameters: unknown[]) {
     this.log.info(message, ...parameters);
   }
 
-  warn (message: string, ...parameters: any[]) {
+  warn (message: string, ...parameters: unknown[]) {
     this.log.warn(message, ...parameters);
   }
 
-  error (message: string, ...parameters: any[]) {
+  error (message: string, ...parameters: unknown[]) {
     this.log.error(message, ...parameters);
   }
 
-  debug (message: string, ...parameters: any[]) {
+  debug (message: string, ...parameters: unknown[]) {
     if (this.config.debug) {
       this.log.debug(message, ...parameters);
     }

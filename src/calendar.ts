@@ -1,4 +1,3 @@
-import { Logger } from 'homebridge';
 import IcalExpander from 'ical-expander';
 import { requestHelper } from './helpers/request.helper';
 import { Platform } from './platform';
