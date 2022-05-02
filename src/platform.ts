@@ -68,7 +68,7 @@ export class Platform implements DynamicPlatformPlugin {
 
   debug (message: string, ...parameters: unknown[]) {
     if (this.config.debug) {
-      this.log.debug(message, ...parameters);
+      this.log.info(message, ...parameters);
     }
   }
 }
