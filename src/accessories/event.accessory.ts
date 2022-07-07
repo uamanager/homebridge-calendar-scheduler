@@ -46,7 +46,7 @@ export class EventAccessory extends CalendarAccessory {
     if (_state !== this._progressState) {
       this._progressState = _state;
 
-      this.platform.info(
+      this.platform.debug(
         `[${this.accessory.context.name}] Set ProgressState On ->`,
         _state,
       );

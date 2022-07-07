@@ -45,7 +45,7 @@ export class Calendar {
   }
 
   async update () {
-    this._platform.info('Updating calendar:', this._name);
+    this._platform.debug('Updating calendar:', this._name);
     try {
       const _data = await requestHelper(this._url);
       if (_data) {

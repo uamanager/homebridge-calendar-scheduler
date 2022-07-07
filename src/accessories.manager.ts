@@ -45,7 +45,7 @@ export class AccessoriesManager<AT extends Accessory> {
 
       this._accessories.set(uuid, new ctor(this.platform, _cachedAccessory));
 
-      this.platform.info('Updating accessory:', uuid, _cachedAccessory.displayName);
+      this.platform.debug('Updating accessory:', uuid, _cachedAccessory.displayName);
 
       return this.platform.api.updatePlatformAccessories([_cachedAccessory]);
     } else {
@@ -55,7 +55,7 @@ export class AccessoriesManager<AT extends Accessory> {
 
       this._accessories.set(uuid, new ctor(this.platform, _accessory));
 
-      this.platform.info('Registering accessory:', uuid, _accessory.displayName);
+      this.platform.debug('Registering accessory:', uuid, _accessory.displayName);
 
       this.platform.api.registerPlatformAccessories(
         PLUGIN_NAME,
@@ -76,6 +76,6 @@ export class AccessoriesManager<AT extends Accessory> {
       this._accessories.delete(uuid);
     }
 
-    this.platform.info('Unregistering accessory:', uuid, accessory.displayName);
+    this.platform.debug('Unregistering accessory:', uuid, accessory.displayName);
   }
 }

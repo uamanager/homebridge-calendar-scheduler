@@ -51,7 +51,7 @@ export class CalendarAccessory extends Accessory {
     if (state !== this._activeState) {
       this._activeState = state;
 
-      this.platform.info(
+      this.platform.debug(
         `[${this.accessory.context.name}] Set ActiveState On ->`,
         state,
       );
