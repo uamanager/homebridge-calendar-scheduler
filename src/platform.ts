@@ -4,7 +4,6 @@ import {
   DynamicPlatformPlugin,
   Logger,
   PlatformAccessory,
-  PlatformConfig,
   Service,
 } from 'homebridge';
 import { ToadScheduler } from 'toad-scheduler';
@@ -14,7 +13,7 @@ import { EventAccessory } from './accessories/event.accessory';
 import { CalendarHandler } from './calendar.handler';
 import { PLATFORM_NAME } from './settings';
 import { IAccessoryContext } from './types/accessory.context';
-import { CalendarConfig } from './types/calendar.config';
+import { Config, IConfig } from './types/config';
 
 export type TPlatformAccessories = EventAccessory | CalendarAccessory;
 
@@ -24,13 +23,14 @@ export class Platform implements DynamicPlatformPlugin {
   readonly Scheduler: ToadScheduler = new ToadScheduler();
 
   CalendarHandlers: CalendarHandler[] = [];
+  Config: Config = new Config();
   readonly AccessoriesManager: AccessoriesManager<TPlatformAccessories> = new AccessoriesManager(
     this,
   );
 
   constructor (
     public readonly log: Logger,
-    public readonly config: PlatformConfig,
+    public readonly config: IConfig,
     public readonly api: API,
   ) {
     this.info('Finished initializing platform:', PLATFORM_NAME);
@@ -44,12 +44,10 @@ export class Platform implements DynamicPlatformPlugin {
   }
 
   didFinishLaunching () {
-    this.CalendarHandlers = this.config.calendars
-      .map((calendar) => new CalendarConfig(calendar))
-      .map((calendar) => {
-        return new CalendarHandler(this, calendar);
-      });
-
+    this.Config = new Config(this.config);
+    this.CalendarHandlers = this.Config.calendars.map((calendar) => {
+      return new CalendarHandler(this, calendar);
+    });
 
     this.AccessoriesManager.clean();
   }
