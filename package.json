@@ -14,6 +14,12 @@
     "email": "faradey.ivan@gmail.com",
     "url": "https://github.com/uamanager"
   },
+  "funding": [
+    {
+      "type" : "kofi",
+      "url" : "https://ko-fi.com/uamanager/"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/uamanager/homebridge-calendar-scheduler/issues"
   },
