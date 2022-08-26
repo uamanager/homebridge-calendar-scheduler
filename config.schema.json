@@ -41,6 +41,12 @@
               "type": "integer",
               "default": 60
             },
+            "calendarUpdateButton": {
+              "title": "Calendar Update Button",
+              "description": "If set to true, then button for manual update available for each configured calendar.",
+              "type": "boolean",
+              "default": true
+            },
             "calendarTriggerOnUpdates": {
               "title": "Trigger on progress update",
               "description": "If set to true, then every minute calendar sensor trigger update if any active event.",

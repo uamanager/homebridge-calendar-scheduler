@@ -4,6 +4,7 @@ export interface ICalendarConfig {
   calendarName: string;
   calendarUrl: string;
   calendarUpdateInterval?: number;
+  calendarUpdateButton?: boolean;
   calendarTriggerOnUpdates?: boolean;
   calendarEvents?: ICalendarEventConfig[];
 }
@@ -12,6 +13,7 @@ export class CalendarConfig implements ICalendarConfig {
   readonly calendarName: string;
   readonly calendarUrl: string;
   readonly calendarUpdateInterval?: number;
+  readonly calendarUpdateButton?: boolean;
   readonly calendarTriggerOnUpdates?: boolean;
   readonly calendarEvents: CalendarEventConfig[];
 
@@ -23,7 +25,8 @@ export class CalendarConfig implements ICalendarConfig {
     this.calendarName = calendar.calendarName;
     this.calendarUrl = calendar.calendarUrl;
     this.calendarUpdateInterval = calendar.calendarUpdateInterval || 60;
-    this.calendarTriggerOnUpdates = calendar.calendarTriggerOnUpdates || false;
+    this.calendarUpdateButton = calendar.calendarUpdateButton || true;
+    this.calendarTriggerOnUpdates = calendar.calendarTriggerOnUpdates || true;
     this.calendarEvents = (calendar.calendarEvents || []).map((event) => {
       return new CalendarEventConfig(calendar, event);
     });

@@ -35,12 +35,14 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
     "platforms": [
         {
             "platform": "CalendarScheduler",
+            "debug": false,
             "calendars": [
                 {
                     "calendarName": "calendar-1",
                     "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
                     "calendarUpdateInterval": 3,
                     "calendarTriggerOnUpdates": true,
+                    "calendarUpdateButton": false,
                     "calendarEvents": [
                         {
                             "eventName": "event-name1"
@@ -73,10 +75,12 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 | Fields                   | Description                                                                                                                                       | Default               | Required |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
 | **platform**             | Must always be `CalendarScheduler`.                                                                                                               | `"CalendarScheduler"` | Yes      |
+| **debug**                | Enable for displaying debug messages.                                                                                                             | `true`                | No       |
 | **calendars**            | Array of watched calendars.                                                                                                                       |                       | No       |
 | calendarName             | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                    | `"calendar-name1"`    | Yes      |
 | calendarUrl              | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                              | `""`                  | Yes      |
 | calendarUpdateInterval   | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes. | `60`                  | No       |
+| calendarUpdateButton     | If set to true, then button for manual update available for each configured calendar.                                                             | `false`               | No       |
 | calendarTriggerOnUpdates | If set to true, then every minute calendar sensor trigger update if any active event.                                                             | `true`                | No       |
 | **calendarEvents**       | Array of watched calendar events.                                                                                                                 |                       | No       |
 | eventName                | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | Yes      |

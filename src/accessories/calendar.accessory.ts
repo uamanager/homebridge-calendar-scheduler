@@ -7,13 +7,18 @@ import { IAccessoryContext } from '../types/accessory.context';
 
 export class CalendarAccessory extends Accessory {
   protected ContactSensor: Service;
+  protected Switch?: Service;
   protected _activeState = true;
+  protected _updateStateHandler: () => Promise<void>;
 
   constructor (
     protected readonly platform: Platform,
     protected readonly accessory: PlatformAccessory<IAccessoryContext>,
   ) {
     super(platform, accessory);
+
+    this._updateStateHandler = () => Promise.resolve();
+
     this._setAccessoryInformation(
       this.accessory.context.manufacturer,
       this.accessory.context.model,
@@ -28,6 +33,21 @@ export class CalendarAccessory extends Accessory {
 
     this.ContactSensor.getCharacteristic(this.platform.Characteristic.ContactSensorState)
       .onGet(this.getActiveState.bind(this));
+
+    if (this.accessory.context.calendar.calendarUpdateButton) {
+      this.Switch = this._getService(
+        `${this.accessory.context.name} Update`,
+        this.platform.Service.Switch,
+      );
+
+      this.Switch.getCharacteristic(this.platform.Characteristic.On)
+        .onGet(this.getUpdateState.bind(this))
+        .onSet(this.setUpdateState.bind(this));
+    }
+  }
+
+  registerUpdateStateHandler (handler: () => Promise<void>) {
+    this._updateStateHandler = handler;
   }
 
   async getActiveState (): Promise<CharacteristicValue> {
@@ -61,5 +81,18 @@ export class CalendarAccessory extends Accessory {
         _state,
       );
     }
+  }
+
+  async getUpdateState (): Promise<CharacteristicValue> {
+    return false;
+  }
+
+  async setUpdateState (state) {
+    this.platform.debug(
+      `[${this.accessory.context.name}] Set UpdateState On ->`,
+      state,
+    );
+
+    return this._updateStateHandler();
   }
 }

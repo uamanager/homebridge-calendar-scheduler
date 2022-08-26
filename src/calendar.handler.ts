@@ -15,30 +15,30 @@ export class CalendarHandler {
 
   constructor (
     private readonly platform: Platform,
-    private readonly calendar: CalendarConfig,
+    private readonly calendarConfig: CalendarConfig,
   ) {
     this.platform.debug(
       'Finished initializing calendar handler:',
-      this.calendar.calendarName,
+      this.calendarConfig.calendarName,
     );
 
     this._calendarFetchJob = new Job(
-      `calendar-fetch-${this.calendar.calendarName}`,
-      { minutes: this.calendar.calendarUpdateInterval, runImmediately: true },
+      `calendar-fetch-${this.calendarConfig.calendarName}`,
+      { minutes: this.calendarConfig.calendarUpdateInterval, runImmediately: true },
       this._handleCalendarFetchJob.bind(this),
       this.platform.Scheduler,
     );
 
     this._calendarUpdatesJob = new Job(
-      `calendar-updates-${this.calendar.calendarName}`,
+      `calendar-updates-${this.calendarConfig.calendarName}`,
       { minutes: 1, runImmediately: true },
       this._handleCalendarUpdatesJob.bind(this),
       this.platform.Scheduler,
     );
 
     this._calendar = new Calendar(
-      this.calendar.calendarName,
-      this.calendar.calendarUrl,
+      this.calendarConfig.calendarName,
+      this.calendarConfig.calendarUrl,
       this.platform,
     );
 
@@ -53,8 +53,9 @@ export class CalendarHandler {
 
   private _initAccessories () {
     const _calendarContext = this._prepareContext(
-      this.calendar.id,
-      this.calendar.calendarName,
+      this.calendarConfig,
+      this.calendarConfig.id,
+      this.calendarConfig.calendarName,
     );
 
     this.platform.AccessoriesManager.register(
@@ -63,8 +64,12 @@ export class CalendarHandler {
       _calendarContext,
     );
 
-    this.calendar.calendarEvents.forEach((event: CalendarEventConfig) => {
-      const _eventContext = this._prepareContext(event.id, event.eventName);
+    this.calendarConfig.calendarEvents.forEach((event: CalendarEventConfig) => {
+      const _eventContext = this._prepareContext(
+        this.calendarConfig,
+        event.id,
+        event.eventName,
+      );
       this.platform.AccessoriesManager.register(
         _eventContext.serialNumber,
         EventAccessory,
@@ -75,7 +80,7 @@ export class CalendarHandler {
 
 
   private async _handleCalendarFetchJob () {
-    this.platform.debug('Executed calendarFetch job', this.calendar.calendarName);
+    this.platform.debug('Executed calendarFetch job', this.calendarConfig.calendarName);
 
     await this._calendar.update();
 
@@ -83,21 +88,23 @@ export class CalendarHandler {
   }
 
   private _handleCalendarUpdatesJob () {
-    this.platform.debug('Executed calendarUpdates job', this.calendar.calendarName);
+    this.platform.debug('Executed calendarUpdates job', this.calendarConfig.calendarName);
 
     const _now = new Date().getTime();
 
-    const _watchedEvents = this.calendar.calendarEvents.map(event => event.eventName);
+    const _watchedEvents = this.calendarConfig.calendarEvents.map(event => event.eventName);
 
     const _watchedActiveEvents = this._calendar.getEvents()
       .filter((event) => _watchedEvents.includes(event.summary));
 
     const _calendarAccessory = this.platform.AccessoriesManager.get<CalendarAccessory>(
-      this._generateSerialNumber(this.calendar.id),
+      this._generateSerialNumber(this.calendarConfig.id),
     );
 
+    _calendarAccessory?.registerUpdateStateHandler(() => this._handleCalendarFetchJob());
+
     if (_watchedActiveEvents.length) {
-      if (this.calendar.calendarTriggerOnUpdates) {
+      if (this.calendarConfig.calendarTriggerOnUpdates) {
         _calendarAccessory?.setActiveState(true);
         setTimeout(() => {
           _calendarAccessory?.setActiveState(false);
@@ -109,7 +116,7 @@ export class CalendarHandler {
       _calendarAccessory?.setActiveState(true);
     }
 
-    this.calendar.calendarEvents.forEach((eventConfig) => {
+    this.calendarConfig.calendarEvents.forEach((eventConfig) => {
       const _eventAccessory = this.platform.AccessoriesManager.get<EventAccessory>(
         this._generateSerialNumber(eventConfig.id),
       );
@@ -145,8 +152,13 @@ export class CalendarHandler {
     return this.platform.api.hap.uuid.generate(id);
   }
 
-  private _prepareContext (id: string, name: string): IAccessoryContext {
+  private _prepareContext (
+    calendarConfig: CalendarConfig,
+    id: string,
+    name: string,
+  ): IAccessoryContext {
     return {
+      calendar: calendarConfig,
       manufacturer: PLATFORM_MANUFACTURER,
       model: id,
       name: name,
