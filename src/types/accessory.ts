@@ -29,4 +29,13 @@ export abstract class Accessory {
     return (this.accessory.getService(service) || this.accessory.addService(service))
       .setCharacteristic(this.platform.Characteristic.Name, name);
   }
+
+  protected _removeService<T extends WithUUID<typeof Service>> (
+    service: T,
+  ): void {
+    const _service = this.accessory.getService(service);
+    if (_service) {
+      this.accessory.removeService(_service);
+    }
+  }
 }

@@ -43,6 +43,9 @@ export class CalendarAccessory extends Accessory {
       this.Switch.getCharacteristic(this.platform.Characteristic.On)
         .onGet(this.getUpdateState.bind(this))
         .onSet(this.setUpdateState.bind(this));
+    } else {
+      this._removeService(this.platform.Service.Switch);
+      this.Switch = undefined;
     }
   }
 
