@@ -53,7 +53,7 @@ export class CalendarHandler {
 
   private _initAccessories () {
     const _calendarContext = this._prepareContext(
-      this.calendarConfig,
+      !!this.calendarConfig.calendarUpdateButton,
       this.calendarConfig.id,
       this.calendarConfig.calendarName,
     );
@@ -66,7 +66,7 @@ export class CalendarHandler {
 
     this.calendarConfig.calendarEvents.forEach((event: CalendarEventConfig) => {
       const _eventContext = this._prepareContext(
-        this.calendarConfig,
+        false,
         event.id,
         event.eventName,
       );
@@ -153,12 +153,12 @@ export class CalendarHandler {
   }
 
   private _prepareContext (
-    calendarConfig: CalendarConfig,
+    forceUpdate: boolean,
     id: string,
     name: string,
   ): IAccessoryContext {
     return {
-      calendar: calendarConfig,
+      forceUpdate: forceUpdate,
       manufacturer: PLATFORM_MANUFACTURER,
       model: id,
       name: name,
