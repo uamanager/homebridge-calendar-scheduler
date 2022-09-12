@@ -57,7 +57,7 @@
     "@types/node": "16.11.58",
     "@typescript-eslint/eslint-plugin": "5.36.2",
     "@typescript-eslint/parser": "5.36.2",
-    "eslint": "8.23.0",
+    "eslint": "8.23.1",
     "homebridge": "1.5.0",
     "nodemon": "2.0.19",
     "rimraf": "3.0.2",
