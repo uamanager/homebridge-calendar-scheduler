@@ -94,7 +94,9 @@ export class CalendarHandler {
 
     const _watchedEvents = this.calendarConfig.calendarEvents.map(event => event.eventName);
 
-    const _watchedActiveEvents = this._calendar.getEvents()
+    const _activeEvents = this._calendar.getEvents();
+
+    const _watchedActiveEvents = _activeEvents
       .filter((event) => _watchedEvents.includes(event.summary));
 
     const _calendarAccessory = this.platform.AccessoriesManager.get<CalendarAccessory>(
@@ -103,17 +105,25 @@ export class CalendarHandler {
 
     _calendarAccessory?.registerUpdateStateHandler(() => this._handleCalendarFetchJob());
 
-    if (_watchedActiveEvents.length) {
-      if (this.calendarConfig.calendarTriggerOnUpdates) {
-        _calendarAccessory?.setActiveState(true);
-        setTimeout(() => {
-          _calendarAccessory?.setActiveState(false);
-        }, 1000);
-      } else {
+    if (this.calendarConfig.calendarTriggerOnAllEvents) {
+      if (_activeEvents.length) {
         _calendarAccessory?.setActiveState(false);
+      } else {
+        _calendarAccessory?.setActiveState(true);
       }
     } else {
-      _calendarAccessory?.setActiveState(true);
+      if (_watchedActiveEvents.length) {
+        if (this.calendarConfig.calendarTriggerOnUpdates) {
+          _calendarAccessory?.setActiveState(true);
+          setTimeout(() => {
+            _calendarAccessory?.setActiveState(false);
+          }, 1000);
+        } else {
+          _calendarAccessory?.setActiveState(false);
+        }
+      } else {
+        _calendarAccessory?.setActiveState(true);
+      }
     }
 
     this.calendarConfig.calendarEvents.forEach((eventConfig) => {

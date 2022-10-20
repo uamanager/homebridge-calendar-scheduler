@@ -53,6 +53,12 @@
               "type": "boolean",
               "default": true
             },
+            "calendarTriggerOnAllEvents": {
+              "title": "Trigger on any active events or only on defined active events",
+              "description": "If set to true, then calendar sensor trigger update if any active event.",
+              "type": "boolean",
+              "default": false
+            },
             "calendarEvents": {
               "title": "Events",
               "type": "array",
