@@ -29,7 +29,7 @@ export class CalendarConfig implements ICalendarConfig {
     this.calendarUpdateInterval = calendar.calendarUpdateInterval || 60;
     this.calendarUpdateButton = calendar.calendarUpdateButton || true;
     this.calendarTriggerOnUpdates = calendar.calendarTriggerOnUpdates || true;
-    this.calendarTriggerOnAllEvents = calendar.calendarTriggerOnAllEvents || true;
+    this.calendarTriggerOnAllEvents = calendar.calendarTriggerOnAllEvents || false;
     this.calendarEvents = (calendar.calendarEvents || []).map((event) => {
       return new CalendarEventConfig(calendar, event);
     });
