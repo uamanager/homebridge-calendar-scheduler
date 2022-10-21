@@ -8,8 +8,8 @@ jobs:
     auto-assign:
         runs-on: ubuntu-latest
         steps:
-            - name: 'Auto-assign issue'
-              uses: pozil/auto-assign-issue@v1
+            - name: Auto-assign Issue
+              uses: pozil/auto-assign-issue@v1.11.0
               with:
                   assignees: uamanager
                   allowSelfAssign: false
