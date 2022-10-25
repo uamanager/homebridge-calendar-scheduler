@@ -24,26 +24,26 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@homebridge/ciao@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@homebridge/ciao/-/ciao-1.1.4.tgz#66d68bdc6af1c89a5d680f9e05a14b502d2529d2"
-  integrity sha512-ntEu/hmq3fswB2n/cCidhRvVJGgRCFYHjIoON7U0e4zlU8B8Gv+1557Y5U/qiuvVW97C1ElGOVvKW2p+K7aY+Q==
+"@homebridge/ciao@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@homebridge/ciao/-/ciao-1.1.5.tgz#8d850cfd85e6ade9e525a0f2bdb577dcb2af1242"
+  integrity sha512-ZI9tcbPfX2d8oP1PNeLzrZLXISAIDUtJQWk4JVVJKCxktC6tQ3JyWXT9t1FbB5xtl82M1jdCgyAbWbjhUtRWcA==
   dependencies:
     debug "^4.3.4"
     fast-deep-equal "^3.1.3"
     source-map-support "^0.5.21"
     tslib "^2.4.0"
 
-"@homebridge/dbus-native@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@homebridge/dbus-native/-/dbus-native-0.4.1.tgz#4272a73e79e4761c60d2eccec021c921f3fe6ff5"
-  integrity sha512-8h6MkoJykY37THOyRXWCIKpzbhIn4WWKZBunlXTH75Cb6vBcmhyIhZ3SvzqJAjJCEdhLg7wawfn7/Mpko7eREQ==
+"@homebridge/dbus-native@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@homebridge/dbus-native/-/dbus-native-0.4.2.tgz#e390537a437e4b93a0bb989301caef5066c76749"
+  integrity sha512-rg6DUg6xOttzn73HA1+3G2o1ezRj0+DzPMEJqasrpq7FcAxMcTyOZ96GfcDN4pLUz62hMuywIeVZ4F6cc/g6Ig==
   dependencies:
     "@homebridge/long" "^5.2.1"
+    "@homebridge/put" "~0.0.8"
     event-stream "^4.0.0"
     hexy "^0.2.10"
-    optimist "^0.6.1"
-    put "0.0.6"
+    minimist "^1.2.6"
     safe-buffer "^5.1.1"
     xml2js "^0.4.17"
 
@@ -51,6 +51,11 @@
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@homebridge/long/-/long-5.2.1.tgz#1c7568775b78e1a0fd75a7b3fa7a995f0388ab37"
   integrity sha512-i5Df8R63XNPCn+Nj1OgAoRdw9e+jHUQb3CNUbvJneI2iu3j4+OtzQj+5PA1Ce+747NR1SPqZSvyvD483dOT3AA==
+
+"@homebridge/put@~0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@homebridge/put/-/put-0.0.8.tgz#4b8b99f2c4d58bc762718863699df2c5bc0b4b8a"
+  integrity sha512-mwxLHHqKebOmOSU0tsPEWQSBHGApPhuaqtNpCe7U+AMdsduweANiu64E9SXXUtdpyTjsOpgSMLhD1+kbLHD2gA==
 
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.6"
@@ -876,13 +881,13 @@ grapheme-splitter@^1.0.4:
   resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
-hap-nodejs@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/hap-nodejs/-/hap-nodejs-0.10.2.tgz#d7f4480fbb44d4e07f85e8110844f8cf507ca15a"
-  integrity sha512-rmCKoNoBqpcOz/wG5iTtS7JIkLjobEZj+oXGW/Z4I4eJGk14VfKjITA8plaAm6gWIZEAajASzzUdEZnIKEvzdg==
+hap-nodejs@^0.10.4:
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/hap-nodejs/-/hap-nodejs-0.10.4.tgz#be4b578a5dfa16fa6a929735ef21d65b18f05074"
+  integrity sha512-+ydtdh7Mw0Ttjv1ylWoGUMfU1Qhi0CVBAdABco+gdzOOkl9j2V1JKZKOduWvyAdhc73ZpElyREoTTVPQ7H0UoA==
   dependencies:
-    "@homebridge/ciao" "^1.1.4"
-    "@homebridge/dbus-native" "^0.4.1"
+    "@homebridge/ciao" "^1.1.5"
+    "@homebridge/dbus-native" "^0.4.2"
     bonjour-hap "~3.6.3"
     debug "^4.3.4"
     fast-srp-hap "2.0.4"
@@ -938,15 +943,15 @@ hexy@^0.2.10:
   resolved "https://registry.yarnpkg.com/hexy/-/hexy-0.2.11.tgz#9939c25cb6f86a91302f22b8a8a72573518e25b4"
   integrity sha512-ciq6hFsSG/Bpt2DmrZJtv+56zpPdnq+NQ4ijEFrveKN0ZG1mhl/LdT1NQZ9se6ty1fACcI4d4vYqC9v8EYpH2A==
 
-homebridge@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.5.0.tgz#a0ae57cdf9a5295db351fb027e91f3c1246e9984"
-  integrity sha512-0t8WNBKz9NFCab5obBfJMnxFgkg4uJZqON+iM/uZpIyiMRWH9ycCHd1pYAPMk9vDdfDu8/VpxYafWsYx6luHtg==
+homebridge@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.5.1.tgz#f384a4ff6a010d797edc200c91e1716d7bfd917d"
+  integrity sha512-srujAWXhBe/a5YaKY5dQOvd4ISwDePmCtY0ldJlS21/wt9vnW4H+UXDJ6RULwlBIPs0SPheQ2gIIP/E1d5e+bQ==
   dependencies:
     chalk "^4.1.2"
     commander "5.1.0"
     fs-extra "^10.1.0"
-    hap-nodejs "^0.10.2"
+    hap-nodejs "^0.10.4"
     qrcode-terminal "^0.12.0"
     semver "^7.3.7"
     source-map-support "^0.5.21"
@@ -1257,7 +1262,7 @@ minimatch@^3.0.4, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@1.2.7, minimist@^1.2.6, minimist@~0.0.1:
+minimist@1.2.7, minimist@^1.2.6:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.7.tgz#daa1c4d91f507390437c6a8bc01078e7000c4d18"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
@@ -1368,14 +1373,6 @@ once@^1.3.0:
   dependencies:
     wrappy "1"
 
-optimist@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
-  integrity sha1-2j6nRob6IaGaERwybpDrFaAZZoY=
-  dependencies:
-    minimist "~0.0.1"
-    wordwrap "~0.0.2"
-
 optionator@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.9.1.tgz#4f236a6373dae0566a6d43e1326674f50c291499"
@@ -1455,11 +1452,6 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
-
-put@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/put/-/put-0.0.6.tgz#30f5f60bd6e4389bd329e16a25386cbb2e4a00a3"
-  integrity sha1-MPX2C9bkOJvTKeFqJThsuy5KAKM=
 
 q@~1.1.1:
   version "1.1.2"
@@ -1819,11 +1811,6 @@ word-wrap@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
-
-wordwrap@~0.0.2:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
-  integrity sha1-o9XabNXAvAAI03I0u68b7WMFkQc=
 
 wrappy@1:
   version "1.0.2"
