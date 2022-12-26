@@ -1671,10 +1671,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-toad-scheduler@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-2.0.0.tgz#cc30e406dfdeff02ba361ea82e4187acfc82a10d"
-  integrity sha512-SmbXYpxTIdGC6ZcR4UC9+duXrky4ZDmu5QyA1f29HkjdPqeDluEsdEcchWsBf1zXYKl3cF2ABqIpbi3r0r2EKg==
+toad-scheduler@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-2.1.1.tgz#de6ab8e9da3df2f958b710022d7a4e6a6cbd997f"
+  integrity sha512-XOeke4vAj3P93hayxmHI734RjsBMqbwotMIPQJ/jVwNMYk+LHpbClvHs4R4PWXXR2GIkmMA518JDkYfBiWWtEQ==
 
 touch@^3.1.0:
   version "3.1.0"
