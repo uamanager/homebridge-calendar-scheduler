@@ -34,10 +34,10 @@
     source-map-support "^0.5.21"
     tslib "^2.4.0"
 
-"@homebridge/dbus-native@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@homebridge/dbus-native/-/dbus-native-0.4.2.tgz#e390537a437e4b93a0bb989301caef5066c76749"
-  integrity sha512-rg6DUg6xOttzn73HA1+3G2o1ezRj0+DzPMEJqasrpq7FcAxMcTyOZ96GfcDN4pLUz62hMuywIeVZ4F6cc/g6Ig==
+"@homebridge/dbus-native@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@homebridge/dbus-native/-/dbus-native-0.5.0.tgz#7c20500bd8486fbb389ee01ba63c3768958a5add"
+  integrity sha512-ei0jyHE/uNDl/6D6heRwsqnESrrXuSlfp+xlwGfg3mo1OqhKvyb/Kp73uxQyOJ3f1T1ocLSyA5uzoR1AbfaXIQ==
   dependencies:
     "@homebridge/long" "^5.2.1"
     "@homebridge/put" "~0.0.8"
@@ -328,15 +328,15 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-bonjour-hap@~3.6.3:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/bonjour-hap/-/bonjour-hap-3.6.3.tgz#eb7ae3e9faeced5cb7847edcd341669146b5715b"
-  integrity sha512-qyLU96ICCYbpOFiMCjA3aNYH5Jc83XH1YX6+EXWukyyiNXzXH2LZv8AVmGW33FceF3gfUM4jYoKX2xChtNDUnA==
+bonjour-hap@~3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/bonjour-hap/-/bonjour-hap-3.6.4.tgz#3770904941c6100d3887eca81488c5da250e9fb7"
+  integrity sha512-a76r95/qTAP5hOEZZhRoiosyFSVPPRSVev09Jh8yDf3JDKyrzELLf0vpQCuEXFueb9DcV9UJf2Jv3dktyuPBng==
   dependencies:
     array-flatten "^2.1.2"
     deep-equal "^2.0.5"
-    ip "^1.1.5"
-    multicast-dns "^7.2.3"
+    ip "^1.1.8"
+    multicast-dns "^7.2.5"
     multicast-dns-service-types "^1.1.0"
 
 brace-expansion@^1.1.7:
@@ -719,7 +719,7 @@ fast-levenshtein@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fast-srp-hap@2.0.4:
+fast-srp-hap@~2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/fast-srp-hap/-/fast-srp-hap-2.0.4.tgz#9db296e21a5143951310f99e5a74290106467811"
   integrity sha512-lHRYYaaIbMrhZtsdGTwPN82UbqD9Bv8QfOlKs+Dz6YRnByZifOh93EYmf2iEWFtkOEIqR2IK8cFD0UN5wLIWBQ==
@@ -882,16 +882,16 @@ grapheme-splitter@^1.0.4:
   resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
-hap-nodejs@^0.10.4:
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/hap-nodejs/-/hap-nodejs-0.10.4.tgz#be4b578a5dfa16fa6a929735ef21d65b18f05074"
-  integrity sha512-+ydtdh7Mw0Ttjv1ylWoGUMfU1Qhi0CVBAdABco+gdzOOkl9j2V1JKZKOduWvyAdhc73ZpElyREoTTVPQ7H0UoA==
+hap-nodejs@~0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/hap-nodejs/-/hap-nodejs-0.11.0.tgz#a2c252ed2953c364879570d0b49b09b6e5a7d147"
+  integrity sha512-ZKSc/DIECXH1vSlruv6tBVcO+LF/BDtjdVk7IIiAAS+KKjw9PylkXbtdU23mmLhM69BsWl9u+BuToAfkf0voSw==
   dependencies:
     "@homebridge/ciao" "^1.1.5"
-    "@homebridge/dbus-native" "^0.4.2"
-    bonjour-hap "~3.6.3"
+    "@homebridge/dbus-native" "^0.5.0"
+    bonjour-hap "~3.6.4"
     debug "^4.3.4"
-    fast-srp-hap "2.0.4"
+    fast-srp-hap "~2.0.4"
     futoin-hkdf "~1.4.3"
     node-persist "^0.0.11"
     source-map-support "^0.5.21"
@@ -944,15 +944,15 @@ hexy@^0.2.10:
   resolved "https://registry.yarnpkg.com/hexy/-/hexy-0.2.11.tgz#9939c25cb6f86a91302f22b8a8a72573518e25b4"
   integrity sha512-ciq6hFsSG/Bpt2DmrZJtv+56zpPdnq+NQ4ijEFrveKN0ZG1mhl/LdT1NQZ9se6ty1fACcI4d4vYqC9v8EYpH2A==
 
-homebridge@1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.5.1.tgz#f384a4ff6a010d797edc200c91e1716d7bfd917d"
-  integrity sha512-srujAWXhBe/a5YaKY5dQOvd4ISwDePmCtY0ldJlS21/wt9vnW4H+UXDJ6RULwlBIPs0SPheQ2gIIP/E1d5e+bQ==
+homebridge@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.6.0.tgz#c5a3c743dc9406fba59c4a7c5c0ad95976797947"
+  integrity sha512-n47db4ndrBOSxuF6zRFbBypuhW7dZjCoGJz03O9PfGrwsqjyzJyxkzSIAjT9HgbTdvNYDNGz/tMXSLoX0m5zGw==
   dependencies:
     chalk "^4.1.2"
     commander "5.1.0"
     fs-extra "^10.1.0"
-    hap-nodejs "^0.10.4"
+    hap-nodejs "~0.11.0"
     qrcode-terminal "^0.12.0"
     semver "^7.3.7"
     source-map-support "^0.5.21"
@@ -1014,10 +1014,10 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-ip@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
-  integrity sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=
+ip@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.8.tgz#ae05948f6b075435ed3307acce04629da8cdbf48"
+  integrity sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg==
 
 is-arguments@^1.0.4, is-arguments@^1.1.0:
   version "1.1.1"
@@ -1290,10 +1290,10 @@ multicast-dns-service-types@^1.1.0:
   resolved "https://registry.yarnpkg.com/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"
   integrity sha1-iZ8R2WhuXgXLkbNdXw5jt3PPyQE=
 
-multicast-dns@^7.2.3:
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/multicast-dns/-/multicast-dns-7.2.4.tgz#cf0b115c31e922aeb20b64e6556cbeb34cf0dd19"
-  integrity sha512-XkCYOU+rr2Ft3LI6w4ye51M3VK31qJXFIxu0XLw169PtKG0Zx47OrXeVW/GCYOfpC9s1yyyf1S+L8/4LY0J9Zw==
+multicast-dns@^7.2.5:
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/multicast-dns/-/multicast-dns-7.2.5.tgz#77eb46057f4d7adbd16d9290fa7299f6fa64cced"
+  integrity sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg==
   dependencies:
     dns-packet "^5.2.2"
     thunky "^1.0.2"
