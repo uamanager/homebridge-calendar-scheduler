@@ -2,14 +2,16 @@ import { Service, WithUUID } from 'hap-nodejs';
 import { PlatformAccessory } from 'homebridge';
 import { Platform } from '../platform';
 import { IAccessoryContext } from './accessory.context';
+import { ConstructorArgs } from 'hap-nodejs/dist/types';
 
 export abstract class Accessory {
-  protected constructor (
+  protected constructor(
     protected readonly platform: Platform,
     protected readonly accessory: PlatformAccessory<IAccessoryContext>,
-  ) {}
+  ) {
+  }
 
-  protected _setAccessoryInformation (
+  protected _setAccessoryInformation(
     manufacturer: string,
     model: string,
     serialNumber: string,
@@ -22,15 +24,18 @@ export abstract class Accessory {
       .setCharacteristic(this.platform.Characteristic.FirmwareRevision, version);
   }
 
-  protected _getService<T extends WithUUID<typeof Service>> (
+  protected _getService<T extends WithUUID<typeof Service>>(
     name: string,
     service: T,
   ): Service {
-    return (this.accessory.getService(service) || this.accessory.addService(service))
+    return (
+      this.accessory.getService(service)
+      || this.accessory.addService(service, ...([name] as unknown as ConstructorArgs<T>))
+    )
       .setCharacteristic(this.platform.Characteristic.Name, name);
   }
 
-  protected _removeService<T extends WithUUID<typeof Service>> (
+  protected _removeService<T extends WithUUID<typeof Service>>(
     service: T,
   ): void {
     const _service = this.accessory.getService(service);
