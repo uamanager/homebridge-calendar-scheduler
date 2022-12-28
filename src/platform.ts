@@ -1,11 +1,4 @@
-import {
-  API,
-  Characteristic,
-  DynamicPlatformPlugin,
-  Logger,
-  PlatformAccessory,
-  Service,
-} from 'homebridge';
+import { API, Characteristic, DynamicPlatformPlugin, Logger, PlatformAccessory, Service } from 'homebridge';
 import { ToadScheduler } from 'toad-scheduler';
 import { AccessoriesManager } from './accessories.manager';
 import { CalendarAccessory } from './accessories/calendar.accessory';
@@ -28,7 +21,7 @@ export class Platform implements DynamicPlatformPlugin {
     this,
   );
 
-  constructor (
+  constructor(
     public readonly log: Logger,
     public readonly config: IConfig,
     public readonly api: API,
@@ -38,12 +31,12 @@ export class Platform implements DynamicPlatformPlugin {
     this.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
 
-  configureAccessory (accessory: PlatformAccessory<IAccessoryContext>) {
+  configureAccessory(accessory: PlatformAccessory<IAccessoryContext>) {
     this.debug('Loading accessory from cache:', accessory.displayName);
     this.AccessoriesManager.cache(accessory.UUID, accessory);
   }
 
-  didFinishLaunching () {
+  didFinishLaunching() {
     this.Config = new Config(this.config);
     this.CalendarHandlers = this.Config.calendars.map((calendar) => {
       return new CalendarHandler(this, calendar);
@@ -52,19 +45,19 @@ export class Platform implements DynamicPlatformPlugin {
     this.AccessoriesManager.clean();
   }
 
-  info (message: string, ...parameters: unknown[]) {
+  info(message: string, ...parameters: unknown[]) {
     this.log.info(message, ...parameters);
   }
 
-  warn (message: string, ...parameters: unknown[]) {
+  warn(message: string, ...parameters: unknown[]) {
     this.log.warn(message, ...parameters);
   }
 
-  error (message: string, ...parameters: unknown[]) {
+  error(message: string, ...parameters: unknown[]) {
     this.log.error(message, ...parameters);
   }
 
-  debug (message: string, ...parameters: unknown[]) {
+  debug(message: string, ...parameters: unknown[]) {
     if (this.config.debug) {
       this.log.info(message, ...parameters);
     }

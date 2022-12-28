@@ -13,7 +13,7 @@ export class CalendarHandler {
   private _calendarUpdatesJob: Job;
   private _calendar: Calendar;
 
-  constructor (
+  constructor(
     private readonly platform: Platform,
     private readonly calendarConfig: CalendarConfig,
   ) {
@@ -45,13 +45,13 @@ export class CalendarHandler {
     this.init();
   }
 
-  init () {
+  init() {
     this._initAccessories();
 
     this._calendarFetchJob.start();
   }
 
-  private _initAccessories () {
+  private _initAccessories() {
     const _calendarContext = this._prepareContext(
       !!this.calendarConfig.calendarUpdateButton,
       this.calendarConfig.id,
@@ -79,7 +79,7 @@ export class CalendarHandler {
   }
 
 
-  private async _handleCalendarFetchJob () {
+  private async _handleCalendarFetchJob() {
     this.platform.debug('Executed calendarFetch job', this.calendarConfig.calendarName);
 
     await this._calendar.update();
@@ -87,17 +87,25 @@ export class CalendarHandler {
     this._calendarUpdatesJob.restart();
   }
 
-  private _handleCalendarUpdatesJob () {
+  private _handleCalendarUpdatesJob() {
     this.platform.debug('Executed calendarUpdates job', this.calendarConfig.calendarName);
 
     const _now = new Date().getTime();
 
-    const _watchedEvents = this.calendarConfig.calendarEvents.map(event => event.eventName);
+    const _watchedEvents = this.calendarConfig.calendarEvents;
+    const _watchedEventsSensitive = _watchedEvents
+      .filter((event) => !event.caseInsensitiveEventsMatching)
+      .map((event) => event.eventName);
+    const _watchedEventsInsensitive = _watchedEvents
+      .filter((event) => !!event.caseInsensitiveEventsMatching)
+      .map((event) => event.eventName.toLowerCase());
 
     const _activeEvents = this._calendar.getEvents();
 
     const _watchedActiveEvents = _activeEvents
-      .filter((event) => _watchedEvents.includes(event.summary));
+      .filter((event) => {
+        return _watchedEventsSensitive.includes(event.summary) || _watchedEventsInsensitive.includes(event.summary.toLowerCase());
+      });
 
     const _calendarAccessory = this.platform.AccessoriesManager.get<CalendarAccessory>(
       this._generateSerialNumber(this.calendarConfig.id),
@@ -158,11 +166,11 @@ export class CalendarHandler {
     });
   }
 
-  private _generateSerialNumber (id: string): string {
+  private _generateSerialNumber(id: string): string {
     return this.platform.api.hap.uuid.generate(id);
   }
 
-  private _prepareContext (
+  private _prepareContext(
     forceUpdate: boolean,
     id: string,
     name: string,

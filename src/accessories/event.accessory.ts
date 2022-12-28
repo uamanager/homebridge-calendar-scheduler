@@ -10,7 +10,7 @@ export class EventAccessory extends CalendarAccessory {
 
   protected _progressState = 0.0001;
 
-  constructor (
+  constructor(
     protected readonly platform: Platform,
     protected readonly accessory: PlatformAccessory<IAccessoryContext>,
   ) {
@@ -26,7 +26,7 @@ export class EventAccessory extends CalendarAccessory {
   }
 
 
-  async getProgressLevel (): Promise<CharacteristicValue> {
+  async getProgressLevel(): Promise<CharacteristicValue> {
     const state = Math.max(
       0.0001,
       Math.min(100, Math.round(this._progressState)),
@@ -40,7 +40,7 @@ export class EventAccessory extends CalendarAccessory {
     return state;
   }
 
-  async setProgressState (state: number) {
+  async setProgressState(state: number) {
     const _state = Math.max(0.0001, Math.min(100, Math.round(state)));
 
     if (_state !== this._progressState) {

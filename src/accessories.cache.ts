@@ -5,11 +5,11 @@ import { IAccessoryContext } from './types/accessory.context';
 export class AccessoriesCache {
   private _cache: Map<string, PlatformAccessory<IAccessoryContext>> = new Map();
 
-  constructor (private readonly platform: Platform) {
+  constructor(private readonly platform: Platform) {
     this.platform.debug('Finished initializing accessories cache');
   }
 
-  add (uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
+  add(uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
     this.platform.debug(
       'Adding existing accessory to cache manager:',
       uuid,
@@ -18,7 +18,7 @@ export class AccessoriesCache {
     this._cache.set(uuid, accessory);
   }
 
-  forEach (callbackFn: (
+  forEach(callbackFn: (
     value: PlatformAccessory<IAccessoryContext>,
     key: string,
     map: Map<string, PlatformAccessory<IAccessoryContext>>,
@@ -26,7 +26,7 @@ export class AccessoriesCache {
     this._cache.forEach(callbackFn, thisArg);
   }
 
-  remove (uuid: string): PlatformAccessory<IAccessoryContext> | undefined {
+  remove(uuid: string): PlatformAccessory<IAccessoryContext> | undefined {
     this.platform.debug(
       'Trying to remove existing accessory from cache manager:',
       uuid,

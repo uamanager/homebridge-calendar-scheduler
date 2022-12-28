@@ -11,7 +11,7 @@ export class CalendarAccessory extends Accessory {
   protected _activeState = true;
   protected _updateStateHandler: () => Promise<void>;
 
-  constructor (
+  constructor(
     protected readonly platform: Platform,
     protected readonly accessory: PlatformAccessory<IAccessoryContext>,
   ) {
@@ -49,14 +49,14 @@ export class CalendarAccessory extends Accessory {
     }
   }
 
-  registerUpdateStateHandler (handler: () => Promise<void>) {
+  registerUpdateStateHandler(handler: () => Promise<void>) {
     this._updateStateHandler = handler;
   }
 
-  async getActiveState (): Promise<CharacteristicValue> {
+  async getActiveState(): Promise<CharacteristicValue> {
     const state = this._activeState
-                  ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
-                  : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
+      ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
+      : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
     this.platform.debug(
       `[${this.accessory.context.name}] Get ActiveState On ->`,
@@ -66,10 +66,10 @@ export class CalendarAccessory extends Accessory {
     return state;
   }
 
-  async setActiveState (state: boolean) {
+  async setActiveState(state: boolean) {
     const _state = state
-                   ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
-                   : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
+      ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
+      : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
     if (state !== this._activeState) {
       this._activeState = state;
@@ -86,11 +86,11 @@ export class CalendarAccessory extends Accessory {
     }
   }
 
-  async getUpdateState (): Promise<CharacteristicValue> {
+  async getUpdateState(): Promise<CharacteristicValue> {
     return false;
   }
 
-  async setUpdateState (state) {
+  async setUpdateState(state) {
     this.platform.debug(
       `[${this.accessory.context.name}] Set UpdateState On ->`,
       state,

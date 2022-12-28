@@ -10,16 +10,16 @@ export class AccessoriesManager<AT extends Accessory> {
   private _accessories: Map<string, AT> = new Map();
   private _cacheManager: AccessoriesCache;
 
-  constructor (private readonly platform: Platform) {
+  constructor(private readonly platform: Platform) {
     this._cacheManager = new AccessoriesCache(platform);
     this.platform.debug('Finished initializing accessories manager');
   }
 
-  cache (uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
+  cache(uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
     this._cacheManager.add(uuid, accessory);
   }
 
-  clean () {
+  clean() {
     this._cacheManager.forEach((value, key) => {
       this._cacheManager.remove(key);
       if (value) {
@@ -29,11 +29,11 @@ export class AccessoriesManager<AT extends Accessory> {
     this.platform.debug('Finished cleaning accessories cache');
   }
 
-  get<T extends AT = AT> (uuid: string): T | undefined {
+  get<T extends AT = AT>(uuid: string): T | undefined {
     return this._accessories.get(uuid) as T | undefined;
   }
 
-  register (
+  register(
     uuid: string,
     ctor: ICtor<AT>,
     context: IAccessoryContext,
@@ -65,7 +65,7 @@ export class AccessoriesManager<AT extends Accessory> {
     }
   }
 
-  unregister (uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
+  unregister(uuid: string, accessory: PlatformAccessory<IAccessoryContext>) {
     this.platform.api.unregisterPlatformAccessories(
       PLUGIN_NAME,
       PLATFORM_NAME,

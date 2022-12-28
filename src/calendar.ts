@@ -38,13 +38,13 @@ export class Calendar {
   protected _url: string;
   protected _calendar: IcalExpander;
 
-  constructor (name: string, url: string, platform: Platform) {
+  constructor(name: string, url: string, platform: Platform) {
     this._name = name;
     this._url = url.replace('webcal://', 'https://');
     this._platform = platform;
   }
 
-  async update () {
+  async update() {
     this._platform.debug('Updating calendar:', this._name);
     try {
       const _data = await requestHelper(this._url);
@@ -53,13 +53,12 @@ export class Calendar {
       } else {
         this._platform.error('Error while updating calendar:', this._name);
       }
-    }
-    catch (error) {
+    } catch (error) {
       this._platform.error('Error while updating calendar:', this._name, error);
     }
   }
 
-  getEvents (): ICalendarEvent[] {
+  getEvents(): ICalendarEvent[] {
     const _rawEvents = this._buildEvents();
 
     if (_rawEvents) {
@@ -72,7 +71,7 @@ export class Calendar {
     return [];
   }
 
-  private _buildEvents (): ICalendarEventRaw | undefined {
+  private _buildEvents(): ICalendarEventRaw | undefined {
     if (!this._calendar) {
       return;
     }
@@ -81,7 +80,7 @@ export class Calendar {
     return this._calendar.between(now, now) as ICalendarEventRaw;
   }
 
-  private _getEvents (rawEvents: ICalendarEventRawEvent[] = []): ICalendarEvent[] {
+  private _getEvents(rawEvents: ICalendarEventRawEvent[] = []): ICalendarEvent[] {
     return rawEvents.map(({ summary, startDate, endDate }) => {
       return {
         summary: summary,
@@ -91,7 +90,7 @@ export class Calendar {
     });
   }
 
-  private _getOccurrences (rawOccurrences: ICalendarEventRawOccurrence[] = []): ICalendarEvent[] {
+  private _getOccurrences(rawOccurrences: ICalendarEventRawOccurrence[] = []): ICalendarEvent[] {
     return rawOccurrences.map(({ item: { summary }, startDate, endDate }) => {
       return {
         summary: summary,

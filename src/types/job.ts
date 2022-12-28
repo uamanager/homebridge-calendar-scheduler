@@ -1,48 +1,43 @@
-import {
-  LongIntervalJob,
-  SimpleIntervalJob,
-  SimpleIntervalSchedule,
-  Task,
-  ToadScheduler,
-} from 'toad-scheduler';
+import { LongIntervalJob, SimpleIntervalJob, SimpleIntervalSchedule, Task, ToadScheduler } from 'toad-scheduler';
 import { createJobHelper } from '../helpers/createJob.helper';
 
 export class Job {
-  constructor (
+  constructor(
     public id: string,
     protected _config: SimpleIntervalSchedule,
     protected _handler: () => void,
     protected $_scheduler: ToadScheduler,
-  ) {}
+  ) {
+  }
 
-  getTaskId (): string {
+  getTaskId(): string {
     return `task-${this.id}`;
   }
 
-  getJobId (): string {
+  getJobId(): string {
     return `job-${this.id}`;
   }
 
-  createTask (handler: () => void = this._handler): Task {
+  createTask(handler: () => void = this._handler): Task {
     return new Task(this.getTaskId(), handler);
   }
 
-  createJob (
+  createJob(
     config: SimpleIntervalSchedule = this._config,
     handler: () => void = this._handler,
   ): SimpleIntervalJob | LongIntervalJob {
     return createJobHelper(this.getJobId(), config, this.createTask(handler));
   }
 
-  start () {
+  start() {
     this.$_scheduler.addIntervalJob(this.createJob());
   }
 
-  stop () {
+  stop() {
     this.$_scheduler.removeById(this.getJobId());
   }
 
-  restart () {
+  restart() {
     this.stop();
     this.start();
   }

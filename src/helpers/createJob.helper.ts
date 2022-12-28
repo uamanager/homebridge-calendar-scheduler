@@ -1,12 +1,7 @@
-import {
-  LongIntervalJob,
-  SimpleIntervalJob,
-  SimpleIntervalSchedule,
-  Task,
-} from 'toad-scheduler';
+import { LongIntervalJob, SimpleIntervalJob, SimpleIntervalSchedule, Task } from 'toad-scheduler';
 import { isLongJobIntervalHelper } from './isLongJobInterval.helper';
 
-export function createJobHelper (
+export function createJobHelper(
   id: string,
   config: SimpleIntervalSchedule,
   task: Task,

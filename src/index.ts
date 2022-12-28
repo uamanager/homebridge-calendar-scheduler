@@ -8,8 +8,7 @@ import { PLATFORM_NAME } from './settings';
 export = (api: API) => {
   try {
     api.registerPlatform(PLATFORM_NAME, Platform);
-  }
-  catch (error) {
+  } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Unable to initialize platform:', PLATFORM_NAME, error);
   }

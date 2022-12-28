@@ -1,4 +1,4 @@
-export function convertToMillisecondsHelper (
+export function convertToMillisecondsHelper(
   days = 0,
   hours = 0,
   minutes = 0,
