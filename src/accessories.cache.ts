@@ -1,6 +1,6 @@
 import { PlatformAccessory } from 'homebridge';
 import { Platform } from './platform';
-import { IAccessoryContext } from './types/accessory.context';
+import { IAccessoryContext } from './accessories/accessory.context';
 
 export class AccessoriesCache {
   private _cache: Map<string, PlatformAccessory<IAccessoryContext>> = new Map();

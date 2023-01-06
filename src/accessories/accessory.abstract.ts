@@ -4,7 +4,7 @@ import { Platform } from '../platform';
 import { IAccessoryContext } from './accessory.context';
 import { ConstructorArgs } from 'hap-nodejs/dist/types';
 
-export abstract class Accessory {
+export abstract class AccessoryAbstract {
   protected constructor(
     protected readonly platform: Platform,
     protected readonly accessory: PlatformAccessory<IAccessoryContext>,

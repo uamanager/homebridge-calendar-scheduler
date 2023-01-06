@@ -1,7 +1,7 @@
 import { CharacteristicValue, PlatformAccessory, Service } from 'homebridge';
 
 import { Platform } from '../platform';
-import { IAccessoryContext } from '../types/accessory.context';
+import { IAccessoryContext } from './accessory.context';
 import { CalendarAccessory } from './calendar.accessory';
 
 

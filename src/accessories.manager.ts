@@ -2,11 +2,14 @@ import { PlatformAccessory } from 'homebridge';
 import { AccessoriesCache } from './accessories.cache';
 import { Platform } from './platform';
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
-import { Accessory } from './types/accessory';
-import { IAccessoryContext } from './types/accessory.context';
-import { ICtor } from './types/ctor';
+import { AccessoryAbstract } from './accessories/accessory.abstract';
+import { IAccessoryContext } from './accessories/accessory.context';
 
-export class AccessoriesManager<AT extends Accessory> {
+export interface ICtor<T> {
+  new(...args): T;
+}
+
+export class AccessoriesManager<AT extends AccessoryAbstract> {
   private _accessories: Map<string, AT> = new Map();
   private _cacheManager: AccessoriesCache;
 

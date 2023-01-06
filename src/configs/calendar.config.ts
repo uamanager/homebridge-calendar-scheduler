@@ -22,14 +22,14 @@ export class CalendarConfig implements ICalendarConfig {
   readonly caseInsensitiveEventsMatching?: boolean;
   readonly calendarEvents: CalendarEventConfig[];
 
-  constructor(private _config: IConfig, calendar: ICalendarConfig) {
+  constructor(_config: IConfig, calendar: ICalendarConfig) {
     this.calendarName = calendar.calendarName;
     this.calendarUrl = calendar.calendarUrl;
     this.calendarUpdateInterval = calendar.calendarUpdateInterval || 60;
     this.calendarUpdateButton = calendar.calendarUpdateButton || true;
     this.calendarTriggerOnUpdates = calendar.calendarTriggerOnUpdates || true;
     this.calendarTriggerOnAllEvents = calendar.calendarTriggerOnAllEvents || false;
-    this.caseInsensitiveEventsMatching = calendar.caseInsensitiveEventsMatching || this._config.caseInsensitiveEventsMatching || false;
+    this.caseInsensitiveEventsMatching = calendar.caseInsensitiveEventsMatching || _config.caseInsensitiveEventsMatching || false;
     this.calendarEvents = (calendar.calendarEvents || []).map((event) => {
       return new CalendarEventConfig(_config, this, event);
     });

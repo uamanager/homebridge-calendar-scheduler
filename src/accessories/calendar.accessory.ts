@@ -1,11 +1,11 @@
 import { CharacteristicValue, PlatformAccessory, Service } from 'homebridge';
 
 import { Platform } from '../platform';
-import { Accessory } from '../types/accessory';
-import { IAccessoryContext } from '../types/accessory.context';
+import { AccessoryAbstract } from './accessory.abstract';
+import { IAccessoryContext } from './accessory.context';
 
 
-export class CalendarAccessory extends Accessory {
+export class CalendarAccessory extends AccessoryAbstract {
   protected ContactSensor: Service;
   protected Switch?: Service;
   protected _activeState = true;
@@ -34,7 +34,7 @@ export class CalendarAccessory extends Accessory {
     this.ContactSensor.getCharacteristic(this.platform.Characteristic.ContactSensorState)
       .onGet(this.getActiveState.bind(this));
 
-    if (this.accessory.context.forceUpdate) {
+    if (this.accessory.context.config.calendarUpdateButton) {
       this.Switch = this._getService(
         `${this.accessory.context.name} Update`,
         this.platform.Service.Switch,

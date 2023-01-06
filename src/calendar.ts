@@ -50,6 +50,7 @@ export class Calendar {
       const _data = await requestHelper(this._url);
       if (_data) {
         this._calendar = new IcalExpander({ ics: _data });
+        this._platform.debug('Calendar updated:', this._name);
       } else {
         this._platform.error('Error while updating calendar:', this._name);
       }
@@ -64,8 +65,11 @@ export class Calendar {
     if (_rawEvents) {
       const _events = this._getEvents(_rawEvents.events);
       const _occurrences = this._getOccurrences(_rawEvents.occurrences);
+      const _allEvents = [..._events, ..._occurrences];
 
-      return [..._events, ..._occurrences];
+      this._platform.debug('Found Events:', this._name, _allEvents.length);
+
+      return _allEvents;
     }
 
     return [];

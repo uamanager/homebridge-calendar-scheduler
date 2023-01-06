@@ -1,8 +1,10 @@
+import { ICalendarConfig } from '../configs/calendar.config';
+
 export interface IAccessoryContext {
-  forceUpdate: boolean;
   manufacturer: string;
   model: string;
   name: string;
   serialNumber: string;
   version: string;
+  config: ICalendarConfig;
 }

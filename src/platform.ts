@@ -5,8 +5,8 @@ import { CalendarAccessory } from './accessories/calendar.accessory';
 import { EventAccessory } from './accessories/event.accessory';
 import { CalendarHandler } from './calendar.handler';
 import { PLATFORM_NAME } from './settings';
-import { IAccessoryContext } from './types/accessory.context';
-import { Config, IConfig } from './types/config';
+import { IAccessoryContext } from './accessories/accessory.context';
+import { Config, IConfig } from './configs/config';
 
 export type TPlatformAccessories = EventAccessory | CalendarAccessory;
 
