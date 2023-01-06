@@ -1,4 +1,11 @@
-import { API, Characteristic, DynamicPlatformPlugin, Logger, PlatformAccessory, Service } from 'homebridge';
+import {
+  API,
+  Characteristic,
+  DynamicPlatformPlugin,
+  Logger,
+  PlatformAccessory,
+  Service,
+} from 'homebridge';
 import { ToadScheduler } from 'toad-scheduler';
 import { AccessoriesManager } from './accessories.manager';
 import { CalendarAccessory } from './accessories/calendar.accessory';

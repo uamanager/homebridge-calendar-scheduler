@@ -1,4 +1,10 @@
-import { LongIntervalJob, SimpleIntervalJob, SimpleIntervalSchedule, Task, ToadScheduler } from 'toad-scheduler';
+import {
+  LongIntervalJob,
+  SimpleIntervalJob,
+  SimpleIntervalSchedule,
+  Task,
+  ToadScheduler,
+} from 'toad-scheduler';
 import { createJobHelper } from './helpers/createJob.helper';
 
 export class Job {

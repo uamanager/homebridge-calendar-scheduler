@@ -105,7 +105,8 @@ export class CalendarHandler {
 
     const _watchedActiveEvents = _activeEvents
       .filter((event) => {
-        return _watchedEventsSensitive.includes(event.summary) || _watchedEventsInsensitive.includes(event.summary.toLowerCase());
+        return _watchedEventsSensitive.includes(event.summary)
+          || _watchedEventsInsensitive.includes(event.summary.toLowerCase());
       });
 
     this._calendarUpdateState(this.calendarConfig, _activeEvents, _watchedActiveEvents);
@@ -115,7 +116,11 @@ export class CalendarHandler {
     });
   }
 
-  private _calendarUpdateState(calendarConfig: CalendarConfig, activeEvents: ICalendarEvent[] = [], watchedActiveEvents: ICalendarEvent[] = []) {
+  private _calendarUpdateState(
+    calendarConfig: CalendarConfig,
+    activeEvents: ICalendarEvent[] = [],
+    watchedActiveEvents: ICalendarEvent[] = [],
+  ) {
     const _calendarAccessory = this.platform.AccessoriesManager.get<CalendarAccessory>(
       this._generateSerialNumber(this.calendarConfig.id),
     );
@@ -144,7 +149,10 @@ export class CalendarHandler {
     }
   }
 
-  private _calendarEventUpdateState(eventConfig: CalendarEventConfig, watchedActiveEvents: ICalendarEvent[] = []) {
+  private _calendarEventUpdateState(
+    eventConfig: CalendarEventConfig,
+    watchedActiveEvents: ICalendarEvent[] = [],
+  ) {
     const _eventAccessory = this.platform.AccessoriesManager.get<EventAccessory>(
       this._generateSerialNumber(eventConfig.id),
     );
