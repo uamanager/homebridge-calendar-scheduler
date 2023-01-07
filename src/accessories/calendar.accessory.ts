@@ -34,7 +34,10 @@ export class CalendarAccessory extends AccessoryAbstract {
     this.ContactSensor.getCharacteristic(this.platform.Characteristic.ContactSensorState)
       .onGet(this.getActiveState.bind(this));
 
-    if (this.accessory.context.config.calendarUpdateButton) {
+    if (
+      this.accessory.context.calendarConfig.calendarUpdateButton
+      && !this.accessory.context.calendarEventConfig
+    ) {
       this.Switch = this._getService(
         `${this.accessory.context.name} Update`,
         this.platform.Service.Switch,

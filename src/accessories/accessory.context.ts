@@ -1,4 +1,6 @@
 import { ICalendarConfig } from '../configs/calendar.config';
+import { ICalendarEvent } from '../calendar';
+import { ICalendarEventConfig } from '../configs/event.config';
 
 export interface IAccessoryContext {
   manufacturer: string;
@@ -6,5 +8,6 @@ export interface IAccessoryContext {
   name: string;
   serialNumber: string;
   version: string;
-  config: ICalendarConfig;
+  calendarConfig: ICalendarConfig;
+  calendarEventConfig?: ICalendarEventConfig;
 }

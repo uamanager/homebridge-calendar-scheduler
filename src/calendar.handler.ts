@@ -5,7 +5,7 @@ import { Platform } from './platform';
 import { PLATFORM_MANUFACTURER, PLATFORM_VERSION } from './settings';
 import { IAccessoryContext } from './accessories/accessory.context';
 import { CalendarConfig, ICalendarConfig } from './configs/calendar.config';
-import { CalendarEventConfig } from './configs/event.config';
+import { CalendarEventConfig, ICalendarEventConfig } from './configs/event.config';
 import { Job } from './job.manager';
 
 export class CalendarHandler {
@@ -73,6 +73,7 @@ export class CalendarHandler {
         event.id,
         event.eventName,
         this.calendarConfig,
+        event,
       );
       this.platform.AccessoriesManager.register(
         _eventContext.serialNumber,
@@ -195,7 +196,8 @@ export class CalendarHandler {
   private _prepareContext(
     id: string,
     name: string,
-    config: ICalendarConfig,
+    calendarConfig: ICalendarConfig,
+    calendarEventConfig?: ICalendarEventConfig,
   ): IAccessoryContext {
     return {
       manufacturer: PLATFORM_MANUFACTURER,
@@ -203,7 +205,8 @@ export class CalendarHandler {
       name: name,
       serialNumber: this._generateSerialNumber(id),
       version: PLATFORM_VERSION,
-      config,
+      calendarConfig,
+      calendarEventConfig,
     };
   }
 }
