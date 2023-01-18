@@ -41,6 +41,12 @@
               "type": "string",
               "required": true
             },
+            "calendarOffset": {
+              "title": "Calendar Offset",
+              "description": "Specifies the time to subtract from the scheduled start and end of the event in minutes. Can be positive or negative.",
+              "type": "integer",
+              "default": 0
+            },
             "calendarUpdateInterval": {
               "title": "Calendar Update Interval",
               "description": "The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes.",

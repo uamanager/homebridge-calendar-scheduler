@@ -59,8 +59,11 @@ export class Calendar {
     }
   }
 
-  getEvents(): ICalendarEvent[] {
-    const _rawEvents = this._buildEvents();
+  getEvents(
+    start: number | Date = new Date(),
+    end: number | Date = new Date(),
+  ): ICalendarEvent[] {
+    const _rawEvents = this._buildEvents(start, end);
 
     if (_rawEvents) {
       const _events = this._getEvents(_rawEvents.events);
@@ -75,13 +78,15 @@ export class Calendar {
     return [];
   }
 
-  private _buildEvents(): ICalendarEventRaw | undefined {
+  private _buildEvents(
+    start: number | Date = new Date(),
+    end: number | Date = new Date(),
+  ): ICalendarEventRaw | undefined {
     if (!this._calendar) {
       return;
     }
 
-    const now = new Date();
-    return this._calendar.between(now, now) as ICalendarEventRaw;
+    return this._calendar.between(new Date(start), new Date(end)) as ICalendarEventRaw;
   }
 
   private _getEvents(rawEvents: ICalendarEventRawEvent[] = []): ICalendarEvent[] {

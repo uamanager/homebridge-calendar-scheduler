@@ -45,14 +45,14 @@ export class CalendarHandler {
     this.init();
   }
 
-  private get _now(): number {
-    return new Date().getTime();
-  }
-
   init() {
     this._initAccessories();
 
     this._calendarFetchJob.start();
+  }
+
+  now() {
+    return Date.now() + this.calendarConfig.calendarOffset * 60 * 1000;
   }
 
   private _initAccessories() {
@@ -95,7 +95,7 @@ export class CalendarHandler {
   private _handleCalendarUpdatesJob() {
     this.platform.debug('Executed calendarUpdates job', this.calendarConfig.calendarName);
 
-    const _activeEvents = this._calendar.getEvents();
+    const _activeEvents = this._calendar.getEvents(this.now(), this.now());
 
     const _watchedActiveEvents = _activeEvents.filter((event) => {
       return this.calendarConfig.calendarEvents.findIndex((watchedEvent) => {
@@ -160,7 +160,7 @@ export class CalendarHandler {
       const _startTime = _activeEvent.startDate.getTime();
       const _endTime = _activeEvent.endDate.getTime();
 
-      const _progress = (this._now - _startTime) / (_endTime - _startTime) * 100;
+      const _progress = (this.now() - _startTime) / (_endTime - _startTime) * 100;
 
       if (eventConfig.eventTriggerOnUpdates) {
         _eventAccessory?.setActiveState(true);
