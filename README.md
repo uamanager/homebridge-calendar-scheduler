@@ -63,6 +63,28 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
                         {
                             "eventName": "event-name-without-retrigger",
                             "eventTriggerOnUpdate": false
+                        },
+                        {
+                            "eventName": "^event-(.*)",
+                            "eventTriggerOnUpdate": false
+                        }
+                    ]
+                },
+                {
+                    "calendarName": "calendar-offset-3",
+                    "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
+                    "calendarUpdateInterval": 30,
+                    "calendarOffset": 30,
+                    "calendarTriggerOnUpdates": false,
+                    "calendarTriggerOnAllEvents": true,
+                    "calendarEvents": [
+                        {
+                            "eventName": "event-name-without-retrigger",
+                            "eventTriggerOnUpdate": false
+                        },
+                        {
+                            "eventName": "^event-(.*)",
+                            "eventTriggerOnUpdate": false
                         }
                     ]
                 }
