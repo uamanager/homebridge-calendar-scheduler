@@ -22,7 +22,7 @@ export class Config implements IConfig {
   constructor(config: IConfig = CONFIG_DEFAULT) {
     this.platform = config.platform;
     this.debug = !!config.debug;
-    this.caseInsensitiveEventsMatching = !!config.caseInsensitiveEventsMatching;
+    this.caseInsensitiveEventsMatching = config.caseInsensitiveEventsMatching || false;
     this.calendars = (config.calendars || []).map((calendar) => {
       return new CalendarConfig(this, calendar);
     });
