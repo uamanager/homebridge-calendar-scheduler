@@ -17,7 +17,7 @@ would like to share your appreciation, feel free to "Star" or donate.**
 
 ## Info
 
-Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with repeats using any iCal calendar.
+Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.
 
 ## Installation
 
@@ -73,23 +73,30 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 
 ```
 
-| Fields                            | Description                                                                                                                                       | Default               | Required |
+| Config Field                      | Description                                                                                                                                       | Default               | Required |
 |-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
-| **platform**                      | Must always be `CalendarScheduler`.                                                                                                               | `"CalendarScheduler"` | Yes      |
-| **caseInsensitiveEventsMatching** | Enable for case insensitive events matching globally.                                                                                             | `false`               | No       |
-| **debug**                         | Enable for displaying debug messages.                                                                                                             | `false`               | No       |
-| **calendars**                     | Array of watched calendars.                                                                                                                       |                       | No       |
-| calendarName                      | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                    | `"calendar-name1"`    | Yes      |
-| calendarUrl                       | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                              | `""`                  | Yes      |
-| calendarUpdateInterval            | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes. | `60`                  | No       |
-| calendarUpdateButton              | If set to true, then button for manual update available for this calendar accessory.                                                              | `true`                | No       |
-| calendarTriggerOnUpdates          | If set to true, then every minute calendar sensor trigger update if any defined event is active.                                                  | `true`                | No       |
-| calendarTriggerOnAllEvents        | If set to true, then calendar sensor trigger update if any event is active.                                                                       | `false`               | No       |
-| caseInsensitiveEventsMatching     | Enable for case insensitive events matching for this calendar.                                                                                    | `false`               | No       |
-| **calendarEvents**                | Array of watched calendar events.                                                                                                                 |                       | No       |
-| eventName                         | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | Yes      |
-| eventTriggerOnUpdates             | If set to true, then every minute sensor trigger update for active event.                                                                         | `true`                | No       |
-| caseInsensitiveEventsMatching     | Enable for case insensitive events matching for this event.                                                                                       | `false`               | No       |
+| platform                          | Must always be `CalendarScheduler`.                                                                                                               | `"CalendarScheduler"` | Yes      |
+| caseInsensitiveEventsMatching     | Enable for case insensitive events matching globally.                                                                                             | `false`               | No       |
+| debug                             | Enable for displaying debug messages.                                                                                                             | `false`               | No       |
+| calendars                         | Array of watched calendars.                                                                                                                       | `[]`                  | No       |
+
+| Calendar Config Field         | Description                                                                                                                                                                          | Default            | Required |
+|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|----------|
+| calendarName                  | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                                                       | `"calendar-name1"` | Yes      |
+| calendarUrl                   | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                                                                 | `""`               | Yes      |
+| calendarUpdateInterval        | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes.                                    | `60`               | No       |
+| calendarOffset                | Specifies the time to subtract from the scheduled start and end of the event in minutes. The offset essentially moves the start and end dates ahead by the specified amount of time. | `0`                | No       |
+| calendarUpdateButton          | If set to true, then button for manual update available for this calendar accessory.                                                                                                 | `true`             | No       |
+| calendarTriggerOnUpdates      | If set to true, then every minute calendar sensor trigger update if any defined event is active.                                                                                     | `true`             | No       |
+| calendarTriggerOnAllEvents    | If set to true, then calendar sensor trigger update if any event is active.                                                                                                          | `false`            | No       |
+| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this calendar.                                                                                                                       | `false`            | No       |
+| calendarEvents                | Array of watched calendar events.                                                                                                                                                    | `[]`               | No       |
+
+| Calendar Event Config Field   | Description                                                                                                                                       | Default               | Required |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
+| eventName                     | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | Yes      |
+| eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                                                                         | `true`                | No       |
+| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                                                                       | `false`               | No       |
 
 # Contributing
 

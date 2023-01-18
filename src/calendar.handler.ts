@@ -4,8 +4,8 @@ import { Calendar, ICalendarEvent } from './calendar';
 import { Platform } from './platform';
 import { PLATFORM_MANUFACTURER, PLATFORM_VERSION } from './settings';
 import { IAccessoryContext } from './accessories/accessory.context';
-import { CalendarConfig, ICalendarConfig } from './configs/calendar.config';
-import { CalendarEventConfig, ICalendarEventConfig } from './configs/event.config';
+import { CalendarConfig } from './configs/calendar.config';
+import { CalendarEventConfig } from './configs/event.config';
 import { Job } from './job.manager';
 
 export class CalendarHandler {
@@ -71,7 +71,7 @@ export class CalendarHandler {
     this.calendarConfig.calendarEvents.forEach((event: CalendarEventConfig) => {
       const _eventContext = this._prepareContext(
         event.id,
-        event.eventName,
+        event.safeEventName,
         this.calendarConfig,
         event,
       );
@@ -97,18 +97,11 @@ export class CalendarHandler {
 
     const _activeEvents = this._calendar.getEvents();
 
-    const _watchedEventsSensitive = this.calendarConfig.calendarEvents
-      .filter((event) => !event.caseInsensitiveEventsMatching)
-      .map((event) => event.eventName);
-    const _watchedEventsInsensitive = this.calendarConfig.calendarEvents
-      .filter((event) => !!event.caseInsensitiveEventsMatching)
-      .map((event) => event.eventName.toLowerCase());
-
-    const _watchedActiveEvents = _activeEvents
-      .filter((event) => {
-        return _watchedEventsSensitive.includes(event.summary)
-          || _watchedEventsInsensitive.includes(event.summary.toLowerCase());
-      });
+    const _watchedActiveEvents = _activeEvents.filter((event) => {
+      return this.calendarConfig.calendarEvents.findIndex((watchedEvent) => {
+        return watchedEvent.eventMatcher.test(event.summary);
+      }) !== -1;
+    });
 
     this._calendarUpdateState(this.calendarConfig, _activeEvents, _watchedActiveEvents);
 
@@ -159,11 +152,8 @@ export class CalendarHandler {
     );
 
     const _activeEvent = watchedActiveEvents
-      .find(event => {
-        if (eventConfig.caseInsensitiveEventsMatching) {
-          return event.summary.toLowerCase() === eventConfig.eventName.toLowerCase();
-        }
-        return eventConfig.eventName === event.summary;
+      .find((event) => {
+        return eventConfig.eventMatcher.test(event.summary);
       });
 
     if (_activeEvent) {
@@ -196,8 +186,8 @@ export class CalendarHandler {
   private _prepareContext(
     id: string,
     name: string,
-    calendarConfig: ICalendarConfig,
-    calendarEventConfig?: ICalendarEventConfig,
+    calendarConfig: CalendarConfig,
+    calendarEventConfig?: CalendarEventConfig,
   ): IAccessoryContext {
     return {
       manufacturer: PLATFORM_MANUFACTURER,
