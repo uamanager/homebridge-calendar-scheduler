@@ -22,7 +22,7 @@ export class CalendarEventConfig implements ICalendarEventConfig {
     this.eventTriggerOnUpdates = event.eventTriggerOnUpdates || false;
     this.caseInsensitiveEventsMatching = event.caseInsensitiveEventsMatching || _calendar.caseInsensitiveEventsMatching || _config.caseInsensitiveEventsMatching || false;
     this.eventMatcher = new RegExp(this.eventName, this.caseInsensitiveEventsMatching ? 'i' : '');
-    this.safeEventName = this.eventName.replace(/\W/gi, '_').toLowerCase();
+    this.safeEventName = this.eventName.replace(/\W/gi, '_');
   }
 
   get id(): string {
