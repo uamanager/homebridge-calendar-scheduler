@@ -4,11 +4,15 @@
 
 </p>
 
-# Homebridge Calendar Scheduler [![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+# 📅 Homebridge Calendar Scheduler [![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
 
 [![Support Ukraine Badge](https://bit.ly/support-ukraine-now)](https://github.com/support-ukraine/support-ukraine)
 [!["Buy Me A Coffee"](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-ffdd00.svg)](https://www.buymeacoffee.com/uamanager)
 [!["Ko-fi"](https://img.shields.io/badge/Ko--fi-donate-ff5f5f.svg)](https://ko-fi.com/uamanager)
+
+[![npm](https://img.shields.io/npm/v/homebridge-calendar-scheduler.svg)](https://www.npmjs.com/package/homebridge-calendar-scheduler)
+[![npm](https://img.shields.io/npm/dt/homebridge-calendar-scheduler.svg)](https://www.npmjs.com/package/homebridge-calendar-scheduler)
+[![npm](https://img.shields.io/npm/dm/homebridge-calendar-scheduler.svg)](https://www.npmjs.com/package/homebridge-calendar-scheduler)
 
 **Creating and maintaining Homebridge plugins consume a lot of time and effort, if you
 would like to share your appreciation, feel free to "Star" or donate.**
@@ -17,7 +21,8 @@ would like to share your appreciation, feel free to "Star" or donate.**
 
 ## Info
 
-Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.
+Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using
+any iCal calendar.
 
 ## Installation
 
@@ -95,12 +100,12 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 
 ```
 
-| Config Field                      | Description                                                                                                                                       | Default               | Required |
-|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
-| platform                          | Must always be `CalendarScheduler`.                                                                                                               | `"CalendarScheduler"` | Yes      |
-| caseInsensitiveEventsMatching     | Enable for case insensitive events matching globally.                                                                                             | `false`               | No       |
-| debug                             | Enable for displaying debug messages.                                                                                                             | `false`               | No       |
-| calendars                         | Array of watched calendars.                                                                                                                       | `[]`                  | No       |
+| Config Field                  | Description                                           | Default               | Required |
+|-------------------------------|-------------------------------------------------------|-----------------------|----------|
+| platform                      | Must always be `CalendarScheduler`.                   | `"CalendarScheduler"` | Yes      |
+| caseInsensitiveEventsMatching | Enable for case insensitive events matching globally. | `false`               | No       |
+| debug                         | Enable for displaying debug messages.                 | `false`               | No       |
+| calendars                     | Array of watched calendars.                           | `[]`                  | No       |
 
 | Calendar Config Field         | Description                                                                                                                                                                          | Default            | Required |
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|----------|
@@ -114,11 +119,11 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 | caseInsensitiveEventsMatching | Enable for case insensitive events matching for this calendar.                                                                                                                       | `false`            | No       |
 | calendarEvents                | Array of watched calendar events.                                                                                                                                                    | `[]`               | No       |
 
-| Calendar Event Config Field   | Description                                                                                                                                       | Default               | Required |
-|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
-| eventName                     | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.                                                 | `"event-name1"`       | Yes      |
-| eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                                                                         | `true`                | No       |
-| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                                                                       | `false`               | No       |
+| Calendar Event Config Field   | Description                                                                                       | Default         | Required |
+|-------------------------------|---------------------------------------------------------------------------------------------------|-----------------|----------|
+| eventName                     | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event. | `"event-name1"` | Yes      |
+| eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                         | `true`          | No       |
+| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                       | `false`         | No       |
 
 # Contributing
 
