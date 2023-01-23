@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v1.7.3...v1.8.0) (2023-01-23)
+
+
+### Features
+
+* accessory manager ([7488f79](https://github.com/uamanager/homebridge-calendar-scheduler/commit/7488f79f78a9d55ea6a1cf6e62f0a0f3a3239c60))
+
+
+### Bug Fixes
+
+* ical parser ([1a08a8f](https://github.com/uamanager/homebridge-calendar-scheduler/commit/1a08a8f989f57b2d980669249712edfc4e4d1829))
+
 ### [1.7.3](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v1.7.2...v1.7.3) (2023-01-19)
 
 
