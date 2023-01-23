@@ -42,7 +42,7 @@
     "build": "tsc",
     "prepublishOnly": "npm run lint && npm run build",
     "postversion": "git push && git push --tags",
-    "release": "standard-version -a && git push --follow-tags origin master && yarn publish"
+    "release": "npm run lint && npm run build && standard-version -a && git push --follow-tags origin master && yarn publish"
   },
   "keywords": [
     "homebridge",
