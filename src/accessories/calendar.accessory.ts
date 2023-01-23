@@ -1,54 +1,53 @@
-import { CharacteristicValue, PlatformAccessory, Service } from 'homebridge';
-
-import { Platform } from '../platform';
-import { AccessoryAbstract } from './accessory.abstract';
+import { API, CharacteristicValue, Logger, PlatformAccessory, Service } from 'homebridge';
 import { IAccessoryContext } from './accessory.context';
+import { BaseAccessory } from 'homebridge-util-accessory-manager';
 
 
-export class CalendarAccessory extends AccessoryAbstract {
-  protected ContactSensor: Service;
-  protected Switch?: Service;
+export class CalendarAccessory extends BaseAccessory<IAccessoryContext> {
   protected _activeState = true;
   protected _updateStateHandler: () => Promise<void>;
+  protected $_contactSensorService: Service;
+  protected $_switchService?: Service;
 
   constructor(
-    protected readonly platform: Platform,
-    protected readonly accessory: PlatformAccessory<IAccessoryContext>,
+    protected readonly $_api: API,
+    protected readonly _accessory: PlatformAccessory<IAccessoryContext>,
+    protected readonly $_logger?: Logger,
   ) {
-    super(platform, accessory);
+    super($_api, _accessory, $_logger);
 
     this._updateStateHandler = () => Promise.resolve();
 
     this._setAccessoryInformation(
-      this.accessory.context.manufacturer,
-      this.accessory.context.model,
-      this.accessory.context.serialNumber,
-      this.accessory.context.version,
+      this._accessory.context.manufacturer,
+      this._accessory.context.model,
+      this._accessory.context.serialNumber,
+      this._accessory.context.version,
     );
 
-    this.ContactSensor = this._getService(
-      this.accessory.context.name,
-      this.platform.Service.ContactSensor,
+    this.$_contactSensorService = this._getService(
+      this._accessory.context.name,
+      this.$_api.hap.Service.ContactSensor,
     );
 
-    this.ContactSensor.getCharacteristic(this.platform.Characteristic.ContactSensorState)
+    this.$_contactSensorService.getCharacteristic(this.$_api.hap.Characteristic.ContactSensorState)
       .onGet(this.getActiveState.bind(this));
 
     if (
-      this.accessory.context.calendarConfig.calendarUpdateButton
-      && !this.accessory.context.calendarEventConfig
+      this._accessory.context.calendarConfig.calendarUpdateButton
+      && !this._accessory.context.calendarEventConfig
     ) {
-      this.Switch = this._getService(
-        `${this.accessory.context.name} Update`,
-        this.platform.Service.Switch,
+      this.$_switchService = this._getService(
+        `${this._accessory.context.name} Update`,
+        this.$_api.hap.Service.Switch,
       );
 
-      this.Switch.getCharacteristic(this.platform.Characteristic.On)
+      this.$_switchService.getCharacteristic(this.$_api.hap.Characteristic.On)
         .onGet(this.getUpdateState.bind(this))
         .onSet(this.setUpdateState.bind(this));
     } else {
-      this._removeService(this.platform.Service.Switch);
-      this.Switch = undefined;
+      this._removeService(this.$_api.hap.Service.Switch);
+      this.$_switchService = undefined;
     }
   }
 
@@ -58,11 +57,11 @@ export class CalendarAccessory extends AccessoryAbstract {
 
   async getActiveState(): Promise<CharacteristicValue> {
     const state = this._activeState
-      ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
-      : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
+      ? this.$_api.hap.Characteristic.ContactSensorState.CONTACT_DETECTED
+      : this.$_api.hap.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
-    this.platform.debug(
-      `[${this.accessory.context.name}] Get ActiveState On ->`,
+    this.$_logger && this.$_logger.debug(
+      `[${this._accessory.context.name}] Get ActiveState On ->`,
       this._activeState,
     );
 
@@ -71,19 +70,19 @@ export class CalendarAccessory extends AccessoryAbstract {
 
   async setActiveState(state: boolean) {
     const _state = state
-      ? this.platform.Characteristic.ContactSensorState.CONTACT_DETECTED
-      : this.platform.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
+      ? this.$_api.hap.Characteristic.ContactSensorState.CONTACT_DETECTED
+      : this.$_api.hap.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
     if (state !== this._activeState) {
       this._activeState = state;
 
-      this.platform.debug(
-        `[${this.accessory.context.name}] Set ActiveState On ->`,
+      this.$_logger && this.$_logger.debug(
+        `[${this._accessory.context.name}] Set ActiveState On ->`,
         state,
       );
 
-      this.ContactSensor.updateCharacteristic(
-        this.platform.Characteristic.ContactSensorState,
+      this.$_contactSensorService.updateCharacteristic(
+        this.$_api.hap.Characteristic.ContactSensorState,
         _state,
       );
     }
@@ -94,8 +93,8 @@ export class CalendarAccessory extends AccessoryAbstract {
   }
 
   async setUpdateState(state) {
-    this.platform.debug(
-      `[${this.accessory.context.name}] Set UpdateState On ->`,
+    this.$_logger && this.$_logger.debug(
+      `[${this._accessory.context.name}] Set UpdateState On ->`,
       state,
     );
 

@@ -1,6 +1,6 @@
 import IcalExpander from 'ical-expander';
 import { requestHelper } from './helpers/request.helper';
-import { Platform } from './platform';
+import { Logger } from 'homebridge';
 
 export interface ICalendarEvent {
   summary: string;
@@ -32,30 +32,31 @@ export interface ICalendarEventRawDate {
 }
 
 export class Calendar {
-  protected _platform: Platform;
-
   protected _name: string;
   protected _url: string;
   protected _calendar: IcalExpander;
 
-  constructor(name: string, url: string, platform: Platform) {
+  constructor(
+    name: string,
+    url: string,
+    private readonly $_logger?: Logger,
+  ) {
     this._name = name;
     this._url = url.replace('webcal://', 'https://');
-    this._platform = platform;
   }
 
   async update() {
-    this._platform.debug('Updating calendar:', this._name);
+    this.$_logger && this.$_logger.debug('Updating calendar:', this._name);
     try {
       const _data = await requestHelper(this._url);
       if (_data) {
         this._calendar = new IcalExpander({ ics: _data });
-        this._platform.debug('Calendar updated:', this._name);
+        this.$_logger && this.$_logger.debug('Calendar updated:', this._name);
       } else {
-        this._platform.error('Error while updating calendar:', this._name);
+        this.$_logger && this.$_logger.error('Error while updating calendar:', this._name);
       }
     } catch (error) {
-      this._platform.error('Error while updating calendar:', this._name, error);
+      this.$_logger && this.$_logger.error('Error while updating calendar:', this._name, error);
     }
   }
 
@@ -70,7 +71,7 @@ export class Calendar {
       const _occurrences = this._getOccurrences(_rawEvents.occurrences);
       const _allEvents = [..._events, ..._occurrences];
 
-      this._platform.debug('Found Events:', this._name, _allEvents.length);
+      this.$_logger && this.$_logger.debug('Found Events:', this._name, _allEvents.length);
 
       return _allEvents;
     }

@@ -1,72 +1,59 @@
-import {
-  API,
-  Characteristic,
-  DynamicPlatformPlugin,
-  Logger,
-  PlatformAccessory,
-  Service,
-} from 'homebridge';
+import { API, DynamicPlatformPlugin, Logger, PlatformAccessory } from 'homebridge';
 import { ToadScheduler } from 'toad-scheduler';
-import { AccessoriesManager } from './accessories.manager';
 import { CalendarAccessory } from './accessories/calendar.accessory';
 import { EventAccessory } from './accessories/event.accessory';
 import { CalendarHandler } from './calendar.handler';
-import { PLATFORM_NAME } from './settings';
+import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
 import { IAccessoryContext } from './accessories/accessory.context';
 import { Config, IConfig } from './configs/config';
+import { AccessoriesManager } from 'homebridge-util-accessory-manager';
+import { CSLogger } from './logger';
 
 export type TPlatformAccessories = EventAccessory | CalendarAccessory;
 
 export class Platform implements DynamicPlatformPlugin {
-  readonly Service: typeof Service = this.api.hap.Service;
-  readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
-  readonly Scheduler: ToadScheduler = new ToadScheduler();
-
-  CalendarHandlers: CalendarHandler[] = [];
-  Config: Config = new Config();
-  readonly AccessoriesManager: AccessoriesManager<TPlatformAccessories> = new AccessoriesManager(
-    this,
-  );
+  calendarHandlers: CalendarHandler[] = [];
+  config: Config = new Config();
+  readonly $_logger: Logger;
+  readonly $_scheduler: ToadScheduler = new ToadScheduler();
+  readonly $_accessoryManager: AccessoriesManager<TPlatformAccessories, IAccessoryContext>;
 
   constructor(
-    public readonly log: Logger,
-    public readonly config: IConfig,
-    public readonly api: API,
+    private readonly $_homebridgeLogger: Logger,
+    private readonly _rawConfig: IConfig,
+    private readonly $_api: API,
   ) {
-    this.info('Finished initializing platform:', PLATFORM_NAME);
+    this.$_logger = new CSLogger($_homebridgeLogger, _rawConfig.debug);
 
-    this.api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
+    this.$_accessoryManager = new AccessoriesManager(
+      PLUGIN_NAME,
+      PLATFORM_NAME,
+      this.$_api,
+      this.$_logger,
+    );
+
+    this.$_logger.info('Finished initializing platform:', PLATFORM_NAME);
+
+    this.$_api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
 
   configureAccessory(accessory: PlatformAccessory<IAccessoryContext>) {
-    this.debug('Loading accessory from cache:', accessory.displayName);
-    this.AccessoriesManager.cache(accessory.UUID, accessory);
+    this.$_logger.debug('Loading accessory from cache:', accessory.displayName);
+    this.$_accessoryManager.cache(accessory.UUID, accessory);
   }
 
   didFinishLaunching() {
-    this.Config = new Config(this.config);
-    this.CalendarHandlers = this.Config.calendars.map((calendar) => {
-      return new CalendarHandler(this, calendar);
+    this.config = new Config(this._rawConfig);
+    this.calendarHandlers = this.config.calendars.map((calendar) => {
+      return new CalendarHandler(
+        this.$_api,
+        calendar,
+        this.$_accessoryManager,
+        this.$_scheduler,
+        this.$_logger,
+      );
     });
 
-    this.AccessoriesManager.clean();
-  }
-
-  info(message: string, ...parameters: unknown[]) {
-    this.log.info(message, ...parameters);
-  }
-
-  warn(message: string, ...parameters: unknown[]) {
-    this.log.warn(message, ...parameters);
-  }
-
-  error(message: string, ...parameters: unknown[]) {
-    this.log.error(message, ...parameters);
-  }
-
-  debug(message: string, ...parameters: unknown[]) {
-    if (this.config.debug) {
-      this.log.info(message, ...parameters);
-    }
+    this.$_accessoryManager.clean();
   }
 }

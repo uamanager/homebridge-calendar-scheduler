@@ -1,27 +1,26 @@
-import { CharacteristicValue, PlatformAccessory, Service } from 'homebridge';
-
-import { Platform } from '../platform';
+import { API, CharacteristicValue, Logger, PlatformAccessory, Service } from 'homebridge';
 import { IAccessoryContext } from './accessory.context';
 import { CalendarAccessory } from './calendar.accessory';
 
 
 export class EventAccessory extends CalendarAccessory {
-  protected LightSensor: Service;
-
   protected _progressState = 0.0001;
+  protected $_lightSensorService: Service;
 
   constructor(
-    protected readonly platform: Platform,
-    protected readonly accessory: PlatformAccessory<IAccessoryContext>,
+    protected readonly $_api: API,
+    protected readonly _accessory: PlatformAccessory<IAccessoryContext>,
+    protected readonly $_logger?: Logger,
   ) {
-    super(platform, accessory);
+    super($_api, _accessory, $_logger);
 
-    this.LightSensor = this._getService(
-      `${this.accessory.context.name} Progress`,
-      this.platform.Service.LightSensor,
+    this.$_lightSensorService = this._getService(
+      `${this._accessory.context.name} Progress`,
+      this.$_api.hap.Service.LightSensor,
     );
 
-    this.LightSensor.getCharacteristic(this.platform.Characteristic.CurrentAmbientLightLevel)
+    this.$_lightSensorService
+      .getCharacteristic(this.$_api.hap.Characteristic.CurrentAmbientLightLevel)
       .onGet(this.getProgressLevel.bind(this));
   }
 
@@ -32,8 +31,8 @@ export class EventAccessory extends CalendarAccessory {
       Math.min(100, Math.round(this._progressState)),
     );
 
-    this.platform.debug(
-      `[${this.accessory.context.name} Progress] Get ProgressState On ->`,
+    this.$_logger && this.$_logger.debug(
+      `[${this._accessory.context.name} Progress] Get ProgressState On ->`,
       state,
     );
 
@@ -46,13 +45,13 @@ export class EventAccessory extends CalendarAccessory {
     if (_state !== this._progressState) {
       this._progressState = _state;
 
-      this.platform.debug(
-        `[${this.accessory.context.name}] Set ProgressState On ->`,
+      this.$_logger && this.$_logger.debug(
+        `[${this._accessory.context.name}] Set ProgressState On ->`,
         _state,
       );
 
-      this.LightSensor.updateCharacteristic(
-        this.platform.Characteristic.CurrentAmbientLightLevel,
+      this.$_lightSensorService.updateCharacteristic(
+        this.$_api.hap.Characteristic.CurrentAmbientLightLevel,
         _state,
       );
     }

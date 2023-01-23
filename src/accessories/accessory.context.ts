@@ -1,12 +1,8 @@
 import { CalendarConfig } from '../configs/calendar.config';
 import { CalendarEventConfig } from '../configs/event.config';
+import { IBaseAccessoryContext } from 'homebridge-util-accessory-manager';
 
-export interface IAccessoryContext {
-  manufacturer: string;
-  model: string;
-  name: string;
-  serialNumber: string;
-  version: string;
+export interface IAccessoryContext extends IBaseAccessoryContext {
   calendarConfig: CalendarConfig;
   calendarEventConfig?: CalendarEventConfig;
 }

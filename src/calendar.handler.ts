@@ -1,12 +1,15 @@
 import { CalendarAccessory } from './accessories/calendar.accessory';
 import { EventAccessory } from './accessories/event.accessory';
 import { Calendar, ICalendarEvent } from './calendar';
-import { Platform } from './platform';
+import { TPlatformAccessories } from './platform';
 import { PLATFORM_MANUFACTURER, PLATFORM_VERSION } from './settings';
 import { IAccessoryContext } from './accessories/accessory.context';
 import { CalendarConfig } from './configs/calendar.config';
 import { CalendarEventConfig } from './configs/event.config';
 import { Job } from './job.manager';
+import { API, Logger } from 'homebridge';
+import { AccessoriesManager, IBaseAccessoryCtor } from 'homebridge-util-accessory-manager';
+import { ToadScheduler } from 'toad-scheduler';
 
 export class CalendarHandler {
   private _calendarFetchJob: Job;
@@ -14,10 +17,13 @@ export class CalendarHandler {
   private _calendar: Calendar;
 
   constructor(
-    private readonly platform: Platform,
+    private readonly $_api: API,
     private readonly calendarConfig: CalendarConfig,
+    readonly $_accessoryManager: AccessoriesManager<TPlatformAccessories, IAccessoryContext>,
+    private readonly $_scheduler: ToadScheduler,
+    private readonly $_logger?: Logger,
   ) {
-    this.platform.debug(
+    this.$_logger && this.$_logger.debug(
       'Finished initializing calendar handler:',
       this.calendarConfig.calendarName,
     );
@@ -26,20 +32,20 @@ export class CalendarHandler {
       `calendar-fetch-${this.calendarConfig.calendarName}`,
       { minutes: this.calendarConfig.calendarUpdateInterval, runImmediately: true },
       this._handleCalendarFetchJob.bind(this),
-      this.platform.Scheduler,
+      this.$_scheduler,
     );
 
     this._calendarUpdatesJob = new Job(
       `calendar-updates-${this.calendarConfig.calendarName}`,
       { minutes: 1, runImmediately: true },
       this._handleCalendarUpdatesJob.bind(this),
-      this.platform.Scheduler,
+      this.$_scheduler,
     );
 
     this._calendar = new Calendar(
       this.calendarConfig.calendarName,
       this.calendarConfig.calendarUrl,
-      this.platform,
+      this.$_logger,
     );
 
     this.init();
@@ -62,9 +68,9 @@ export class CalendarHandler {
       this.calendarConfig,
     );
 
-    this.platform.AccessoriesManager.register(
+    this.$_accessoryManager.register(
       _calendarContext.serialNumber,
-      CalendarAccessory,
+      CalendarAccessory as IBaseAccessoryCtor<TPlatformAccessories>,
       _calendarContext,
     );
 
@@ -75,9 +81,9 @@ export class CalendarHandler {
         this.calendarConfig,
         event,
       );
-      this.platform.AccessoriesManager.register(
+      this.$_accessoryManager.register(
         _eventContext.serialNumber,
-        EventAccessory,
+        EventAccessory as IBaseAccessoryCtor<TPlatformAccessories>,
         _eventContext,
       );
     });
@@ -85,7 +91,10 @@ export class CalendarHandler {
 
 
   private async _handleCalendarFetchJob() {
-    this.platform.debug('Executed calendarFetch job', this.calendarConfig.calendarName);
+    this.$_logger && this.$_logger.debug(
+      'Executed calendarFetch job',
+      this.calendarConfig.calendarName,
+    );
 
     await this._calendar.update();
 
@@ -93,7 +102,10 @@ export class CalendarHandler {
   }
 
   private _handleCalendarUpdatesJob() {
-    this.platform.debug('Executed calendarUpdates job', this.calendarConfig.calendarName);
+    this.$_logger && this.$_logger.debug(
+      'Executed calendarUpdates job',
+      this.calendarConfig.calendarName,
+    );
 
     const _activeEvents = this._calendar.getEvents(this.now(), this.now());
 
@@ -115,7 +127,7 @@ export class CalendarHandler {
     activeEvents: ICalendarEvent[] = [],
     watchedActiveEvents: ICalendarEvent[] = [],
   ) {
-    const _calendarAccessory = this.platform.AccessoriesManager.get<CalendarAccessory>(
+    const _calendarAccessory = this.$_accessoryManager.get<CalendarAccessory>(
       this._generateSerialNumber(this.calendarConfig.id),
     );
 
@@ -147,7 +159,7 @@ export class CalendarHandler {
     eventConfig: CalendarEventConfig,
     watchedActiveEvents: ICalendarEvent[] = [],
   ) {
-    const _eventAccessory = this.platform.AccessoriesManager.get<EventAccessory>(
+    const _eventAccessory = this.$_accessoryManager.get<EventAccessory>(
       this._generateSerialNumber(eventConfig.id),
     );
 
@@ -180,7 +192,7 @@ export class CalendarHandler {
   }
 
   private _generateSerialNumber(id: string): string {
-    return this.platform.api.hap.uuid.generate(id);
+    return this.$_api.hap.uuid.generate(id);
   }
 
   private _prepareContext(

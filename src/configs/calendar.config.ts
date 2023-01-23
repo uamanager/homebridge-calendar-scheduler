@@ -32,10 +32,12 @@ export class CalendarConfig implements ICalendarConfig {
     this.calendarUpdateButton = calendar.calendarUpdateButton || true;
     this.calendarTriggerOnUpdates = calendar.calendarTriggerOnUpdates || true;
     this.calendarTriggerOnAllEvents = calendar.calendarTriggerOnAllEvents || false;
-    this.caseInsensitiveEventsMatching = calendar.caseInsensitiveEventsMatching || _config.caseInsensitiveEventsMatching || false;
-    this.calendarEvents = (calendar.calendarEvents || []).map((event) => {
-      return new CalendarEventConfig(_config, this, event);
-    });
+    this.caseInsensitiveEventsMatching = calendar.caseInsensitiveEventsMatching
+      || _config.caseInsensitiveEventsMatching || false;
+    this.calendarEvents = (calendar.calendarEvents || [])
+      .map((event) => {
+        return new CalendarEventConfig(_config, this, event);
+      });
   }
 
   get id(): string {

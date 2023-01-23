@@ -1405,6 +1405,11 @@ hexy@^0.2.10:
   resolved "https://registry.yarnpkg.com/hexy/-/hexy-0.2.11.tgz#9939c25cb6f86a91302f22b8a8a72573518e25b4"
   integrity sha512-ciq6hFsSG/Bpt2DmrZJtv+56zpPdnq+NQ4ijEFrveKN0ZG1mhl/LdT1NQZ9se6ty1fACcI4d4vYqC9v8EYpH2A==
 
+homebridge-util-accessory-manager@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/homebridge-util-accessory-manager/-/homebridge-util-accessory-manager-0.0.6.tgz#5a42b0cd0bcb65079e845d296926088710083c72"
+  integrity sha512-UzcogmED16U8HXKzyua+Vc8YUyOGQT3X3eF5lcpzxqr/dJ5m3G6GdbW0W2IFq18lLZkD3D2jz5t9vXWHoaf+yw==
+
 homebridge@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.6.0.tgz#c5a3c743dc9406fba59c4a7c5c0ad95976797947"
@@ -1437,7 +1442,7 @@ ical-expander@3.1.0:
   dependencies:
     ical.js "^1.2.2"
 
-ical.js@^1.2.2:
+ical.js@^1.2.2, ical.js@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/ical.js/-/ical.js-1.5.0.tgz#23213accd1d8f7248d01705acb06270a70d20662"
   integrity sha512-7ZxMkogUkkaCx810yp0ZGKvq1ZpRgJeornPttpoxe6nYZ3NLesZe1wWMXDdwTkj/b5NtXT+Y16Aakph/ao98ZQ==
@@ -2510,7 +2515,7 @@ split@^1.0.0, split@^1.0.1:
   dependencies:
     through "2"
 
-standard-version@^9.5.0:
+standard-version@9.5.0:
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-9.5.0.tgz#851d6dcddf5320d5079601832aeb185dbf497949"
   integrity sha512-3zWJ/mmZQsOaO+fOlsa0+QK90pwhNd042qEcw6hKFNoLFs7peGyvPffpEBbK/DSGPbyOvli0mUIFv5A4qTjh2Q==

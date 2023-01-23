@@ -23,8 +23,9 @@ export class Config implements IConfig {
     this.platform = config.platform;
     this.debug = !!config.debug;
     this.caseInsensitiveEventsMatching = config.caseInsensitiveEventsMatching || false;
-    this.calendars = (config.calendars || []).map((calendar) => {
-      return new CalendarConfig(this, calendar);
-    });
+    this.calendars = (config.calendars || [])
+      .map((calendar) => {
+        return new CalendarConfig(this, calendar);
+      });
   }
 }
