@@ -53,17 +53,13 @@ export class Calendar {
         try {
           this._calendar = new IcalExpander({ ics: _data });
         } catch (error) {
-          this.$_logger && this.$_logger.warn('Error while parsing calendar:', this._name, error);
-          this.$_logger && this.$_logger.warn('Trying to fix calendar:', this._name);
-          try {
-            const _fixedData = _data
-              .replace(/(\n)(^(\s)*(?![A-Z-]{3,}))/gm, '$1 $2')
-              .replace(/( ){2,}/g, ' ');
-            this._calendar = new IcalExpander({ ics: _fixedData });
-            this.$_logger && this.$_logger.warn('Calendar issues fixed:', this._name);
-          } catch (errorFixed) {
-            this.$_logger && this.$_logger.error('Unable to fix calendar:', this._name, errorFixed);
-          }
+          this.$_logger && this.$_logger.debug('Error while parsing calendar:', this._name, error);
+          this.$_logger && this.$_logger.debug('Trying to fix calendar:', this._name);
+
+          const _fixedData = _data
+            .replace(/(\n)(^(\s)*(?![A-Z-]{3,}))/gm, '$1 $2')
+            .replace(/( ){2,}/g, ' ');
+          this._calendar = new IcalExpander({ ics: _fixedData });
         }
 
         this.$_logger && this.$_logger.debug('Calendar updated:', this._name);
