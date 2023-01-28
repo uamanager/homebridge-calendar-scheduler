@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v1.8.2...v2.0.0) (2023-01-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* `calendarOffset` option is removed and ignored! Use new
+notifications feature instead.
+
+### Features
+
+* caching and notifications ([f9891e8](https://github.com/uamanager/homebridge-calendar-scheduler/commit/f9891e8d05038e72429da3c0efc9310363457332)), closes [#72](https://github.com/uamanager/homebridge-calendar-scheduler/issues/72)
+* calendar queries caching ([fb3077d](https://github.com/uamanager/homebridge-calendar-scheduler/commit/fb3077da765e111f52311cd68cebb6929102c716))
+* global ticker ([29822e1](https://github.com/uamanager/homebridge-calendar-scheduler/commit/29822e1c1489f8dbae18e0188343d2a1867b2dd1))
+
+
+### Bug Fixes
+
+* notifications config ([c7f8e30](https://github.com/uamanager/homebridge-calendar-scheduler/commit/c7f8e30ea716e772417574d67f42631346f3d801))
+* notifications config ([fa7b620](https://github.com/uamanager/homebridge-calendar-scheduler/commit/fa7b6207fae52ccc66a8bc922906e2785cbfb7a8))
+* notifications config ([1114e28](https://github.com/uamanager/homebridge-calendar-scheduler/commit/1114e280762564277423abbbd1c9de401f31d027))
+
 ### [1.8.2](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v1.8.1...v1.8.2) (2023-01-25)
 
 
