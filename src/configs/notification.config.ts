@@ -26,9 +26,9 @@ export class CalendarEventNotificationConfig implements ICalendarEventNotificati
     this.eventName = _event.eventName;
     this.calendarName = _calendar.calendarName;
     this.notificationName = notification.notificationName;
-    this.notificationStartOffset = this._mapToRange(notification.notificationStartOffset);
+    this.notificationStartOffset = notification.notificationStartOffset;
     if (!this.notificationStartOffset) {
-      this.notificationEndOffset = this._mapToRange(notification.notificationEndOffset);
+      this.notificationEndOffset = notification.notificationEndOffset;
 
       if (this.notificationEndOffset) {
         this.notificationEndOffsetMillis = this.notificationEndOffset * 60 * 1000;
@@ -40,16 +40,5 @@ export class CalendarEventNotificationConfig implements ICalendarEventNotificati
 
   get id(): string {
     return `${this.eventName}-${this.notificationName}`;
-  }
-
-  protected _mapToRange(value?: number | undefined): number | undefined {
-    if (!value) {
-      return undefined;
-    }
-    if(value > 0){
-      return Math.max(0, Math.min(60, value));
-    } else {
-      return Math.min(0, Math.max(-60, value));
-    }
   }
 }
