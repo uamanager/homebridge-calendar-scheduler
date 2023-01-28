@@ -140,11 +140,11 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 | eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                         | `true`          | No       |
 | caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                       | `false`         | No       |
 
-| Calendar Event Notification Config Field | Description                                                                                                                                | Default                | Required |
-|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------|----------|
-| notificationName                         | A unique name for the calendar event notification. `notificationStartOffset` or `notificationEndOffset` field is required to make it work. | `"notification-name1"` | Yes      |
-| notificationStartOffset                  | Amount of time in minutes before the event to trigger the notification.                                                                    | `undefined`            | No       |
-| notificationEndOffset                    | Amount of time in minutes after the event to trigger the notification.                                                                     | `undefined`            | No       |
+| Calendar Event Notification Config Field | Description                                                                                                                                                                                                                    | Default                | Required |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|----------|
+| notificationName                         | A unique name for the calendar event notification. `notificationStartOffset` or `notificationEndOffset` field is required to make it work.                                                                                     | `"notification-name1"` | Yes      |
+| notificationStartOffset                  | Amount of time in minutes before the event start to trigger the notification. If positive, then notification will be triggered after the event start. If negative, then notification will be triggered before the event start. | `undefined`            | No       |
+| notificationEndOffset                    | Amount of time in minutes after the event end to trigger the notification. If positive then notification will be triggered after the event end. If negative, then notification will be triggered before the event end.         | `undefined`            | No       |
 
 # Contributing
 

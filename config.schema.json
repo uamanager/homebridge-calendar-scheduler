@@ -116,13 +116,13 @@
                           "required": true
                         },
                         "notificationStartOffset": {
-                          "title": "Notify Before",
-                          "description": "Amount of time in minutes before the event to trigger the notification.",
+                          "title": "Event Start Notification",
+                          "description": "Amount of time in minutes before the event start to trigger the notification. If positive, then notification will be triggered after the event start. If negative, then notification will be triggered before the event start.",
                           "type": "integer"
                         },
                         "notificationEndOffset": {
-                          "title": "Notify After",
-                          "description": "Amount of time in minutes after the event to trigger the notification.",
+                          "title": "Event End Notification",
+                          "description": "Amount of time in minutes after the event end to trigger the notification. If positive then notification will be triggered after the event end. If negative, then notification will be triggered before the event end.",
                           "type": "integer"
                         }
                       }
