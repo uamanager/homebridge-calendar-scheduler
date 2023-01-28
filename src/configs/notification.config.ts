@@ -46,6 +46,10 @@ export class CalendarEventNotificationConfig implements ICalendarEventNotificati
     if (!value) {
       return undefined;
     }
-    return Math.max(min, Math.min(max, +value));
+    if(value > 0){
+      return Math.max(0, Math.min(60, value));
+    } else {
+      return Math.min(0, Math.max(-60, value));
+    }
   }
 }
