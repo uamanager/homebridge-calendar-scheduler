@@ -35,6 +35,7 @@ export class Calendar {
   protected _name: string;
   protected _url: string;
   protected _calendar: IcalExpander;
+  protected _cache: Map<string, ICalendarEventRaw> = new Map();
 
   constructor(
     name: string,
@@ -71,6 +72,11 @@ export class Calendar {
     }
   }
 
+  clearCache() {
+    this.$_logger && this.$_logger.debug('Clearing cache:', this._name);
+    this._cache.clear();
+  }
+
   getEvents(
     start: number | Date = new Date(),
     end: number | Date = new Date(),
@@ -98,7 +104,16 @@ export class Calendar {
       return;
     }
 
-    return this._calendar.between(new Date(start), new Date(end)) as ICalendarEventRaw;
+    const _startDate = new Date(start);
+    const _endDate = new Date(end);
+
+    if (this._inCache(_startDate, _endDate)) {
+      return this._getFromCache(_startDate, _endDate);
+    } else {
+      const _rawEvents = this._calendar.between(_startDate, _endDate) as ICalendarEventRaw;
+      this._addToCache(_startDate, _endDate, _rawEvents);
+      return _rawEvents;
+    }
   }
 
   private _getEvents(rawEvents: ICalendarEventRawEvent[] = []): ICalendarEvent[] {
@@ -119,5 +134,25 @@ export class Calendar {
         endDate: endDate.toJSDate(),
       };
     });
+  }
+
+  private _cacheKey(start: Date, end: Date): string {
+    return `${start.getTime()}-${end.getTime()}`;
+  }
+
+  private _inCache(start: Date, end: Date): boolean {
+    const _cacheKey = this._cacheKey(start, end);
+    return this._cache.has(_cacheKey);
+  }
+
+  private _getFromCache(start: Date, end: Date): ICalendarEventRaw | undefined {
+    this.$_logger && this.$_logger.debug('Getting from cache:', this._name);
+    const _cacheKey = this._cacheKey(start, end);
+    return this._cache.get(_cacheKey);
+  }
+
+  private _addToCache(start: Date, end: Date, rawEvents: ICalendarEventRaw) {
+    const _cacheKey = this._cacheKey(start, end);
+    this._cache.set(_cacheKey, rawEvents);
   }
 }

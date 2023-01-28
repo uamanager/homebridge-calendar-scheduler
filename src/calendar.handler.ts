@@ -54,6 +54,8 @@ export class CalendarHandler {
   }
 
   tick() {
+    this._calendar.clearCache();
+
     this.$_logger && this.$_logger.debug(
       'Tick handled:',
       this.calendarConfig.calendarName,
