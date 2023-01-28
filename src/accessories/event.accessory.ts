@@ -32,7 +32,7 @@ export class EventAccessory extends CalendarAccessory {
     ) {
       this._accessory.context.calendarEventConfig.calendarEventNotifications
         .forEach((eventNotificationConfig: CalendarEventNotificationConfig) => {
-          this._eventNotificationStates.set(eventNotificationConfig.notificationName, true);
+          this._eventNotificationStates.set(eventNotificationConfig.notificationName, false);
 
           const _notificationService = this._getService(
             `${this._accessory.context.name} ${eventNotificationConfig.notificationName}`,
@@ -55,6 +55,12 @@ export class EventAccessory extends CalendarAccessory {
                 ? this.$_api.hap.Characteristic.ContactSensorState.CONTACT_DETECTED
                 : this.$_api.hap.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
             });
+
+
+          this._eventNotifications.set(
+            eventNotificationConfig.notificationName,
+            _notificationService,
+          );
         });
     }
   }
