@@ -41,12 +41,6 @@
               "type": "string",
               "required": true
             },
-            "calendarOffset": {
-              "title": "Calendar Offset",
-              "description": "Specifies the time to subtract from the scheduled start and end of the event in minutes. Can be positive or negative.",
-              "type": "integer",
-              "default": 0
-            },
             "calendarUpdateInterval": {
               "title": "Calendar Update Interval",
               "description": "The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes.",
@@ -104,6 +98,35 @@
                     "type": "boolean",
                     "description": "Enable for case insensitive events matching for this event.",
                     "default": false
+                  },
+                  "calendarEventNotifications": {
+                    "title": "Event Notifications",
+                    "type": "array",
+                    "description": "Add one or more calendar event notifications below.",
+                    "items": {
+                      "title": "Notifications",
+                      "type": "object",
+                      "properties": {
+                        "notificationName": {
+                          "title": "Notification Name",
+                          "description": "A unique name for the calendar event notification. `notificationStartOffset` or `notificationEndOffset` field is required to make it work.",
+                          "placeholder": "notification-name1",
+                          "type": "string",
+                          "default": "notification-name1",
+                          "required": true
+                        },
+                        "notificationStartOffset": {
+                          "title": "Notify Before",
+                          "description": "Amount of time in minutes before the event to trigger the notification.",
+                          "type": "integer"
+                        },
+                        "notificationEndOffset": {
+                          "title": "Notify After",
+                          "description": "Amount of time in minutes after the event to trigger the notification.",
+                          "type": "integer"
+                        }
+                      }
+                    }
                   }
                 }
               }

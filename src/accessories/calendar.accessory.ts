@@ -62,7 +62,7 @@ export class CalendarAccessory extends BaseAccessory<IAccessoryContext> {
 
     this.$_logger && this.$_logger.debug(
       `[${this._accessory.context.name}] Get ActiveState On ->`,
-      this._activeState,
+      this._activeState ? 'CONTACT_DETECTED' : 'CONTACT_NOT_DETECTED',
     );
 
     return state;
@@ -78,7 +78,7 @@ export class CalendarAccessory extends BaseAccessory<IAccessoryContext> {
 
       this.$_logger && this.$_logger.debug(
         `[${this._accessory.context.name}] Set ActiveState On ->`,
-        state,
+        state ? 'CONTACT_DETECTED' : 'CONTACT_NOT_DETECTED',
       );
 
       this.$_contactSensorService.updateCharacteristic(

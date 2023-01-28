@@ -10,6 +10,7 @@ import { Job } from './job.manager';
 import { API, Logger } from 'homebridge';
 import { AccessoriesManager, IBaseAccessoryCtor } from 'homebridge-util-accessory-manager';
 import { ToadScheduler } from 'toad-scheduler';
+import { CalendarEventNotificationConfig } from './configs/notification.config';
 
 export class CalendarHandler {
   private _calendarFetchJob: Job;
@@ -29,7 +30,10 @@ export class CalendarHandler {
 
     this._calendarFetchJob = new Job(
       `calendar-fetch-${this.calendarConfig.calendarName}`,
-      { minutes: this.calendarConfig.calendarUpdateInterval, runImmediately: true },
+      {
+        milliseconds: this.calendarConfig.calendarUpdateIntervalMillis,
+        runImmediately: true,
+      },
       this._handleCalendarFetchJob.bind(this),
       this.$_scheduler,
     );
@@ -49,19 +53,15 @@ export class CalendarHandler {
     this._calendarFetchJob.start();
   }
 
-  now() {
-    return Date.now() + this.calendarConfig.calendarOffset * 60 * 1000;
-  }
-
   tick() {
-    this._calendar.clearCache();
-
     this.$_logger && this.$_logger.debug(
       'Tick handled:',
       this.calendarConfig.calendarName,
     );
 
-    const _activeEvents = this._calendar.getEvents(this.now(), this.now());
+    const _now = this._calendar.now();
+
+    const _activeEvents = this._calendar.getEvents(_now, _now);
 
     const _watchedActiveEvents = _activeEvents.filter((event) => {
       return this.calendarConfig.calendarEvents.findIndex((watchedEvent) => {
@@ -73,6 +73,10 @@ export class CalendarHandler {
 
     this.calendarConfig.calendarEvents.forEach((eventConfig) => {
       this._calendarEventUpdateState(eventConfig, _watchedActiveEvents);
+
+      eventConfig.calendarEventNotifications.forEach((eventNotificationConfig) => {
+        this._calendarEventNotificationUpdateState(eventConfig, eventNotificationConfig);
+      });
     });
   }
 
@@ -113,7 +117,7 @@ export class CalendarHandler {
 
     await this._calendar.update();
 
-    this.tick(); // TODO: remove this
+    this.tick();
   }
 
   private _calendarUpdateState(
@@ -153,6 +157,8 @@ export class CalendarHandler {
     eventConfig: CalendarEventConfig,
     watchedActiveEvents: ICalendarEvent[] = [],
   ) {
+    const _now = this._calendar.now();
+
     const _eventAccessory = this.$_accessoryManager.get<EventAccessory>(
       this._generateSerialNumber(eventConfig.id),
     );
@@ -166,7 +172,7 @@ export class CalendarHandler {
       const _startTime = _activeEvent.startDate.getTime();
       const _endTime = _activeEvent.endDate.getTime();
 
-      const _progress = (this.now() - _startTime) / (_endTime - _startTime) * 100;
+      const _progress = (_now - _startTime) / (_endTime - _startTime) * 100;
 
       if (eventConfig.eventTriggerOnUpdates) {
         _eventAccessory?.setActiveState(true);
@@ -182,6 +188,63 @@ export class CalendarHandler {
     } else {
       _eventAccessory?.setActiveState(true);
       _eventAccessory?.setProgressState(0);
+    }
+  }
+
+  private _calendarEventNotificationUpdateState(
+    eventConfig: CalendarEventConfig,
+    eventNotificationConfig: CalendarEventNotificationConfig,
+  ) {
+    const _now = this._calendar.now();
+
+    let _activeEvent: ICalendarEvent | undefined;
+
+    const _eventAccessory = this.$_accessoryManager.get<EventAccessory>(
+      this._generateSerialNumber(eventConfig.id),
+    );
+
+    if (
+      eventNotificationConfig.notificationStartOffsetMillis
+      || eventNotificationConfig.notificationEndOffsetMillis
+    ) {
+
+      if (eventNotificationConfig.notificationStartOffsetMillis) {
+        const _startTime = _now - eventNotificationConfig.notificationStartOffsetMillis;
+
+        const _activeEvents = this._calendar.getEvents(
+          _startTime,
+          _startTime,
+        );
+
+        _activeEvent = _activeEvents
+          .find((event) => {
+            return eventConfig.eventMatcher.test(event.summary)
+              && event.startDate.getTime() === _startTime;
+          });
+      } else if (eventNotificationConfig.notificationEndOffsetMillis) {
+        const _endTime = _now - eventNotificationConfig.notificationEndOffsetMillis;
+
+        const _activeEvents = this._calendar.getEvents(
+          _endTime,
+          _endTime,
+        );
+
+        _activeEvent = _activeEvents
+          .find((event) => {
+            return eventConfig.eventMatcher.test(event.summary)
+              && event.endDate.getTime() === _endTime;
+          });
+      }
+    }
+
+    if (_activeEvent) {
+      _eventAccessory?.setNotificationState(eventNotificationConfig.notificationName, false);
+
+      setTimeout(() => {
+        _eventAccessory?.setNotificationState(eventNotificationConfig.notificationName, true);
+      }, 1000);
+    } else {
+      _eventAccessory?.setNotificationState(eventNotificationConfig.notificationName, true);
     }
   }
 

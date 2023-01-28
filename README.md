@@ -34,68 +34,84 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 
 ## Example Config
 
-```
+```json lines
 {
-   ...
-    "platforms": [
+  "platforms": [
+    {
+      "platform": "CalendarScheduler",
+      "debug": false,
+      "calendars": [
         {
-            "platform": "CalendarScheduler",
-            "debug": false,
-            "calendars": [
+          "calendarName": "calendar-1",
+          "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
+          "calendarUpdateInterval": 3,
+          "calendarTriggerOnUpdates": true,
+          "calendarUpdateButton": false,
+          "calendarEvents": [
+            {
+              "eventName": "event-name1"
+            },
+            {
+              "eventName": "event-name-with-retrigger",
+              "eventTriggerOnUpdate": true
+            }
+          ]
+        },
+        {
+          "calendarName": "calendar-2",
+          "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
+          "calendarUpdateInterval": 30,
+          "calendarTriggerOnUpdates": false,
+          "calendarTriggerOnAllEvents": true,
+          "calendarEvents": [
+            {
+              "eventName": "event-name-without-retrigger",
+              "eventTriggerOnUpdate": false
+            },
+            {
+              "eventName": "^event-(.*)",
+              "eventTriggerOnUpdate": false
+            }
+          ]
+        },
+        {
+          "calendarName": "calendar-offset-3",
+          "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
+          "calendarUpdateInterval": 30,
+          "calendarTriggerOnUpdates": false,
+          "calendarTriggerOnAllEvents": true,
+          "calendarEvents": [
+            {
+              "eventName": "event-name-without-retrigger",
+              "eventTriggerOnUpdate": false
+            },
+            {
+              "eventName": "^event-(.*)",
+              "eventTriggerOnUpdate": false,
+              "calendarEventNotifications": [
                 {
-                    "calendarName": "calendar-1",
-                    "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
-                    "calendarUpdateInterval": 3,
-                    "calendarTriggerOnUpdates": true,
-                    "calendarUpdateButton": false,
-                    "calendarEvents": [
-                        {
-                            "eventName": "event-name1"
-                        },
-                        {
-                            "eventName": "event-name-with-retrigger",
-                            "eventTriggerOnUpdate": true
-                        }
-                    ]
+                  "notificationName": "event-notification-name-before-start-15m",
+                  "notificationStartOffset": -15
                 },
                 {
-                    "calendarName": "calendar-2",
-                    "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
-                    "calendarUpdateInterval": 30,
-                    "calendarTriggerOnUpdates": false,
-                    "calendarTriggerOnAllEvents": true,
-                    "calendarEvents": [
-                        {
-                            "eventName": "event-name-without-retrigger",
-                            "eventTriggerOnUpdate": false
-                        },
-                        {
-                            "eventName": "^event-(.*)",
-                            "eventTriggerOnUpdate": false
-                        }
-                    ]
+                  "notificationName": "event-notification-name-after-start-15m",
+                  "notificationStartOffset": 15
                 },
                 {
-                    "calendarName": "calendar-offset-3",
-                    "calendarUrl": "https://calendar.google.com/calendar/ical/{...}.ics",
-                    "calendarUpdateInterval": 30,
-                    "calendarOffset": 30,
-                    "calendarTriggerOnUpdates": false,
-                    "calendarTriggerOnAllEvents": true,
-                    "calendarEvents": [
-                        {
-                            "eventName": "event-name-without-retrigger",
-                            "eventTriggerOnUpdate": false
-                        },
-                        {
-                            "eventName": "^event-(.*)",
-                            "eventTriggerOnUpdate": false
-                        }
-                    ]
+                  "notificationName": "event-notification-name-before-end-15m",
+                  "notificationEndOffset": -15
+                },
+                {
+                  "notificationName": "event-notification-name-after-end-15m",
+                  "notificationEndOffset": 15
                 }
-            ]
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
 
 ```
@@ -107,23 +123,28 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 | debug                         | Enable for displaying debug messages.                 | `false`               | No       |
 | calendars                     | Array of watched calendars.                           | `[]`                  | No       |
 
-| Calendar Config Field         | Description                                                                                                                                                                          | Default            | Required |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|----------|
-| calendarName                  | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                                                       | `"calendar-name1"` | Yes      |
-| calendarUrl                   | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                                                                 | `""`               | Yes      |
-| calendarUpdateInterval        | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes.                                    | `60`               | No       |
-| calendarOffset                | Specifies the time to subtract from the scheduled start and end of the event in minutes. The offset essentially moves the start and end dates ahead by the specified amount of time. | `0`                | No       |
-| calendarUpdateButton          | If set to true, then button for manual update available for this calendar accessory.                                                                                                 | `true`             | No       |
-| calendarTriggerOnUpdates      | If set to true, then every minute calendar sensor trigger update if any defined event is active.                                                                                     | `true`             | No       |
-| calendarTriggerOnAllEvents    | If set to true, then calendar sensor trigger update if any event is active.                                                                                                          | `false`            | No       |
-| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this calendar.                                                                                                                       | `false`            | No       |
-| calendarEvents                | Array of watched calendar events.                                                                                                                                                    | `[]`               | No       |
+| Calendar Config Field         | Description                                                                                                                                       | Default            | Required |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|----------|
+| calendarName                  | A unique name for the calendar. Will be used as the accessory name and default sensor for any calendar events.                                    | `"calendar-name1"` | Yes      |
+| calendarUrl                   | The address of the calendar. Can be a `webcal://`, a `http://` or an `https://` URL.                                                              | `""`               | Yes      |
+| calendarUpdateInterval        | The polling interval the plugin uses to retrieve calendar updates in minutes. If not set, the plugin will update the calendar ones in 60 minutes. | `60`               | No       |
+| calendarUpdateButton          | If set to true, then button for manual update available for this calendar accessory.                                                              | `true`             | No       |
+| calendarTriggerOnUpdates      | If set to true, then every minute calendar sensor trigger update if any defined event is active.                                                  | `true`             | No       |
+| calendarTriggerOnAllEvents    | If set to true, then calendar sensor trigger update if any event is active.                                                                       | `false`            | No       |
+| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this calendar.                                                                                    | `false`            | No       |
+| calendarEvents                | Array of watched calendar events.                                                                                                                 | `[]`               | No       |
 
 | Calendar Event Config Field   | Description                                                                                       | Default         | Required |
 |-------------------------------|---------------------------------------------------------------------------------------------------|-----------------|----------|
 | eventName                     | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event. | `"event-name1"` | Yes      |
 | eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                         | `true`          | No       |
 | caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                       | `false`         | No       |
+
+| Calendar Event Notification Config Field | Description                                                                                                                                | Default                | Required |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------|----------|
+| notificationName                         | A unique name for the calendar event notification. `notificationStartOffset` or `notificationEndOffset` field is required to make it work. | `"notification-name1"` | Yes      |
+| notificationStartOffset                  | Amount of time in minutes before the event to trigger the notification.                                                                    | `undefined`            | No       |
+| notificationEndOffset                    | Amount of time in minutes after the event to trigger the notification.                                                                     | `undefined`            | No       |
 
 # Contributing
 
