@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.0.3...v2.1.0) (2023-01-28)
+
+
+### Features
+
+* unrestrict notification offset ([054a408](https://github.com/uamanager/homebridge-calendar-scheduler/commit/054a408858e22ee636823631189a136d5d417c0e)), closes [#72](https://github.com/uamanager/homebridge-calendar-scheduler/issues/72)
+
 ### [2.0.3](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.0.2...v2.0.3) (2023-01-28)
 
 
