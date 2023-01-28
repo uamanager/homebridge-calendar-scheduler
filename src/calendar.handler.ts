@@ -11,6 +11,7 @@ import { API, Logger } from 'homebridge';
 import { AccessoriesManager, IBaseAccessoryCtor } from 'homebridge-util-accessory-manager';
 import { ToadScheduler } from 'toad-scheduler';
 import { CalendarEventNotificationConfig } from './configs/notification.config';
+import { NotificationAccessory } from './accessories/notification.accessory';
 
 export class CalendarHandler {
   private _calendarFetchJob: Job;
@@ -105,6 +106,22 @@ export class CalendarHandler {
         EventAccessory as IBaseAccessoryCtor<TPlatformAccessories>,
         _eventContext,
       );
+
+      event.calendarEventNotifications
+        .forEach((notification: CalendarEventNotificationConfig) => {
+          const _notificationContext = this._prepareContext(
+            notification.id,
+            notification.notificationName,
+            this.calendarConfig,
+            event,
+            notification,
+          );
+          this.$_accessoryManager.register(
+            _notificationContext.serialNumber,
+            NotificationAccessory as IBaseAccessoryCtor<TPlatformAccessories>,
+            _notificationContext,
+          );
+        });
     });
   }
 
@@ -199,8 +216,8 @@ export class CalendarHandler {
 
     let _activeEvent: ICalendarEvent | undefined;
 
-    const _eventAccessory = this.$_accessoryManager.get<EventAccessory>(
-      this._generateSerialNumber(eventConfig.id),
+    const _notificationAccessory = this.$_accessoryManager.get<NotificationAccessory>(
+      this._generateSerialNumber(eventNotificationConfig.id),
     );
 
     if (
@@ -238,13 +255,13 @@ export class CalendarHandler {
     }
 
     if (_activeEvent) {
-      _eventAccessory?.setNotificationState(eventNotificationConfig.notificationName, false);
+      _notificationAccessory?.setActiveState(false);
 
       setTimeout(() => {
-        _eventAccessory?.setNotificationState(eventNotificationConfig.notificationName, true);
+        _notificationAccessory?.setActiveState(true);
       }, 1000);
     } else {
-      _eventAccessory?.setNotificationState(eventNotificationConfig.notificationName, true);
+      _notificationAccessory?.setActiveState(true);
     }
   }
 
@@ -257,6 +274,7 @@ export class CalendarHandler {
     name: string,
     calendarConfig: CalendarConfig,
     calendarEventConfig?: CalendarEventConfig,
+    calendarEventNotificationConfig?: CalendarEventNotificationConfig,
   ): IAccessoryContext {
     return {
       manufacturer: PLATFORM_MANUFACTURER,
@@ -266,6 +284,7 @@ export class CalendarHandler {
       version: PLATFORM_VERSION,
       calendarConfig,
       calendarEventConfig,
+      calendarEventNotificationConfig,
     };
   }
 }

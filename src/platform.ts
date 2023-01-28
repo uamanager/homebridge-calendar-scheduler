@@ -9,8 +9,9 @@ import { Config, IConfig } from './configs/config';
 import { AccessoriesManager } from 'homebridge-util-accessory-manager';
 import { CSLogger } from './logger';
 import { Ticker } from './ticker';
+import { NotificationAccessory } from './accessories/notification.accessory';
 
-export type TPlatformAccessories = EventAccessory | CalendarAccessory;
+export type TPlatformAccessories = EventAccessory | CalendarAccessory | NotificationAccessory;
 
 export class Platform implements DynamicPlatformPlugin {
   calendarHandlers: CalendarHandler[] = [];

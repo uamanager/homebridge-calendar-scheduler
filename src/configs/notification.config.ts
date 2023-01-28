@@ -39,7 +39,7 @@ export class CalendarEventNotificationConfig implements ICalendarEventNotificati
   }
 
   get id(): string {
-    return `${this.calendarName}-${this.eventName}-${this.notificationName}`;
+    return `${this.eventName}-${this.notificationName}`;
   }
 
   protected _mapToRange(value?: number | undefined): number | undefined {
