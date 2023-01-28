@@ -42,7 +42,7 @@ export class CalendarEventNotificationConfig implements ICalendarEventNotificati
     return `${this.calendarName}-${this.eventName}-${this.notificationName}`;
   }
 
-  protected _mapToRange(value?: number | undefined, min = 0, max = 60): number | undefined {
+  protected _mapToRange(value?: number | undefined): number | undefined {
     if (!value) {
       return undefined;
     }
