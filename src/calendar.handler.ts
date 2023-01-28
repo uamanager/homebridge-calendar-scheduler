@@ -13,7 +13,6 @@ import { ToadScheduler } from 'toad-scheduler';
 
 export class CalendarHandler {
   private _calendarFetchJob: Job;
-  private _calendarUpdatesJob: Job;
   private _calendar: Calendar;
 
   constructor(
@@ -35,13 +34,6 @@ export class CalendarHandler {
       this.$_scheduler,
     );
 
-    this._calendarUpdatesJob = new Job(
-      `calendar-updates-${this.calendarConfig.calendarName}`,
-      { minutes: 1, runImmediately: true },
-      this._handleCalendarUpdatesJob.bind(this),
-      this.$_scheduler,
-    );
-
     this._calendar = new Calendar(
       this.calendarConfig.calendarName,
       this.calendarConfig.calendarUrl,
@@ -59,6 +51,27 @@ export class CalendarHandler {
 
   now() {
     return Date.now() + this.calendarConfig.calendarOffset * 60 * 1000;
+  }
+
+  tick() {
+    this.$_logger && this.$_logger.debug(
+      'Tick handled:',
+      this.calendarConfig.calendarName,
+    );
+
+    const _activeEvents = this._calendar.getEvents(this.now(), this.now());
+
+    const _watchedActiveEvents = _activeEvents.filter((event) => {
+      return this.calendarConfig.calendarEvents.findIndex((watchedEvent) => {
+        return watchedEvent.eventMatcher.test(event.summary);
+      }) !== -1;
+    });
+
+    this._calendarUpdateState(this.calendarConfig, _activeEvents, _watchedActiveEvents);
+
+    this.calendarConfig.calendarEvents.forEach((eventConfig) => {
+      this._calendarEventUpdateState(eventConfig, _watchedActiveEvents);
+    });
   }
 
   private _initAccessories() {
@@ -98,28 +111,7 @@ export class CalendarHandler {
 
     await this._calendar.update();
 
-    this._calendarUpdatesJob.restart();
-  }
-
-  private _handleCalendarUpdatesJob() {
-    this.$_logger && this.$_logger.debug(
-      'Executed calendarUpdates job',
-      this.calendarConfig.calendarName,
-    );
-
-    const _activeEvents = this._calendar.getEvents(this.now(), this.now());
-
-    const _watchedActiveEvents = _activeEvents.filter((event) => {
-      return this.calendarConfig.calendarEvents.findIndex((watchedEvent) => {
-        return watchedEvent.eventMatcher.test(event.summary);
-      }) !== -1;
-    });
-
-    this._calendarUpdateState(this.calendarConfig, _activeEvents, _watchedActiveEvents);
-
-    this.calendarConfig.calendarEvents.forEach((eventConfig) => {
-      this._calendarEventUpdateState(eventConfig, _watchedActiveEvents);
-    });
+    this.tick(); // TODO: remove this
   }
 
   private _calendarUpdateState(

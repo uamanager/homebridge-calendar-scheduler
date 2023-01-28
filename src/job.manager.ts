@@ -11,7 +11,7 @@ export class Job {
   constructor(
     public id: string,
     protected _config: SimpleIntervalSchedule,
-    protected _handler: () => void,
+    protected _handler: () => void = () => undefined,
     protected $_scheduler: ToadScheduler,
   ) {
   }

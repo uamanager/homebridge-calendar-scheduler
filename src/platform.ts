@@ -8,6 +8,7 @@ import { IAccessoryContext } from './accessories/accessory.context';
 import { Config, IConfig } from './configs/config';
 import { AccessoriesManager } from 'homebridge-util-accessory-manager';
 import { CSLogger } from './logger';
+import { Ticker } from './ticker';
 
 export type TPlatformAccessories = EventAccessory | CalendarAccessory;
 
@@ -16,6 +17,7 @@ export class Platform implements DynamicPlatformPlugin {
   config: Config = new Config();
   readonly $_logger: Logger;
   readonly $_scheduler: ToadScheduler = new ToadScheduler();
+  readonly $_ticker: Ticker;
   readonly $_accessoryManager: AccessoriesManager<TPlatformAccessories, IAccessoryContext>;
 
   constructor(
@@ -24,6 +26,8 @@ export class Platform implements DynamicPlatformPlugin {
     private readonly $_api: API,
   ) {
     this.$_logger = new CSLogger($_homebridgeLogger, _rawConfig.debug);
+
+    this.$_ticker = new Ticker(this.$_scheduler, this.$_logger);
 
     this.$_accessoryManager = new AccessoriesManager(
       PLUGIN_NAME,
@@ -53,6 +57,16 @@ export class Platform implements DynamicPlatformPlugin {
         this.$_logger,
       );
     });
+
+    if (this.calendarHandlers.length) {
+      this.calendarHandlers.forEach((calendarHandler) => {
+        this.$_ticker.attach(() => {
+          calendarHandler.tick();
+        });
+      });
+
+      this.$_ticker.start();
+    }
 
     this.$_accessoryManager.clean();
   }
