@@ -117,12 +117,12 @@ sudo npm install -g --unsafe-perm homebridge-calendar-scheduler@latest
 | caseInsensitiveEventsMatching | Enable for case insensitive events matching for this calendar.                                                                                    | `false`            | No       |
 | calendarEvents                | Array of watched calendar events.                                                                                                                 | `[]`               | No       |
 
-| Calendar Event Config Field   | Description                                                                                       | Default         | Required |
-|-------------------------------|---------------------------------------------------------------------------------------------------|-----------------|----------|
-| eventName                     | A unique name for the calendar event. Will be used as calendar sensor for matched calendar event. | `"event-name1"` | Yes      |
-| eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                         | `true`          | No       |
-| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                       | `false`         | No       |
-| calendarEventNotifications    | Array of calendar event notifications.                                                            | `[]`            | No       |
+| Calendar Event Config Field   | Description                                                                                             | Default         | Required |
+|-------------------------------|---------------------------------------------------------------------------------------------------------|-----------------|----------|
+| eventName                     | A unique name for the calendar event. Will be used as calendar sensor for regex matched calendar event. | `"event-name1"` | Yes      |
+| eventTriggerOnUpdates         | If set to true, then every minute sensor trigger update for active event.                               | `true`          | No       |
+| caseInsensitiveEventsMatching | Enable for case insensitive events matching for this event.                                             | `false`         | No       |
+| calendarEventNotifications    | Array of calendar event notifications.                                                                  | `[]`            | No       |
 
 | Calendar Event Notification Config Field | Description                                                                                                                                                                                                                    | Default                | Required |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|----------|
