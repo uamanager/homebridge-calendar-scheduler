@@ -81,7 +81,7 @@
                 "properties": {
                   "eventName": {
                     "title": "Event Name",
-                    "description": "A unique name for the calendar event. Will be used as calendar sensor for matched calendar event.",
+                    "description": "A unique name for the calendar event. Will be used as calendar sensor for matched calendar event. This is used as a regular expression to match events.",
                     "placeholder": "event-name1",
                     "type": "string",
                     "default": "event-name1",
