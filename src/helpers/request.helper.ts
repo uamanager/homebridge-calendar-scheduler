@@ -1,5 +1,5 @@
+import { https } from 'follow-redirects';
 import { IncomingMessage } from 'http';
-import * as https from 'https';
 
 export function requestHelper(url: string, encoding: BufferEncoding = 'utf8'): Promise<string> {
   return new Promise((resolve, reject) => {
