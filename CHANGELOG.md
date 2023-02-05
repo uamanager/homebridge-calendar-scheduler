@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.1.0...v2.1.1) (2023-02-05)
+
+
+### Bug Fixes
+
+* **deps:** fixed yarn lock ([f98e7d6](https://github.com/uamanager/homebridge-calendar-scheduler/commit/f98e7d6a88a5d1ca868e9e599868d006559ff0e5))
+* **deps:** update dependency homebridge-util-accessory-manager to v0.0.7 ([3869acf](https://github.com/uamanager/homebridge-calendar-scheduler/commit/3869acf9f5ce28d96df0e6bf7a14c9476b63a026))
+
 ## [2.1.0](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.0.3...v2.1.0) (2023-01-28)
 
 
