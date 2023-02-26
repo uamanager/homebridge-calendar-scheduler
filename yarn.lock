@@ -1423,10 +1423,10 @@ hexy@^0.2.10:
   resolved "https://registry.yarnpkg.com/hexy/-/hexy-0.2.11.tgz#9939c25cb6f86a91302f22b8a8a72573518e25b4"
   integrity sha512-ciq6hFsSG/Bpt2DmrZJtv+56zpPdnq+NQ4ijEFrveKN0ZG1mhl/LdT1NQZ9se6ty1fACcI4d4vYqC9v8EYpH2A==
 
-homebridge-util-accessory-manager@0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/homebridge-util-accessory-manager/-/homebridge-util-accessory-manager-0.0.7.tgz#60952cc814c4b002c78414eeca7de9123251222b"
-  integrity sha512-Lgzsxm9LqUnwEgAZ8L0FpgMb9ACOOQorTOSrzYphmTSD8iRzzr8nELo0gHazKb0bQtp8pLI3rvdB5k42m1Cyhg==
+homebridge-util-accessory-manager@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/homebridge-util-accessory-manager/-/homebridge-util-accessory-manager-0.0.8.tgz#201b3175d2263b6b74920a650adf97de2298d156"
+  integrity sha512-ITYH5N39an74LpKGIXSuGXTVSEZ5RfYf7fdzrEQAfaaeiyJ24WvwT6YS4flOQsf1sfaIwNpX2fzK2rYaemaJbA==
 
 homebridge@1.6.0:
   version "1.6.0"
