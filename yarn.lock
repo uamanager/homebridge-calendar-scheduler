@@ -72,10 +72,10 @@
     source-map-support "^0.5.21"
     tslib "^2.4.0"
 
-"@homebridge/dbus-native@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@homebridge/dbus-native/-/dbus-native-0.5.0.tgz#7c20500bd8486fbb389ee01ba63c3768958a5add"
-  integrity sha512-ei0jyHE/uNDl/6D6heRwsqnESrrXuSlfp+xlwGfg3mo1OqhKvyb/Kp73uxQyOJ3f1T1ocLSyA5uzoR1AbfaXIQ==
+"@homebridge/dbus-native@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@homebridge/dbus-native/-/dbus-native-0.5.1.tgz#63560e134a555fe4d93fbc71e9e7c482a3f44f33"
+  integrity sha512-7xXz3R1W/kcbfQOGp32y4K7etqtowICR1vpx8j85KwPYXbNQrgiZ3zcwDYgDGBWq3FD9xzsW7h4YWJ4vTR2seQ==
   dependencies:
     "@homebridge/long" "^5.2.1"
     "@homebridge/put" "~0.0.8"
@@ -83,7 +83,7 @@
     hexy "^0.2.10"
     minimist "^1.2.6"
     safe-buffer "^5.1.1"
-    xml2js "^0.4.17"
+    xml2js "^0.5.0"
 
 "@homebridge/long@^5.2.1":
   version "5.2.1"
@@ -1384,13 +1384,13 @@ handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-hap-nodejs@~0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/hap-nodejs/-/hap-nodejs-0.11.0.tgz#a2c252ed2953c364879570d0b49b09b6e5a7d147"
-  integrity sha512-ZKSc/DIECXH1vSlruv6tBVcO+LF/BDtjdVk7IIiAAS+KKjw9PylkXbtdU23mmLhM69BsWl9u+BuToAfkf0voSw==
+hap-nodejs@~0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/hap-nodejs/-/hap-nodejs-0.11.1.tgz#faedd805f11cb33b12150b41a508ac1158aace51"
+  integrity sha512-hJuGyjng2jlzhZsviWCldaokT7l7BE3iGmWdlE6DNmQFDTmiBN3deNksAZ2nt7qp5jYEv7ZUvW7WBZqJsLh3ww==
   dependencies:
     "@homebridge/ciao" "^1.1.5"
-    "@homebridge/dbus-native" "^0.5.0"
+    "@homebridge/dbus-native" "^0.5.1"
     bonjour-hap "~3.6.4"
     debug "^4.3.4"
     fast-srp-hap "~2.0.4"
@@ -1456,15 +1456,15 @@ homebridge-util-accessory-manager@0.0.8:
   resolved "https://registry.yarnpkg.com/homebridge-util-accessory-manager/-/homebridge-util-accessory-manager-0.0.8.tgz#201b3175d2263b6b74920a650adf97de2298d156"
   integrity sha512-ITYH5N39an74LpKGIXSuGXTVSEZ5RfYf7fdzrEQAfaaeiyJ24WvwT6YS4flOQsf1sfaIwNpX2fzK2rYaemaJbA==
 
-homebridge@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.6.0.tgz#c5a3c743dc9406fba59c4a7c5c0ad95976797947"
-  integrity sha512-n47db4ndrBOSxuF6zRFbBypuhW7dZjCoGJz03O9PfGrwsqjyzJyxkzSIAjT9HgbTdvNYDNGz/tMXSLoX0m5zGw==
+homebridge@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-1.6.1.tgz#fbd8ed317b0cbf704de796be99747f850f0d4b11"
+  integrity sha512-hDhSaBDHFbB8wQQuZKbistYj1gjTIcNWmusqgEUb0Umk76Hs+G6VKRTkOEEVuxRaQWoK5hRM5rJTsCGAMCj5cA==
   dependencies:
     chalk "^4.1.2"
     commander "5.1.0"
     fs-extra "^10.1.0"
-    hap-nodejs "~0.11.0"
+    hap-nodejs "~0.11.1"
     qrcode-terminal "^0.12.0"
     semver "^7.3.7"
     source-map-support "^0.5.21"
@@ -2949,10 +2949,10 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-xml2js@^0.4.17:
-  version "0.4.23"
-  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.23.tgz#a0c69516752421eb2ac758ee4d4ccf58843eac66"
-  integrity sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==
+xml2js@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.5.0.tgz#d9440631fbb2ed800203fad106f2724f62c493b7"
+  integrity sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~11.0.0"
