@@ -7,6 +7,7 @@ export interface ICalendarEventConfig {
   eventName: string;
   eventTriggerOnUpdates?: boolean;
   caseInsensitiveEventsMatching?: boolean;
+  unsafeEventNames?: boolean;
   calendarEventNotifications?: CalendarEventNotificationConfig[];
 }
 
@@ -15,6 +16,7 @@ export class CalendarEventConfig implements ICalendarEventConfig {
   readonly eventName: string;
   readonly eventTriggerOnUpdates: boolean;
   readonly caseInsensitiveEventsMatching: boolean;
+  readonly unsafeEventNames: boolean;
   readonly eventMatcher: RegExp;
   readonly safeEventName: string;
   readonly calendarEventNotifications: CalendarEventNotificationConfig[] = [];
@@ -26,13 +28,19 @@ export class CalendarEventConfig implements ICalendarEventConfig {
     this.caseInsensitiveEventsMatching = event.caseInsensitiveEventsMatching
       || _calendar.caseInsensitiveEventsMatching
       || _config.caseInsensitiveEventsMatching || false;
+    this.unsafeEventNames = event.unsafeEventNames
+      || _calendar.unsafeEventNames
+      || _config.unsafeEventNames || false;
     this.eventMatcher = new RegExp(
       this.eventName,
       this.caseInsensitiveEventsMatching ? 'i' : '',
     );
-    this.safeEventName = this.eventName.replace(/\W/gi, ' ')
-      .trim()
-      .replace(/\s+/g, ' ');
+    this.safeEventName = this.unsafeEventNames
+      ? this.eventName
+      : this.eventName
+        .replace(/\W/gi, ' ')
+        .trim()
+        .replace(/\s+/g, ' ');
     this.calendarEventNotifications = (event.calendarEventNotifications || [])
       .map((notification) => {
         return new CalendarEventNotificationConfig(_config, _calendar, this, notification);

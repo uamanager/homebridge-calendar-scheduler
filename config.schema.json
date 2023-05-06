@@ -13,6 +13,12 @@
         "description": "Enable for case insensitive events matching globally.",
         "default": false
       },
+      "unsafeEventNames": {
+        "title": "Unsafe Events Names",
+        "type": "boolean",
+        "description": "Enable unsafe events names globally. (Be careful as this may cause unexpected behavior.)",
+        "default": false
+      },
       "debug": {
         "title": "Debug",
         "type": "boolean",
@@ -71,6 +77,12 @@
               "description": "Enable for case insensitive events matching for this calendar.",
               "default": false
             },
+            "unsafeEventNames": {
+              "title": "Unsafe Events Names",
+              "type": "boolean",
+              "description": "Enable unsafe events names for this calendar. (Be careful as this may cause unexpected behavior.)",
+              "default": false
+            },
             "calendarEvents": {
               "title": "Events",
               "type": "array",
@@ -97,6 +109,12 @@
                     "title": "Case Insensitive Events Matching",
                     "type": "boolean",
                     "description": "Enable for case insensitive events matching for this event.",
+                    "default": false
+                  },
+                  "unsafeEventNames": {
+                    "title": "Unsafe Events Names",
+                    "type": "boolean",
+                    "description": "Enable unsafe events names for this event. (Be careful as this may cause unexpected behavior.)",
                     "default": false
                   },
                   "calendarEventNotifications": {

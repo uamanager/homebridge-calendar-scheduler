@@ -9,6 +9,7 @@ export interface ICalendarConfig {
   calendarTriggerOnUpdates?: boolean;
   calendarTriggerOnAllEvents?: boolean;
   caseInsensitiveEventsMatching?: boolean;
+  unsafeEventNames?: boolean;
   calendarEvents?: ICalendarEventConfig[];
 }
 
@@ -21,6 +22,7 @@ export class CalendarConfig implements ICalendarConfig {
   readonly calendarTriggerOnUpdates: boolean;
   readonly calendarTriggerOnAllEvents: boolean;
   readonly caseInsensitiveEventsMatching: boolean;
+  readonly unsafeEventNames: boolean;
   readonly calendarEvents: CalendarEventConfig[];
 
   constructor(_config: Config, calendar: ICalendarConfig) {
@@ -33,6 +35,8 @@ export class CalendarConfig implements ICalendarConfig {
     this.calendarTriggerOnAllEvents = calendar.calendarTriggerOnAllEvents || false;
     this.caseInsensitiveEventsMatching = calendar.caseInsensitiveEventsMatching
       || _config.caseInsensitiveEventsMatching || false;
+    this.unsafeEventNames = calendar.unsafeEventNames
+      || _config.unsafeEventNames || false;
     this.calendarEvents = (calendar.calendarEvents || [])
       .map((event) => {
         return new CalendarEventConfig(_config, this, event);
