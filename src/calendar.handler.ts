@@ -160,7 +160,7 @@ export class CalendarHandler {
           _calendarAccessory?.setActiveState(true);
           setTimeout(() => {
             _calendarAccessory?.setActiveState(false);
-          }, 1000);
+          }, 10000);
         } else {
           _calendarAccessory?.setActiveState(false);
         }
@@ -197,7 +197,7 @@ export class CalendarHandler {
 
         setTimeout(() => {
           _eventAccessory?.setActiveState(false);
-        }, 1000);
+        }, 10000);
       } else {
         _eventAccessory?.setProgressState(_progress);
         _eventAccessory?.setActiveState(false);
@@ -259,7 +259,7 @@ export class CalendarHandler {
 
       setTimeout(() => {
         _notificationAccessory?.setActiveState(true);
-      }, 1000);
+      }, 10000);
     } else {
       _notificationAccessory?.setActiveState(true);
     }
