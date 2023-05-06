@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "Homebridge Calendar Scheduler",
   "name": "homebridge-calendar-scheduler",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.",
   "license": "Apache-2.0",
   "repository": {
