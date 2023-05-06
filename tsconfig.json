@@ -10,7 +10,7 @@
     ],
     "declaration": false,
     "declarationMap": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
