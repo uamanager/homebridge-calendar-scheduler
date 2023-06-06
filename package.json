@@ -60,7 +60,7 @@
     "homebridge-util-accessory-manager": "0.0.9",
     "ical-expander": "3.1.0",
     "ical.js": "1.5.0",
-    "toad-scheduler": "2.2.0"
+    "toad-scheduler": "2.3.0"
   },
   "devDependencies": {
     "@types/follow-redirects": "1.14.1",
