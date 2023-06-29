@@ -73,7 +73,7 @@
     "rimraf": "5.0.1",
     "standard-version": "9.5.0",
     "ts-node": "10.9.1",
-    "typescript": "5.1.5"
+    "typescript": "5.1.6"
   },
   "resolutions": {
     "minimist": "1.2.8"
