@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.2.1...v2.2.2) (2023-09-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency toad-scheduler to v3 ([8483e7f](https://github.com/uamanager/homebridge-calendar-scheduler/commit/8483e7fb8369b17dc098f842825de57a0d23373c))
+
 ### [2.1.2](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.1.1...v2.1.2) (2023-02-26)
 
 ### [2.1.1](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.1.0...v2.1.1) (2023-02-05)
