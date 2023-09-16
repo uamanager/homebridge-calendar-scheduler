@@ -2650,10 +2650,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-toad-scheduler@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-2.2.0.tgz#e24dd009f3a5566a89555b0e811f1e56af528395"
-  integrity sha512-o/3na7CMVfW40x8H/Vw078GNIR6F7jNmPnuSRY2yVqFIPXRrQttcfRlkQk0dwFiw7fQCqpCGXoC/vo7QtoQMhw==
+toad-scheduler@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-3.0.0.tgz#784c66fd6dc4a1611918a033c51500df1c5e9839"
+  integrity sha512-BYmrORvaGmjziir/ra8qD3qAKczJveqK5ZOO/wn7oS5qLI4iibOza3DBGgu+EwNp9zdlBTKSeZPmxZxzGy1dxw==
 
 touch@^3.1.0:
   version "3.1.0"
