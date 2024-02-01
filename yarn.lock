@@ -773,6 +773,11 @@ create-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
+croner@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/croner/-/croner-7.0.5.tgz#96aede5defc4833078147e4d0c2ddc943f23e566"
+  integrity sha512-15HLCD7iXnMe5km54yc4LN5BH+Cg9uCQvbkJ0acHxFffE29w3Uvgb9s/l310UCVUgMwGSBNw9BAHsEb5uMgj1g==
+
 cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -2661,10 +2666,12 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-toad-scheduler@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-3.0.0.tgz#784c66fd6dc4a1611918a033c51500df1c5e9839"
-  integrity sha512-BYmrORvaGmjziir/ra8qD3qAKczJveqK5ZOO/wn7oS5qLI4iibOza3DBGgu+EwNp9zdlBTKSeZPmxZxzGy1dxw==
+toad-scheduler@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/toad-scheduler/-/toad-scheduler-3.0.1.tgz#ae5e5b3158c1ad20f9e3826db0ad3beb3202ce2c"
+  integrity sha512-UunrUeXWHXNauNMP47OHKfFeJlHxt89f29fdwey+EQLnVGbGPcFk7ArTuTk7SCcrSeVDTlhr5ayFHal0Z1LhJg==
+  dependencies:
+    croner "^7.0.5"
 
 touch@^3.1.0:
   version "3.1.0"
