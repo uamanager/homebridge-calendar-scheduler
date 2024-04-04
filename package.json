@@ -72,7 +72,7 @@
     "nodemon": "3.1.0",
     "standard-version": "9.5.0",
     "ts-node": "10.9.2",
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   },
   "resolutions": {
     "minimist": "1.2.8"
