@@ -67,7 +67,7 @@
     "@types/node": "20.12.11",
     "@typescript-eslint/eslint-plugin": "7.2.0",
     "@typescript-eslint/parser": "7.2.0",
-    "eslint": "8.57.0",
+    "eslint": "9.2.0",
     "homebridge": "1.6.1",
     "nodemon": "3.1.0",
     "standard-version": "9.5.0",
