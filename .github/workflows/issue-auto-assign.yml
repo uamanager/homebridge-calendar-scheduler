@@ -9,6 +9,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Auto-assign Issue
-              uses: pozil/auto-assign-issue@v1.12.0
+              uses: pozil/auto-assign-issue@v1.14.0
               with:
                   assignees: uamanager
