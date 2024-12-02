@@ -1456,7 +1456,12 @@ ical-expander@3.1.0:
   dependencies:
     ical.js "^1.2.2"
 
-ical.js@1.5.0, ical.js@^1.2.2:
+ical.js@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ical.js/-/ical.js-2.1.0.tgz#ce064e28fa722eedb32a07a6d967bdeb85a7cbf9"
+  integrity sha512-BOVfrH55xQ6kpS3muGvIXIg2l7p+eoe12/oS7R5yrO3TL/j/bLsR0PR+tYQESFbyTbvGgPHn9zQ6tI4FWyuSaQ==
+
+ical.js@^1.2.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/ical.js/-/ical.js-1.5.0.tgz#23213accd1d8f7248d01705acb06270a70d20662"
   integrity sha512-7ZxMkogUkkaCx810yp0ZGKvq1ZpRgJeornPttpoxe6nYZ3NLesZe1wWMXDdwTkj/b5NtXT+Y16Aakph/ao98ZQ==
