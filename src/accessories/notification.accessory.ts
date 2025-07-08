@@ -1,5 +1,5 @@
 import { API, CharacteristicValue, Logger, PlatformAccessory, Service } from 'homebridge';
-import { IAccessoryContext } from './accessory.context';
+import { IAccessoryContext } from './accessory.context.js';
 import { BaseAccessory } from 'homebridge-util-accessory-manager';
 
 
@@ -35,7 +35,7 @@ export class NotificationAccessory extends BaseAccessory<IAccessoryContext> {
       ? this.$_api.hap.Characteristic.ContactSensorState.CONTACT_DETECTED
       : this.$_api.hap.Characteristic.ContactSensorState.CONTACT_NOT_DETECTED;
 
-    this.$_logger && this.$_logger.debug(
+    this.$_logger?.debug(
       `[${this._accessory.context.name}] Get ActiveState On ->`,
       this._activeState ? 'CONTACT_DETECTED' : 'CONTACT_NOT_DETECTED',
     );
@@ -51,7 +51,7 @@ export class NotificationAccessory extends BaseAccessory<IAccessoryContext> {
     if (state !== this._activeState) {
       this._activeState = state;
 
-      this.$_logger && this.$_logger.debug(
+      this.$_logger?.debug(
         `[${this._accessory.context.name}] Set ActiveState On ->`,
         state ? 'CONTACT_DETECTED' : 'CONTACT_NOT_DETECTED',
       );

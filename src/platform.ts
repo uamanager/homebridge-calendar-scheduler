@@ -1,15 +1,15 @@
 import { API, DynamicPlatformPlugin, Logger, PlatformAccessory } from 'homebridge';
 import { ToadScheduler } from 'toad-scheduler';
-import { CalendarAccessory } from './accessories/calendar.accessory';
-import { EventAccessory } from './accessories/event.accessory';
-import { CalendarHandler } from './calendar.handler';
-import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
-import { IAccessoryContext } from './accessories/accessory.context';
-import { Config, IConfig } from './configs/config';
+import { CalendarAccessory } from './accessories/calendar.accessory.js';
+import { EventAccessory } from './accessories/event.accessory.js';
+import { CalendarHandler } from './calendar.handler.js';
+import { PLATFORM_NAME, PLUGIN_NAME } from './settings.js';
+import { IAccessoryContext } from './accessories/accessory.context.js';
+import { Config, IConfig } from './configs/config.js';
 import { AccessoriesManager } from 'homebridge-util-accessory-manager';
-import { CSLogger } from './logger';
-import { Ticker } from './ticker';
-import { NotificationAccessory } from './accessories/notification.accessory';
+import { CSLogger } from './logger.js';
+import { Ticker } from './ticker.js';
+import { NotificationAccessory } from './accessories/notification.accessory.js';
 
 export type TPlatformAccessories = EventAccessory | CalendarAccessory | NotificationAccessory;
 
@@ -42,9 +42,9 @@ export class Platform implements DynamicPlatformPlugin {
     this.$_api.on('didFinishLaunching', this.didFinishLaunching.bind(this));
   }
 
-  configureAccessory(accessory: PlatformAccessory<IAccessoryContext>) {
+  configureAccessory(accessory: PlatformAccessory) {
     this.$_logger.debug('Loading accessory from cache:', accessory.displayName);
-    this.$_accessoryManager.cache(accessory.UUID, accessory);
+    this.$_accessoryManager.cache(accessory.UUID, accessory as PlatformAccessory<IAccessoryContext>);
   }
 
   didFinishLaunching() {

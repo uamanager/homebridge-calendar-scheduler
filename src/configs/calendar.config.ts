@@ -1,5 +1,5 @@
-import { CalendarEventConfig, ICalendarEventConfig } from './event.config';
-import { Config } from './config';
+import { CalendarEventConfig, ICalendarEventConfig } from './event.config.js';
+import { Config } from './config.js';
 
 export interface ICalendarConfig {
   calendarName: string;

@@ -1,6 +1,6 @@
 import { PlatformConfig } from 'homebridge';
-import { PLATFORM_NAME } from '../settings';
-import { CalendarConfig, ICalendarConfig } from './calendar.config';
+import { PLATFORM_NAME } from '../settings.js';
+import { CalendarConfig, ICalendarConfig } from './calendar.config.js';
 
 export interface IConfig extends PlatformConfig {
   debug?: boolean;

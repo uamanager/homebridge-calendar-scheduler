@@ -1,7 +1,7 @@
 import { ToadScheduler } from 'toad-scheduler';
 import { Logger } from 'homebridge';
-import { Job } from './job.manager';
-import { EventEmitter } from 'events';
+import { Job } from './job.manager.js';
+import { EventEmitter } from 'node:events';
 
 export class Ticker {
   private _tickerJob: Job;
@@ -18,19 +18,19 @@ export class Ticker {
       this.$_scheduler,
     );
     this._emitter = new EventEmitter();
-    this.$_logger && this.$_logger.debug('Finished initializing ticker');
+    this.$_logger?.debug('Finished initializing ticker');
   }
 
   attach(listener: () => void) {
     this._emitter.on('tick', listener);
 
-    this.$_logger && this.$_logger.debug('Attached listener to ticker');
+    this.$_logger?.debug('Attached listener to ticker');
   }
 
   detach(listener: () => void) {
     this._emitter.removeListener('tick', listener);
 
-    this.$_logger && this.$_logger.debug('Detached listener from ticker');
+    this.$_logger?.debug('Detached listener from ticker');
   }
 
   tick() {

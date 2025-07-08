@@ -1,14 +1,18 @@
 name: Issue auto assignment
 
 on:
-    issues:
-        types: [opened, edited, synchronize, reopened]
+  issues:
+    types: [opened, edited, synchronize, reopened]
 
 jobs:
-    auto-assign:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Auto-assign Issue
-              uses: pozil/auto-assign-issue@v1.12.0
-              with:
-                  assignees: uamanager
+  auto-assign:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Auto-assign Issue
+        uses: pozil/auto-assign-issue@v2.2.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: ${{ vars.DEFAULT_ISSUE_ASSIGNEE }}

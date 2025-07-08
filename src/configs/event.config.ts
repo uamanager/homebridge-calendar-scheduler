@@ -1,6 +1,6 @@
-import { CalendarConfig } from './calendar.config';
-import { Config } from './config';
-import { CalendarEventNotificationConfig } from './notification.config';
+import { CalendarConfig } from './calendar.config.js';
+import { Config } from './config.js';
+import { CalendarEventNotificationConfig } from './notification.config.js';
 
 export interface ICalendarEventConfig {
   calendarName: string;

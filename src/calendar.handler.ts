@@ -1,17 +1,17 @@
-import { CalendarAccessory } from './accessories/calendar.accessory';
-import { EventAccessory } from './accessories/event.accessory';
-import { Calendar, ICalendarEvent } from './calendar';
-import { TPlatformAccessories } from './platform';
-import { PLATFORM_MANUFACTURER, PLATFORM_VERSION } from './settings';
-import { IAccessoryContext } from './accessories/accessory.context';
-import { CalendarConfig } from './configs/calendar.config';
-import { CalendarEventConfig } from './configs/event.config';
-import { Job } from './job.manager';
+import { CalendarAccessory } from './accessories/calendar.accessory.js';
+import { EventAccessory } from './accessories/event.accessory.js';
+import { Calendar, ICalendarEvent } from './calendar.js';
+import { TPlatformAccessories } from './platform.js';
+import { PLATFORM_MANUFACTURER, PLATFORM_VERSION } from './settings.js';
+import { IAccessoryContext } from './accessories/accessory.context.js';
+import { CalendarConfig } from './configs/calendar.config.js';
+import { CalendarEventConfig } from './configs/event.config.js';
+import { Job } from './job.manager.js';
 import { API, Logger } from 'homebridge';
 import { AccessoriesManager, IBaseAccessoryCtor } from 'homebridge-util-accessory-manager';
 import { ToadScheduler } from 'toad-scheduler';
-import { CalendarEventNotificationConfig } from './configs/notification.config';
-import { NotificationAccessory } from './accessories/notification.accessory';
+import { CalendarEventNotificationConfig } from './configs/notification.config.js';
+import { NotificationAccessory } from './accessories/notification.accessory.js';
 
 export class CalendarHandler {
   private _calendarFetchJob: Job;
@@ -24,7 +24,7 @@ export class CalendarHandler {
     private readonly $_scheduler: ToadScheduler,
     private readonly $_logger?: Logger,
   ) {
-    this.$_logger && this.$_logger.debug(
+    this.$_logger?.debug(
       'Finished initializing calendar handler:',
       this.calendarConfig.calendarName,
     );
@@ -55,7 +55,7 @@ export class CalendarHandler {
   }
 
   tick() {
-    this.$_logger && this.$_logger.debug(
+    this.$_logger?.debug(
       'Tick handled:',
       this.calendarConfig.calendarName,
     );
@@ -127,7 +127,7 @@ export class CalendarHandler {
 
 
   private async _handleCalendarFetchJob() {
-    this.$_logger && this.$_logger.debug(
+    this.$_logger?.debug(
       'Executed calendarFetch job',
       this.calendarConfig.calendarName,
     );

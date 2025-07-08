@@ -1,14 +1,13 @@
 <p align="center">
 
-<img src="https://github.com/homebridge/branding/raw/master/logos/homebridge-wordmark-logo-vertical.png" width="150">
+<img src="https://github.com/homebridge/branding/raw/latest/logos/homebridge-wordmark-logo-vertical.png" width="150">
 
 </p>
 
 # 📅 Homebridge Calendar Scheduler [![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
 
 [![Support Ukraine Badge](https://bit.ly/support-ukraine-now)](https://github.com/support-ukraine/support-ukraine)
-[!["Buy Me A Coffee"](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-ffdd00.svg)](https://www.buymeacoffee.com/uamanager)
-[!["Ko-fi"](https://img.shields.io/badge/Ko--fi-donate-ff5f5f.svg)](https://ko-fi.com/uamanager)
+[![Base Donate](https://img.shields.io/badge/Base-Donate-uamanager?style=flat&logo=cat&labelColor=ffffff&color=724aee&link=https%3A%2F%2Fbase.monobank.ua%2FCtKsNyepTkQVRD)](https://base.monobank.ua/CtKsNyepTkQVRD)
 
 [![npm](https://img.shields.io/npm/v/homebridge-calendar-scheduler.svg)](https://www.npmjs.com/package/homebridge-calendar-scheduler)
 [![npm](https://img.shields.io/npm/dt/homebridge-calendar-scheduler.svg)](https://www.npmjs.com/package/homebridge-calendar-scheduler)

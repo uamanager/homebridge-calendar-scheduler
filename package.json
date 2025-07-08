@@ -4,6 +4,7 @@
   "name": "homebridge-calendar-scheduler",
   "version": "2.2.2",
   "description": "Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.",
+  "type": "module",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -24,8 +25,8 @@
     "url": "https://github.com/uamanager/homebridge-calendar-scheduler/issues"
   },
   "engines": {
-    "node": ">=16",
-    "homebridge": ">=1.6.1"
+    "node": "^20.18.0 || ^22.10.0",
+    "homebridge": "^1.8.0 || ^2.0.0-beta.0"
   },
   "main": "dist/index.js",
   "files": [
@@ -36,13 +37,13 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "lint": "eslint src/**.ts --max-warnings=0",
+    "lint": "eslint . --max-warnings=0",
     "watch": "npm run build && npm link && nodemon",
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
-    "prepublishOnly": "npm run lint && npm run build",
+    "prepublishOnly": "yarn lint && yarn build",
     "postversion": "git push && git push --tags",
-    "release": "npm run lint && npm run build && standard-version -a && git push --follow-tags origin master && yarn publish"
+    "release": "yarn lint && yarn build && commit-and-tag-version -a && git push --follow-tags origin master"
   },
   "keywords": [
     "homebridge",
@@ -51,30 +52,29 @@
     "ical",
     "homekit",
     "home-automation",
+    "homebridge-automation",
     "scheduler",
     "scenarios",
     "automation"
   ],
   "dependencies": {
-    "follow-redirects": "1.15.2",
-    "homebridge-util-accessory-manager": "0.0.13",
+    "follow-redirects": "1.15.9",
+    "homebridge-lib": "^7.1.4",
+    "homebridge-util-accessory-manager": "0.1.1",
     "ical-expander": "3.1.0",
-    "ical.js": "1.5.0",
-    "toad-scheduler": "3.0.0"
+    "ical.js": "2.2.0",
+    "toad-scheduler": "3.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@types/follow-redirects": "1.14.4",
-    "@types/node": "20.12.12",
-    "@typescript-eslint/eslint-plugin": "7.2.0",
-    "@typescript-eslint/parser": "7.2.0",
-    "eslint": "8.57.0",
-    "homebridge": "1.6.1",
-    "nodemon": "3.1.0",
-    "standard-version": "9.5.0",
-    "ts-node": "10.9.2",
-    "typescript": "5.4.5"
-  },
-  "resolutions": {
-    "minimist": "1.2.8"
+    "@types/node": "^22.13.5",
+    "eslint": "^9.21.0",
+    "homebridge": "^2.0.0-beta.0",
+    "nodemon": "^3.1.9",
+    "commit-and-tag-version": "12.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
   }
 }

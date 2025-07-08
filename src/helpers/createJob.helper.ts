@@ -1,5 +1,5 @@
 import { LongIntervalJob, SimpleIntervalJob, SimpleIntervalSchedule, Task } from 'toad-scheduler';
-import { isLongJobIntervalHelper } from './isLongJobInterval.helper';
+import { isLongJobIntervalHelper } from './isLongJobInterval.helper.js';
 
 export function createJobHelper(
   id: string,

@@ -19,6 +19,10 @@ export class CSLogger implements Logger {
     this.$_logger.error(message, ...parameters);
   }
 
+  success(message: string, ...parameters: unknown[]) {
+    this.$_logger.success(message, ...parameters);
+  }
+
   debug(message: string, ...parameters: unknown[]) {
     if (this._debugEnabled) {
       this.$_logger.info(message, ...parameters);

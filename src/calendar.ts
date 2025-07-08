@@ -1,5 +1,9 @@
-import IcalExpander from 'ical-expander';
-import { requestHelper } from './helpers/request.helper';
+import IcalExpander, {
+  IcalExpanderEventRawDate,
+  IcalExpanderEventRawEvent,
+  IcalExpanderEventRawOccurrence,
+} from 'ical-expander';
+import { requestHelper } from './helpers/request.helper.js';
 import { Logger } from 'homebridge';
 
 export interface ICalendarEvent {
@@ -8,33 +12,10 @@ export interface ICalendarEvent {
   endDate: Date;
 }
 
-export interface ICalendarEventRaw {
-  events: ICalendarEventRawEvent[];
-  occurrences: ICalendarEventRawOccurrence[];
-}
-
-export interface ICalendarEventRawEvent {
-  summary: string;
-  startDate: ICalendarEventRawDate;
-  endDate: ICalendarEventRawDate;
-}
-
-export interface ICalendarEventRawOccurrence {
-  item: {
-    summary: string;
-  };
-  startDate: ICalendarEventRawDate;
-  endDate: ICalendarEventRawDate;
-}
-
-export interface ICalendarEventRawDate {
-  toJSDate: () => Date;
-}
-
 export class Calendar {
   protected _name: string;
   protected _url: string;
-  protected _calendar: IcalExpander;
+  protected _calendar?: IcalExpander;
   protected _cache: Map<string, ICalendarEvent[]> = new Map();
 
   constructor(
@@ -51,15 +32,15 @@ export class Calendar {
   }
 
   async update() {
-    this.$_logger && this.$_logger.debug('Updating calendar:', this._name);
+    this.$_logger?.debug('Updating calendar:', this._name);
     try {
       const _data = await requestHelper(this._url);
       if (_data) {
         try {
           this._calendar = new IcalExpander({ ics: _data });
         } catch (error) {
-          this.$_logger && this.$_logger.debug('Error while parsing calendar:', this._name, error);
-          this.$_logger && this.$_logger.debug('Trying to fix calendar:', this._name);
+          this.$_logger?.debug('Error while parsing calendar:', this._name, error);
+          this.$_logger?.debug('Trying to fix calendar:', this._name);
 
           const _fixedData = _data
             .replace(/(\n)(^(\s)*(?![A-Z-]{3,}))/gm, '$1 $2')
@@ -67,19 +48,19 @@ export class Calendar {
           this._calendar = new IcalExpander({ ics: _fixedData });
         }
 
-        this.$_logger && this.$_logger.debug('Calendar updated:', this._name);
+        this.$_logger?.debug('Calendar updated:', this._name);
       } else {
-        this.$_logger && this.$_logger.error('Error while updating calendar:', this._name);
+        this.$_logger?.error('Error while updating calendar:', this._name);
       }
     } catch (error) {
-      this.$_logger && this.$_logger.error('Error while updating calendar:', this._name, error);
+      this.$_logger?.error('Error while updating calendar:', this._name, error);
     }
 
     this.clearCache();
   }
 
   clearCache() {
-    this.$_logger && this.$_logger.debug('Clearing cache:', this._name);
+    this.$_logger?.debug('Clearing cache:', this._name);
     this._cache.clear();
   }
 
@@ -92,8 +73,7 @@ export class Calendar {
 
     if (this._inCache(_startDate, _endDate)) {
       const _cachedEvents = this._getFromCache(_startDate, _endDate) || [];
-      this.$_logger && this.$_logger.debug(
-        // eslint-disable-next-line max-len
+      this.$_logger?.debug(
         `Found Events from ${_startDate.toISOString()} to ${_endDate.toISOString()} for ${this._name}:`,
         _cachedEvents.length,
       );
@@ -106,8 +86,7 @@ export class Calendar {
         const _occurrences = this._getOccurrences(_rawEvents.occurrences);
         const _allEvents = [..._events, ..._occurrences];
 
-        this.$_logger && this.$_logger.debug(
-          // eslint-disable-next-line max-len
+        this.$_logger?.debug(
           `Found Events from ${_startDate.toISOString()} to ${_endDate.toISOString()} for ${this._name}:`,
           _allEvents.length,
         );
@@ -124,21 +103,21 @@ export class Calendar {
   private _buildEvents(
     start: Date,
     end: Date,
-  ): ICalendarEventRaw | undefined {
+  ) {
     if (!this._calendar) {
       return;
     }
 
-    return this._calendar.between(start, end) as ICalendarEventRaw;
+    return this._calendar.between(start, end);
   }
 
-  private _getEvents(rawEvents: ICalendarEventRawEvent[] = []): ICalendarEvent[] {
+  private _getEvents(rawEvents: IcalExpanderEventRawEvent[] = []): ICalendarEvent[] {
     return rawEvents.map(({ summary, startDate, endDate }) => {
       return this._makeEvent(summary, startDate, endDate);
     });
   }
 
-  private _getOccurrences(rawOccurrences: ICalendarEventRawOccurrence[] = []): ICalendarEvent[] {
+  private _getOccurrences(rawOccurrences: IcalExpanderEventRawOccurrence[] = []): ICalendarEvent[] {
     return rawOccurrences.map(({ item: { summary }, startDate, endDate }) => {
       return this._makeEvent(summary, startDate, endDate);
     });
@@ -146,8 +125,8 @@ export class Calendar {
 
   private _makeEvent(
     summary: string,
-    startDate: ICalendarEventRawDate,
-    endDate: ICalendarEventRawDate,
+    startDate: IcalExpanderEventRawDate,
+    endDate: IcalExpanderEventRawDate,
   ): ICalendarEvent {
     return {
       summary: summary,
@@ -177,13 +156,13 @@ export class Calendar {
 
   private _getFromCache(start: Date, end: Date): ICalendarEvent[] | undefined {
     const _cacheKey = this._cacheKey(start, end);
-    this.$_logger && this.$_logger.debug('Getting from cache:', this._name, _cacheKey);
+    this.$_logger?.debug('Getting from cache:', this._name, _cacheKey);
     return this._cache.get(_cacheKey);
   }
 
   private _addToCache(start: Date, end: Date, events: ICalendarEvent[]) {
     const _cacheKey = this._cacheKey(start, end);
-    this.$_logger && this.$_logger.debug('Setting to cache:', this._name, _cacheKey);
+    this.$_logger?.debug('Setting to cache:', this._name, _cacheKey);
     this._cache.set(_cacheKey, events);
   }
 }

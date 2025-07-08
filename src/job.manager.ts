@@ -5,7 +5,7 @@ import {
   Task,
   ToadScheduler,
 } from 'toad-scheduler';
-import { createJobHelper } from './helpers/createJob.helper';
+import { createJobHelper } from './helpers/createJob.helper.js';
 
 export class Job {
   constructor(

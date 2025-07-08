@@ -2,6 +2,7 @@
   "pluginAlias": "CalendarScheduler",
   "pluginType": "platform",
   "singular": true,
+  "strictValidation": false,
   "headerDisplay": "Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with repeats using any iCal calendar.",
   "footerDisplay": "Visit the Project [Readme](https://github.com/uamanager/homebridge-calendar-scheduler#readme) for more details.",
   "schema": {

@@ -1,4 +1,4 @@
-import { convertToMillisecondsHelper } from './convertToMilliseconds.helper';
+import { convertToMillisecondsHelper } from './convertToMilliseconds.helper.js';
 
 export const LONG_JOB_INTERVAL = convertToMillisecondsHelper(28.45);
 

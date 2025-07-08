@@ -1,6 +1,6 @@
 import { API, CharacteristicValue, Logger, PlatformAccessory, Service } from 'homebridge';
-import { IAccessoryContext } from './accessory.context';
-import { NotificationAccessory } from './notification.accessory';
+import { IAccessoryContext } from './accessory.context.js';
+import { NotificationAccessory } from './notification.accessory.js';
 
 
 export class EventAccessory extends NotificationAccessory {
@@ -30,7 +30,7 @@ export class EventAccessory extends NotificationAccessory {
       Math.min(100, Math.round(this._progressState)),
     );
 
-    this.$_logger && this.$_logger.debug(
+    this.$_logger?.debug(
       `[${this._accessory.context.name} Progress] Get ProgressState On ->`,
       state,
     );
@@ -44,7 +44,7 @@ export class EventAccessory extends NotificationAccessory {
     if (_state !== this._progressState) {
       this._progressState = _state;
 
-      this.$_logger && this.$_logger.debug(
+      this.$_logger?.debug(
         `[${this._accessory.context.name}] Set ProgressState On ->`,
         _state,
       );

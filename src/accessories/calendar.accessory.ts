@@ -1,6 +1,6 @@
 import { API, CharacteristicValue, Logger, PlatformAccessory, Service } from 'homebridge';
-import { IAccessoryContext } from './accessory.context';
-import { NotificationAccessory } from './notification.accessory';
+import { IAccessoryContext } from './accessory.context.js';
+import { NotificationAccessory } from './notification.accessory.js';
 
 
 export class CalendarAccessory extends NotificationAccessory {
@@ -39,8 +39,8 @@ export class CalendarAccessory extends NotificationAccessory {
     return false;
   }
 
-  async setUpdateState(state) {
-    this.$_logger && this.$_logger.debug(
+  async setUpdateState(state: CharacteristicValue) {
+    this.$_logger?.debug(
       `[${this._accessory.context.name}] Set UpdateState On ->`,
       state,
     );
