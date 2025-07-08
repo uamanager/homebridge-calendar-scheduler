@@ -1,6 +1,18 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [2.3.0](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.2.2...v2.3.0) (2025-07-08)
+
+
+### Features
+
+* update deps and migrate functionality ([530014a](https://github.com/uamanager/homebridge-calendar-scheduler/commit/530014aa599569c3a6c3edbb707782bea8f9b215))
+
+
+### Bug Fixes
+
+* **deps:** update dependency follow-redirects to v1.15.6 [security] ([9ee6ac2](https://github.com/uamanager/homebridge-calendar-scheduler/commit/9ee6ac270246d1fadc075692f535629a50b86edb))
 
 ### [2.2.2](https://github.com/uamanager/homebridge-calendar-scheduler/compare/v2.2.1...v2.2.2) (2023-09-16)
 
