@@ -1658,9 +1658,9 @@ homebridge-util-accessory-manager@0.1.1:
     homebridge-lib "^7.1.4"
 
 homebridge@^2.0.0-beta.0:
-  version "2.0.0-beta.57"
-  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-2.0.0-beta.57.tgz#ad96733e7dca66c68afa7c3f74455ccce9a94785"
-  integrity sha512-oO1SrKTCepC+EVqaWx4C5UZY4SZ5Lt+qoMwOXQMWQAcY5WY7Kv3hqwO+MC0rMB8RnbJXNZzmMtRabuL8esH0Xg==
+  version "2.0.0-beta.58"
+  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-2.0.0-beta.58.tgz#76f015fea277c1cffd388abc8b77e4047e3fa0ce"
+  integrity sha512-44yabF2x15XVlVO5RT+0jLkk8RVJt8wxoSour9Hy2g9tifaXdTnxlOaPUMiPYING8YYiqg97So5OjcW11REBwA==
   dependencies:
     "@matter/main" "0.16.0-alpha.0-20251125-16883ca92"
     chalk "5.6.2"
