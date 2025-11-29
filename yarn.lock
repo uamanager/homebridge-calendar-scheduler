@@ -216,69 +216,69 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.5.tgz#4fc56c15c580b9adb7dc3c333a134e540b44bfb1"
   integrity sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==
 
-"@matter/general@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/general/-/general-0.16.0-alpha.0-20251125-16883ca92.tgz#984c1667d2b8d76bc83f24cf9819d0d0b54d5a86"
-  integrity sha512-mIbri2K0nGDkC5IoWsKT7tfQArt2F8JNi7nPqWeWQAU49yNwmSi5yVH6zq0AKD2Lzzs+5wBabDSnQRz0dlkL6A==
+"@matter/general@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/general/-/general-0.16.0-alpha.0-20251129-96ad07c6e.tgz#7286ce0cad2f3222143a9e45fe0210cbdf8200fe"
+  integrity sha512-9EngpudY1/vj/D2Qf3A1nNXrJbbcHlrFb9Dd2L3KrV0vP2Trl0qqX5pG2ApPKDOto43qQ3o12LqpQiPITuYzTA==
   dependencies:
     "@noble/curves" "^2.0.1"
 
-"@matter/main@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/main/-/main-0.16.0-alpha.0-20251125-16883ca92.tgz#9806d99775126aca77a72c0976331512b112ecdc"
-  integrity sha512-QDs60aJcQnHnJ6v+xzpePj57iFc1TkzGBgXylzQHh89mTebgqG36Dil20JROqtiGZPXcUKZquP8B6DEtL6uuBQ==
+"@matter/main@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/main/-/main-0.16.0-alpha.0-20251129-96ad07c6e.tgz#0826da8660d7f4902a4b672058c2007d3d64d35a"
+  integrity sha512-fBWpfmXX1V+mpV8AtngNzMKno6dc6Xagu75dEf2JJl/uCV6HifRkFgwbNRFUaK5BxqgLKJO1Za+CzjG68S8NWw==
   dependencies:
-    "@matter/general" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/model" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/node" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/protocol" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/types" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/general" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/model" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/node" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/protocol" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/types" "0.16.0-alpha.0-20251129-96ad07c6e"
   optionalDependencies:
-    "@matter/nodejs" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/nodejs" "0.16.0-alpha.0-20251129-96ad07c6e"
 
-"@matter/model@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/model/-/model-0.16.0-alpha.0-20251125-16883ca92.tgz#0c6615cf2e0f9215fade7f813d6ddef6f7282dda"
-  integrity sha512-CTBr7BYOKu5mp0vWYxRAUurZ0VULOPLnPLopzfUqls4q7vXTBeROcWAv3D6n2qzksJZV11ZOlh0tzeDvneRnkw==
+"@matter/model@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/model/-/model-0.16.0-alpha.0-20251129-96ad07c6e.tgz#b11c41696c0d9419857f066e907a4058b0758625"
+  integrity sha512-VNQ8TOg6utShDbbMmTwTsViEsFrPfTbgQjJLly58nWn4NMCoWq0DJGX/cWqGli4FUecPY0AGk5Lf4qBTUOhg4w==
   dependencies:
-    "@matter/general" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/general" "0.16.0-alpha.0-20251129-96ad07c6e"
 
-"@matter/node@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/node/-/node-0.16.0-alpha.0-20251125-16883ca92.tgz#a30d4dd7f32b6397ab18dc76eca3e88c11356313"
-  integrity sha512-102SEWTjdSdyxNu6ZlWUGo2KAyqKjWYQWBwr6zVmeJd2kshJ2ZhKALsZs4uDG9AjLNdylCVK11XqqtTF+gKTMw==
+"@matter/node@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/node/-/node-0.16.0-alpha.0-20251129-96ad07c6e.tgz#ed877757de6f332c1857d707005ded263a2c4b05"
+  integrity sha512-4uO/mqmE67NUlxhrWXFG3n5W+xPZPTq1mkFQf2EmosgDB3oBea03MsDmpxO5+HSsKI6fmaFsZJnBzLQcHsEeRw==
   dependencies:
-    "@matter/general" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/model" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/protocol" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/types" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/general" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/model" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/protocol" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/types" "0.16.0-alpha.0-20251129-96ad07c6e"
 
-"@matter/nodejs@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/nodejs/-/nodejs-0.16.0-alpha.0-20251125-16883ca92.tgz#a1171be30195b109f84270e62aeec7b61c985c76"
-  integrity sha512-ysKGlTtjHU+Oyoz7Kq/UX51XMtS6y7bt3V9aBywKIU5V3M28zPD5YqnngQ3jPV9xYT77ZAwr841Ft2xram3Mgw==
+"@matter/nodejs@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/nodejs/-/nodejs-0.16.0-alpha.0-20251129-96ad07c6e.tgz#82578793fc29a955462692205e665c9cdb19395f"
+  integrity sha512-pXesoop4Y/GHPQXr2NaExMxbg2yxCFSVEpnjCbmGo1u5xk1msG0stECSOelvfpHRWf4zSpsxqPsI3rDDEVkdlg==
   dependencies:
-    "@matter/general" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/node" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/protocol" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/types" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/general" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/node" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/protocol" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/types" "0.16.0-alpha.0-20251129-96ad07c6e"
 
-"@matter/protocol@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/protocol/-/protocol-0.16.0-alpha.0-20251125-16883ca92.tgz#e3b1c81f4696dc85e500e7154022cb25d4df5cac"
-  integrity sha512-FlmYd5hjGc/PDcHRX/dYN3Tw+czamqhmIUXW5hc3Lx+N2SRhwrlLzfLabu+b/DabJTEBtoS30TKDEJqe8hwUJQ==
+"@matter/protocol@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/protocol/-/protocol-0.16.0-alpha.0-20251129-96ad07c6e.tgz#78389f85371f99c60d44ab303f9f1a587da85c89"
+  integrity sha512-n+segDP+XzRO/Sk15o7QoxLUyf2cTZCfr7oIgATZGeN4mDdRVwBzQb29fw8lQnHErHDhrITZT1HPOXnk+i4wFw==
   dependencies:
-    "@matter/general" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/model" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/types" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/general" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/model" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/types" "0.16.0-alpha.0-20251129-96ad07c6e"
 
-"@matter/types@0.16.0-alpha.0-20251125-16883ca92":
-  version "0.16.0-alpha.0-20251125-16883ca92"
-  resolved "https://registry.yarnpkg.com/@matter/types/-/types-0.16.0-alpha.0-20251125-16883ca92.tgz#83b8f56a153cb6d4eee60cda723e158c05415684"
-  integrity sha512-58KC3EfGSx69WXWkAxb6de2uKmE0ulBu57SfnL8B5VA0++0g0/4ECPgdOw/faoGAJFQIIRRPlczoOGTphb5L+A==
+"@matter/types@0.16.0-alpha.0-20251129-96ad07c6e":
+  version "0.16.0-alpha.0-20251129-96ad07c6e"
+  resolved "https://registry.yarnpkg.com/@matter/types/-/types-0.16.0-alpha.0-20251129-96ad07c6e.tgz#9f3e4b159303784c96a695b74d7b39007f10251e"
+  integrity sha512-7ZFCMSjAlq+g5GoqWy+YDCIXRh+/aMUUn6zsFthfbejQUbROiQRP3xUXZln/piEjtfR743H8Gl3hjkTUnBst5g==
   dependencies:
-    "@matter/general" "0.16.0-alpha.0-20251125-16883ca92"
-    "@matter/model" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/general" "0.16.0-alpha.0-20251129-96ad07c6e"
+    "@matter/model" "0.16.0-alpha.0-20251129-96ad07c6e"
 
 "@noble/curves@^2.0.1":
   version "2.0.1"
@@ -1658,11 +1658,11 @@ homebridge-util-accessory-manager@0.1.1:
     homebridge-lib "^7.1.4"
 
 homebridge@^2.0.0-beta.0:
-  version "2.0.0-beta.58"
-  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-2.0.0-beta.58.tgz#76f015fea277c1cffd388abc8b77e4047e3fa0ce"
-  integrity sha512-44yabF2x15XVlVO5RT+0jLkk8RVJt8wxoSour9Hy2g9tifaXdTnxlOaPUMiPYING8YYiqg97So5OjcW11REBwA==
+  version "2.0.0-beta.63"
+  resolved "https://registry.yarnpkg.com/homebridge/-/homebridge-2.0.0-beta.63.tgz#f27384c3dbab31d5241de5f1c4d261e115d6fe3d"
+  integrity sha512-MSTHOl1K4LSedROiE4xr21bNy+tAz+9ROTNCvwVYUqpWeAgpzjprP1tx3OgqF0IAqzkmkIMxaYMdBalO7Lo88g==
   dependencies:
-    "@matter/main" "0.16.0-alpha.0-20251125-16883ca92"
+    "@matter/main" "0.16.0-alpha.0-20251129-96ad07c6e"
     chalk "5.6.2"
     commander "14.0.2"
     fs-extra "11.3.2"
