@@ -1552,10 +1552,10 @@ hosted-git-info@^4.0.0, hosted-git-info@^4.0.1:
   dependencies:
     lru-cache "^6.0.0"
 
-ical-expander@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ical-expander/-/ical-expander-3.1.0.tgz#e802e5736faf02ba7420edc248c222fbe543844b"
-  integrity sha512-O8svRo6diKUVL7NOplE/M2p5/N69FnGmBJ4KnS+2Bu3VLjda0GR6JgH1QybjSXL8DzX3GYkk4opQ2H5Qt/vl4w==
+ical-expander@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ical-expander/-/ical-expander-3.2.0.tgz#954c4011816bc9a569591a165023c399aa70260b"
+  integrity sha512-QhU7l1X7rcbVVekpIHy7Vm7dvFcMl+PoNPhn13oB3RK3YjdZo3+uT/yx9OJopo0anX5cEGUyzsWRvagZk8gOSw==
   dependencies:
     ical.js "^1.2.2"
 
