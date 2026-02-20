@@ -129,10 +129,10 @@
     tslib "^2.8.1"
     tweetnacl "^1.0.3"
 
-"@homebridge/plugin-ui-utils@~2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@homebridge/plugin-ui-utils/-/plugin-ui-utils-2.0.2.tgz#09bc8b7dd59a9b2352d8411944dd6f31bc9efb11"
-  integrity sha512-2o81veVuJ09GSm/epnw8Mn6CLpyqdqV7AclHt3psTYyaKdwNw3cGLpEyEteVNBwOU/ChMDNMNzJpeQ8pvlLojg==
+"@homebridge/plugin-ui-utils@~2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@homebridge/plugin-ui-utils/-/plugin-ui-utils-2.1.3.tgz#65781973f246e53379f5d54659652b8ad1aeac8d"
+  integrity sha512-2oPBO+f6dNN0mUOmv0DnrGT4LyibaXEf/yLeObVv0pnJMO7dnS8XyEObHBsCPrsRecm5+N+8/qnbi2UzXTdMKQ==
 
 "@humanfs/core@^0.19.1":
   version "0.19.1"
@@ -553,7 +553,16 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.3.0.tgz#f6e14a97858d327252200242d4ccfe522c445522"
   integrity sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==
 
-bonjour-hap@^3.9.0, bonjour-hap@^3.9.1:
+bonjour-hap@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/bonjour-hap/-/bonjour-hap-3.10.0.tgz#a6b472f0ea7046fe73d74a4ef87426746773bc96"
+  integrity sha512-2/jKd5X4WgvRQXIjwMtc26nT1cuD0DbAwmVJ9vq/IVvWUNxL7Tce3valQUXnkQ0yL38/jSmrXAUL2nPGZB9hGg==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    multicast-dns "^7.2.5"
+    multicast-dns-service-types "^1.1.0"
+
+bonjour-hap@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/bonjour-hap/-/bonjour-hap-3.9.1.tgz#206727ff05c1c9bd6cf4cb2240271f8cef209d27"
   integrity sha512-ubpbZSBwRyAx2+j5RLKFO+QuRvB02s+7rinC0rQzICx9hEc0zryjRz56Rr9lxoW7UkE/mnZ4rP4mnTCF4/iUkg==
@@ -637,7 +646,7 @@ camelcase@^5.3.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
-chalk@5.6.2:
+chalk@5.6.2, chalk@^5.6.2:
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.6.2.tgz#b1238b6e23ea337af71c7f8a295db5af0c158aea"
   integrity sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==
@@ -650,11 +659,6 @@ chalk@^2.4.2:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
-
-chalk@^5.4.1:
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.4.1.tgz#1b48bf0963ec158dce2aacf69c093ae2dd2092d8"
-  integrity sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==
 
 chokidar@^3.5.2:
   version "3.6.0"
@@ -1509,14 +1513,14 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hb-lib-tools@~2.2.5:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/hb-lib-tools/-/hb-lib-tools-2.2.6.tgz#1646a2c95b44b6e893836cc3b5a92944519cba30"
-  integrity sha512-UKOJj0/vTwoHRfJDgDYLmDKnkgJa+vPPe0VwlBZAE8BCek87jfZRfmqRtybZKzqA9RbXHma6h+tgZy1jXIyBcg==
+hb-lib-tools@~2.2.17:
+  version "2.2.17"
+  resolved "https://registry.yarnpkg.com/hb-lib-tools/-/hb-lib-tools-2.2.17.tgz#5f0ca89d6933d95e229c60fa6a234e9ccdc53444"
+  integrity sha512-Wz24QorEdsgX4HfRaChCQtNB7W8XM8XXbIArfdk7pmKICyggh32M6g5UfA4c2CPvQHj3ClwdvwistPxDWeRNdQ==
   dependencies:
-    bonjour-hap "^3.9.0"
-    chalk "^5.4.1"
-    semver "^7.7.2"
+    bonjour-hap "^3.10.0"
+    chalk "^5.6.2"
+    semver "^7.7.4"
 
 hexy@^0.3.5:
   version "0.3.5"
@@ -1524,12 +1528,12 @@ hexy@^0.3.5:
   integrity sha512-UCP7TIZPXz5kxYJnNOym+9xaenxCLor/JyhKieo8y8/bJWunGh9xbhy3YrgYJUQ87WwfXGm05X330DszOfINZw==
 
 homebridge-lib@^7.1.4:
-  version "7.1.6"
-  resolved "https://registry.yarnpkg.com/homebridge-lib/-/homebridge-lib-7.1.6.tgz#78eb07e95dc916399a138af2449cdc4588cb883e"
-  integrity sha512-h4Gs+lcEOz77KDih9NL6Ico9a9YoGPyTQG30XRNLHtAn8Dc/30FrHDn2wVza9ql8JVOhNWCHZiR39TTBvpRx7Q==
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/homebridge-lib/-/homebridge-lib-7.3.1.tgz#56b8f0e87001b84402001074d2f4d0f33562ebab"
+  integrity sha512-+rkRl9ISz8ZgwNBPLNokpil9AbKS9ZmoSDcXE/fSkwBIA5wi25URSTovDtrYRvmazEUZ6wVOWCkG6yCPyDuBCA==
   dependencies:
-    "@homebridge/plugin-ui-utils" "~2.0.2"
-    hb-lib-tools "~2.2.5"
+    "@homebridge/plugin-ui-utils" "~2.1.3"
+    hb-lib-tools "~2.2.17"
 
 homebridge-util-accessory-manager@0.1.1:
   version "0.1.1"
@@ -2475,7 +2479,7 @@ semver@^7.3.4:
   dependencies:
     lru-cache "^6.0.0"
 
-semver@^7.5.3, semver@^7.7.3:
+semver@^7.5.3, semver@^7.7.3, semver@^7.7.4:
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.4.tgz#28464e36060e991fa7a11d0279d2d3f3b57a7e8a"
   integrity sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==
