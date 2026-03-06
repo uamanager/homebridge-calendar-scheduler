@@ -1289,7 +1289,7 @@ hexy@^0.3.5:
   resolved "https://registry.yarnpkg.com/hexy/-/hexy-0.3.5.tgz#adcd5ee47d66aca3581d771743a509a5176e45f9"
   integrity sha512-UCP7TIZPXz5kxYJnNOym+9xaenxCLor/JyhKieo8y8/bJWunGh9xbhy3YrgYJUQ87WwfXGm05X330DszOfINZw==
 
-homebridge-lib@^7.1.4, homebridge-lib@^7.3.1:
+homebridge-lib@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/homebridge-lib/-/homebridge-lib-7.3.1.tgz#56b8f0e87001b84402001074d2f4d0f33562ebab"
   integrity sha512-+rkRl9ISz8ZgwNBPLNokpil9AbKS9ZmoSDcXE/fSkwBIA5wi25URSTovDtrYRvmazEUZ6wVOWCkG6yCPyDuBCA==
@@ -1297,12 +1297,12 @@ homebridge-lib@^7.1.4, homebridge-lib@^7.3.1:
     "@homebridge/plugin-ui-utils" "~2.1.3"
     hb-lib-tools "~2.2.17"
 
-homebridge-util-accessory-manager@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/homebridge-util-accessory-manager/-/homebridge-util-accessory-manager-0.1.1.tgz#a63d0e71591b3429133e5f14374b14f30a0d5fbb"
-  integrity sha512-SwT71BB47fq+e1Ovk05qZsXBJ1Yl6ItRrd3ac+isshTRi2R0FzNXAZfAuRbsxAeZHyIx+XkdJyym+vinqy6xxw==
+homebridge-util-accessory-manager@0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/homebridge-util-accessory-manager/-/homebridge-util-accessory-manager-0.1.3.tgz#1daf8b9bff131fb74c150cf4ee3485990ba21b39"
+  integrity sha512-vKjfuJeVNgtHRATU17PE8S5eshyCTUcxv2AR32of47ypw0j1No0cLXyRHT4+d0ekbcChJLe6clVyzmVUhJqFOg==
   dependencies:
-    homebridge-lib "^7.1.4"
+    homebridge-lib "^7.3.1"
 
 homebridge@^2.0.0-beta.0:
   version "2.0.0-beta.77"
