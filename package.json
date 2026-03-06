@@ -6,6 +6,7 @@
   "description": "Calendar Scheduler plugin for Homebridge, which allows flexible scheduling of triggers with event progress report using any iCal calendar.",
   "type": "module",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/uamanager/homebridge-calendar-scheduler#readme",
   "repository": {
     "type": "git",
     "url": "git://github.com/uamanager/homebridge-calendar-scheduler.git"
@@ -25,7 +26,7 @@
     "url": "https://github.com/uamanager/homebridge-calendar-scheduler/issues"
   },
   "engines": {
-    "node": "^20.18.0 || ^22.10.0",
+    "node": "^20.18.0 || ^22.10.0 || ^24.0.0",
     "homebridge": "^1.8.0 || ^2.0.0-beta.0"
   },
   "main": "dist/index.js",
@@ -59,22 +60,22 @@
   ],
   "dependencies": {
     "follow-redirects": "1.15.11",
-    "homebridge-lib": "^7.1.4",
+    "homebridge-lib": "^7.3.1",
     "homebridge-util-accessory-manager": "0.1.1",
-    "ical-expander": "3.1.0",
-    "ical.js": "2.2.0",
+    "ical-expander": "3.2.0",
+    "ical.js": "2.2.1",
     "toad-scheduler": "3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
     "@types/follow-redirects": "1.14.4",
-    "@types/node": "^22.13.5",
+    "@types/node": "^24.10.1",
     "eslint": "^10.0.0",
     "homebridge": "^2.0.0-beta.0",
     "nodemon": "^3.1.9",
     "commit-and-tag-version": "12.6.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.1"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.4"
   }
 }
