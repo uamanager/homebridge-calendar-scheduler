@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    environment:
+      name: NPM
+      url: https://www.npmjs.com/package/homebridge-calendar-scheduler
+
     permissions:
       contents: read
       id-token: write
@@ -33,6 +37,4 @@ jobs:
           CI: true
 
       - name: Publish Package
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
