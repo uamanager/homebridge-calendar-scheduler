@@ -26,7 +26,7 @@
     "url": "https://github.com/uamanager/homebridge-calendar-scheduler/issues"
   },
   "engines": {
-    "node": "^20.18.0 || ^22.10.0 || ^24.0.0",
+    "node": "^22.10.0 || ^24.0.0",
     "homebridge": "^1.8.0 || ^2.0.0-beta.0"
   },
   "main": "dist/index.js",
