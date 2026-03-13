@@ -114,10 +114,10 @@
     tslib "^2.8.1"
     tweetnacl "^1.0.3"
 
-"@homebridge/plugin-ui-utils@~2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@homebridge/plugin-ui-utils/-/plugin-ui-utils-2.1.3.tgz#65781973f246e53379f5d54659652b8ad1aeac8d"
-  integrity sha512-2oPBO+f6dNN0mUOmv0DnrGT4LyibaXEf/yLeObVv0pnJMO7dnS8XyEObHBsCPrsRecm5+N+8/qnbi2UzXTdMKQ==
+"@homebridge/plugin-ui-utils@~2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@homebridge/plugin-ui-utils/-/plugin-ui-utils-2.2.1.tgz#89a142e05703d504418bb144c4d4f5be0414f235"
+  integrity sha512-L5ikNY+TUmIl25OltC9X6M4W0xbpRrQhYBb+G2eZ9YJZFlKcck8BpGagvQ0LuSs82RDVanFETBqHxyJVyAJClw==
 
 "@humanfs/core@^0.19.1":
   version "0.19.1"
@@ -1275,10 +1275,10 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hb-lib-tools@~2.2.17:
-  version "2.2.17"
-  resolved "https://registry.yarnpkg.com/hb-lib-tools/-/hb-lib-tools-2.2.17.tgz#5f0ca89d6933d95e229c60fa6a234e9ccdc53444"
-  integrity sha512-Wz24QorEdsgX4HfRaChCQtNB7W8XM8XXbIArfdk7pmKICyggh32M6g5UfA4c2CPvQHj3ClwdvwistPxDWeRNdQ==
+hb-lib-tools@~2.2.18:
+  version "2.2.18"
+  resolved "https://registry.yarnpkg.com/hb-lib-tools/-/hb-lib-tools-2.2.18.tgz#831ee5dcc83cd8ecff1d1f48e8152cb92d8618bf"
+  integrity sha512-FtHfodJDz9yrl38NepWfPxO09j/fhvzBzHDECCxoIM+HMiy5JlNkFc8M6W5pQ476PDirneOJXn58MpBLWecMLA==
   dependencies:
     bonjour-hap "^3.10.0"
     chalk "^5.6.2"
@@ -1290,12 +1290,12 @@ hexy@^0.3.5:
   integrity sha512-UCP7TIZPXz5kxYJnNOym+9xaenxCLor/JyhKieo8y8/bJWunGh9xbhy3YrgYJUQ87WwfXGm05X330DszOfINZw==
 
 homebridge-lib@^7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/homebridge-lib/-/homebridge-lib-7.3.1.tgz#56b8f0e87001b84402001074d2f4d0f33562ebab"
-  integrity sha512-+rkRl9ISz8ZgwNBPLNokpil9AbKS9ZmoSDcXE/fSkwBIA5wi25URSTovDtrYRvmazEUZ6wVOWCkG6yCPyDuBCA==
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/homebridge-lib/-/homebridge-lib-7.3.2.tgz#8ebf754e796b2604f14f940cfbc036998d94185d"
+  integrity sha512-t8X/LhkiE+B+h2PWJAW53VcJ3jqUP+/KmbxxNJ/PdMKKcMWJwWWXpoZjdGYMV2YT947L5E6fDJa04Q86LZLQsw==
   dependencies:
-    "@homebridge/plugin-ui-utils" "~2.1.3"
-    hb-lib-tools "~2.2.17"
+    "@homebridge/plugin-ui-utils" "~2.2.1"
+    hb-lib-tools "~2.2.18"
 
 homebridge-util-accessory-manager@0.1.3:
   version "0.1.3"
