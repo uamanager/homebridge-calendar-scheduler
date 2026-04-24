@@ -12,7 +12,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Auto-assign Issue
-        uses: pozil/auto-assign-issue@v2.2.0
+        uses: pozil/auto-assign-issue@v3.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: ${{ vars.DEFAULT_ISSUE_ASSIGNEE }}
